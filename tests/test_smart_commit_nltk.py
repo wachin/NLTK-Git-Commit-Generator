@@ -28,8 +28,6 @@ class SmartCommitGeneratorTests(unittest.TestCase):
         self.generator.copy_btn.setText('Copiar al Portapapeles')
         self.generator.noise_warning_label.setText('')
         self.generator.noise_warning_label.setVisible(False)
-        self.generator.preview_subject_label.setText('Subject: pendiente')
-        self.generator.preview_body_text.clear()
         self.generator.language_override_combo.setCurrentIndex(0)
         self.generator.type_override_combo.setCurrentIndex(0)
         self.generator.scope_override_combo.setCurrentIndex(0)
@@ -134,8 +132,6 @@ y deja pendientes las mejoras futuras para Git, ML, UI, testing y multilenguaje.
         self.assertFalse(self.generator.copy_btn.isEnabled())
         self.assertEqual(self.generator.copy_btn.text(), 'Copiar al Portapapeles')
         self.assertFalse(self.generator.noise_warning_label.isVisible())
-        self.assertEqual(self.generator.preview_subject_label.text(), 'Subject: pendiente')
-        self.assertEqual(self.generator.preview_body_text.toPlainText(), '')
         self.assertEqual(self.generator.language_status_label.text(), 'Idioma detectado: pendiente')
         self.assertEqual(self.generator.type_override_combo.currentData(), 'auto')
         self.assertEqual(self.generator.scope_override_combo.currentData(), 'auto')
@@ -171,22 +167,14 @@ y deja pendientes las mejoras futuras para Git, ML, UI, testing y multilenguaje.
         updated = self.generator.output_text.toPlainText()
         self.assertIn('git commit -m "feat(ui): agrega roadmap con seguimiento de progreso"', updated)
         self.assertIn('-m "- Documenta funcionalidades completadas y progreso del proyecto"', updated)
-        self.assertEqual(
-            self.generator.preview_subject_label.text(),
-            'Subject: feat(ui): agrega roadmap con seguimiento de progreso'
-        )
 
-    def test_preview_updates_subject_and_body_after_generation(self):
-        self.render_command('He creado Roadmap.md con tareas completadas.')
+    def test_truncate_subject_preserves_word_boundaries(self):
+        subject = 'agrega soporte bilingüe y corrige detección de tipo demasiado larga'
+        truncated = self.generator.truncate_subject(subject, limit=50)
 
-        self.assertEqual(
-            self.generator.preview_subject_label.text(),
-            'Subject: docs(repo): agrega roadmap con seguimiento de progreso'
-        )
-        self.assertIn(
-            '- Documenta funcionalidades completadas y progreso del proyecto',
-            self.generator.preview_body_text.toPlainText()
-        )
+        self.assertLessEqual(len(truncated), 50)
+        self.assertEqual(truncated, 'agrega soporte bilingüe y corrige detección...')
+        self.assertNotIn('tip...', truncated)
 
     def test_type_scope_summary_takes_priority_over_testing_and_roadmap(self):
         text = """Continué con la mejora del Roadmap: ya puedes editar manualmente `type` y `scope` desde la UI antes de copiar.

@@ -18,7 +18,6 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Selector manual de idioma: Automático, Español o Inglés.
 - [x] Selectores manuales para ajustar type y scope antes de copiar.
 - [x] Advertencia no intrusiva cuando el input tiene mucho ruido o bloques de código.
-- [x] Vista previa separada para subject y body.
 - [x] Área de salida con comando `git commit` multilinea.
 - [x] Botón para copiar el comando al portapapeles.
 - [x] Confirmación de copiado en el propio botón, sin mensaje modal.
@@ -102,7 +101,7 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Test para priorizar summaries de type/scope sobre menciones de tests/Roadmap.
 - [x] Test para confirmar copiado en el botón sin mensaje modal.
 - [x] Test para advertencias de ruido por bloques de código y commits pegados.
-- [x] Test para vista previa separada de subject y body.
+- [x] Test para truncar el subject sin cortar palabras.
 - [x] Ejecución exitosa de 17 tests de regresión.
 
 ### [x] Higiene de Artefactos Generados
@@ -136,13 +135,12 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Permitir cambiar manualmente el idioma detectado.
 - [x] Permitir editar type/scope desde la UI antes de copiar.
 - [x] Mostrar advertencias cuando el input tenga mucho ruido o muchos bloques de código.
-- [x] Añadir vista previa separada para subject y body.
 
 ### [ ] Calidad del Commit
 - [ ] Mejorar ranking de bullets por importancia.
 - [ ] Detectar validaciones y pruebas aunque aparezcan en frases indirectas.
 - [ ] Detectar menciones de documentación, tests y código dentro del texto pegado.
-- [ ] Mejorar truncado de subject para que no corte palabras.
+- [x] Mejorar truncado de subject para que no corte palabras.
 - [ ] Generar alternativas cuando haya varias interpretaciones posibles.
 
 ---

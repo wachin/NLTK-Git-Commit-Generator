@@ -169,23 +169,6 @@ class NLPCommitGenerator(QMainWindow):
         output_group = QGroupBox("Comando Git Generado:")
         output_layout = QVBoxLayout()
 
-        preview_group = QGroupBox("Vista Previa:")
-        preview_layout = QVBoxLayout()
-
-        self.preview_subject_label = QLabel("Subject: pendiente")
-        self.preview_subject_label.setFont(QFont("Arial", 9, QFont.Weight.Bold))
-        preview_layout.addWidget(self.preview_subject_label)
-
-        self.preview_body_text = QTextEdit()
-        self.preview_body_text.setReadOnly(True)
-        self.preview_body_text.setMaximumHeight(115)
-        self.preview_body_text.setFont(QFont("Courier New", 9))
-        self.preview_body_text.setPlaceholderText("Body: pendiente")
-        preview_layout.addWidget(self.preview_body_text)
-
-        preview_group.setLayout(preview_layout)
-        output_layout.addWidget(preview_group)
-
         self.output_text = QTextEdit()
         self.output_text.setReadOnly(True)
         self.output_text.setFont(QFont("Courier New", 10))
@@ -799,21 +782,7 @@ class NLPCommitGenerator(QMainWindow):
             cmd_parts.append(f'  -m "{line}"')
         return " \\\n".join(cmd_parts)
 
-    def update_commit_preview(self):
-        commit_type = self.selected_commit_type()
-        scope = self.selected_scope()
-        if commit_type and scope and self.current_subject:
-            self.preview_subject_label.setText(f"Subject: {commit_type}({scope}): {self.current_subject}")
-        else:
-            self.preview_subject_label.setText("Subject: pendiente")
-
-        if self.current_body_lines:
-            self.preview_body_text.setPlainText("\n".join(self.current_body_lines))
-        else:
-            self.preview_body_text.clear()
-
     def refresh_commit_command_from_controls(self):
-        self.update_commit_preview()
         command = self.build_commit_command()
         if command:
             self.output_text.setText(command)
@@ -1177,6 +1146,24 @@ class NLPCommitGenerator(QMainWindow):
 
         return bullets
 
+    def truncate_subject(self, subject, limit=50):
+        subject = subject.strip()
+        if len(subject) <= limit:
+            return subject
+
+        ellipsis = "..."
+        max_prefix = limit - len(ellipsis)
+        prefix = subject[:max_prefix].rstrip()
+        word_boundary = prefix.rfind(" ")
+
+        if word_boundary >= max_prefix * 0.65:
+            prefix = prefix[:word_boundary].rstrip()
+
+        prefix = re.sub(r'[\s,;:.-]+$', '', prefix)
+        if not prefix:
+            prefix = subject[:max_prefix].rstrip()
+        return f"{prefix}{ellipsis}"
+
     def generate_commit(self):
         text = self.input_text.toPlainText()
         if not text.strip():
@@ -1190,8 +1177,7 @@ class NLPCommitGenerator(QMainWindow):
             self.update_language_status(language, manual=forced_language is not None)
             scope = self.detect_scope(text)
             subject = self.format_subject(verb, obj, language)
-            if len(subject) > 50:
-                subject = subject[:47] + "..."
+            subject = self.truncate_subject(subject)
 
             commit_type = self.select_commit_type(text, verb, obj)
             body_lines = self.generate_body_lines(self.clean_input(text), language)
@@ -1219,7 +1205,6 @@ class NLPCommitGenerator(QMainWindow):
         self.detected_scope = None
         self.current_subject = ""
         self.current_body_lines = []
-        self.update_commit_preview()
         self.language_override_combo.setCurrentIndex(0)
         self.type_override_combo.setCurrentIndex(0)
         self.scope_override_combo.setCurrentIndex(0)

@@ -54,7 +54,7 @@ python3 -c "import nltk; nltk.download('punkt'); nltk.download('averaged_percept
 2. Paste a summary from your own notes, an assistant response, or a changelog-style paragraph.
 3. Leave **Modo de idioma** on **Automático**, or choose **Español** / **Inglés** manually if the text is mixed.
 4. Click **Generar Commit con NLTK**.
-5. Review the generated subject/body preview, detected language status, and any non-blocking noise warning.
+5. Review the generated command, detected language status, and any non-blocking noise warning.
 6. Adjust **Tipo** or **Scope** if the automatic choice needs a manual correction.
 7. Copy it to the clipboard and run it in your repository. The copy button confirms the action in-place, without opening a popup.
 

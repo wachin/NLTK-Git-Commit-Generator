@@ -1,32 +1,43 @@
 # NLTK Git Commit Generator
 
-A lightweight, desktop application built with **PyQt6** and **NLTK** that automatically generates standardized Git commit messages. Simply paste your change summary, and the tool uses linguistic analysis to produce a perfectly formatted Conventional Commit ready for your terminal.
+A lightweight desktop app built with **PyQt6** and **NLTK** that turns pasted change summaries into ready-to-run Conventional Commit commands.
+
+The project is intentionally local-first: no API keys, no cloud model, and no network dependency after the initial NLTK data download. It uses language-aware tokenization, practical heuristics, and project-specific patterns to produce useful commit subjects and bullet bodies.
 
 ## Features
 
-- **Linguistic Analysis**: Uses `nltk` (Natural Language Toolkit) to parse grammar, extract the main action verb and target object, and construct precise commit subjects.
-- **Conventional Commits Standard**: Automatically enforces the `type(scope): description` format.
-- **Git Line Length Compliance**: Strictly adheres to Git best practices (≤50 characters for subjects, ≤72 characters for body lines).
-- **Smart Heuristics**: Detects test counts, roadmap updates, documentation changes, and UI modifications to auto-generate structured commit bodies.
-- **One-Click Copy**: Outputs a ready-to-paste multiline `git commit` command directly to your clipboard.
-- **Zero AI Overhead**: Runs entirely locally with lightweight NLP models. No API keys, no heavy LLMs, no internet dependency after initial setup.
+- **Bilingual input support**: Detects Spanish or English summaries and keeps the generated subject/body in the same language.
+- **Language-aware tokenization**: Uses NLTK Punkt tokenizers for English and Spanish sentence splitting.
+- **Spanish action extraction**: Understands common Spanish development phrases such as `he creado`, `actualizado`, `incluye`, `resume`, `corrige`, and `mejora`.
+- **Conventional Commits format**: Generates `type(scope): subject` commands with scopes such as `nlp`, `repo`, `docs`, `ui`, `app`, `dict`, and `tools`.
+- **Markdown noise filtering**: Ignores pasted fenced code blocks, embedded `git commit -m` examples, Markdown links, and quoted command output that would otherwise pollute the result.
+- **Smarter type detection**: Avoids false positives such as classifying a commit as `ci` just because the letters `ci` appear inside Spanish words like `funcionalidades` or `secciones`.
+- **Structured body generation**: Builds up to five high-signal bullet lines for roadmap work, bilingual NLP changes, UI work, validation, docs, and common project patterns.
+- **Clipboard workflow**: Shows a multiline `git commit` command ready to copy and paste into a terminal.
 
 ## Installation
 
 ### Debian / Ubuntu / Linux Mint
+
 ```bash
 sudo apt update
 sudo apt install python3-pyqt6 python3-nltk
 ```
 
-### Other Linux Distributions (via pip)
+### Other Linux Distributions
+
 ```bash
 pip install PyQt6 nltk
 ```
 
-> 💡 **First-Run Note**: On the very first execution, the application will automatically download the required NLTK datasets (`punkt` and `averaged_perceptron_tagger`) to `~/nltk_data` (~57 MB). The terminal may appear paused for 1–3 minutes during this download. This is a one-time setup step. Subsequent launches will open the GUI instantly.
+On first run, the app checks for required NLTK data and downloads missing packages:
 
-**Optional Pre-download**: To avoid the initial wait, run this once before first launch, but at the same you will need to wait the same time:
+- `punkt`
+- `averaged_perceptron_tagger`
+
+The Spanish tokenizer is included in the Punkt data package.
+
+Optional pre-download:
 
 ```bash
 python3 -c "import nltk; nltk.download('punkt'); nltk.download('averaged_perceptron_tagger')"
@@ -34,52 +45,88 @@ python3 -c "import nltk; nltk.download('punkt'); nltk.download('averaged_percept
 
 ## Usage
 
-1. Clone or download this repository.
-2. Run the application:
+1. Run the app:
+
    ```bash
    python3 smart_commit_nltk.py
    ```
-3. Paste your change summary into the input text area.
-4. Click **"Generate Commit with NLTK"**.
-5. Review the formatted command and click **"Copy to Clipboard"**.
-6. Paste and execute directly in your terminal.
+
+2. Paste a summary from your own notes, an assistant response, or a changelog-style paragraph.
+3. Click **Generar Commit con NLTK**.
+4. Review the generated command.
+5. Copy it to the clipboard and run it in your repository.
+
+## Examples
+
+Spanish input about the bilingual NLP improvements can produce:
+
+```bash
+git commit -m "feat(nlp): agrega soporte bilingüe y corrige tipo ci" \
+  -m "- Detecta el idioma de entrada para tokenización localizada" \
+  -m "- Soporta verbos españoles como creado, actualizado e incluye" \
+  -m "- Genera subject y body en el idioma del resumen" \
+  -m "- Corrige falsos positivos de ci dentro de palabras comunes" \
+  -m "- Valida la sintaxis con py_compile"
+```
+
+English input about the same kind of work can produce:
+
+```bash
+git commit -m "feat(nlp): add bilingual support and fix type detection" \
+  -m "- Detect input language for localized tokenization" \
+  -m "- Support Spanish verbs like creado, actualizado, and incluye" \
+  -m "- Generate commit subject and body in the source language" \
+  -m "- Fix false-positive ci detection inside common words" \
+  -m "- Validate syntax with py_compile"
+```
+
+Spanish roadmap input can produce:
+
+```bash
+git commit -m "docs(repo): agrega roadmap con seguimiento de progreso" \
+  -m "- Documenta funcionalidades completadas y progreso del proyecto" \
+  -m "- Resume mejoras futuras para Git, ML, UI, pruebas y multilenguaje" \
+  -m "- Organiza el roadmap con secciones claras de estado" \
+  -m "- Incluye áreas de documentación, comunidad y testing" \
+  -m "- Usa checkboxes para visualizar tareas completadas y pendientes"
+```
 
 ## How It Works
 
-Unlike AI-based generators that rely on heavy language models, this tool uses **statistical NLP** via `nltk`:
-1. **Tokenization & POS Tagging**: Breaks down your input text and tags each word with its grammatical role (verb, noun, preposition, etc.).
-2. **Subject Extraction**: Identifies the primary action verb and its direct object to construct a concise, meaningful subject line.
-3. **Scope & Type Detection**: Uses keyword matching and grammatical context to assign the correct Conventional Commit `type` (`feat`, `fix`, `docs`) and `scope` (`app`, `ui`, `dict`, `tools`).
-4. **Body Generation**: Applies project-aware heuristics to automatically append relevant bullet points (e.g., test validation counts, roadmap updates, documentation syncs).
-5. **Formatting Engine**: Enforces Git's strict character limits and outputs a clean, multiline bash command.
+1. **Noise cleanup**: Removes Markdown fences, embedded commit commands, copied `-m` lines, Markdown link targets, and other assistant/terminal noise.
+2. **Language detection**: Scores Spanish and English markers to choose `es` or `en`.
+3. **Sentence splitting**: Uses NLTK sentence tokenization with the detected language.
+4. **Action extraction**: Applies English POS tagging and rule-based Spanish patterns to find the main action and object.
+5. **Type/scope selection**: Classifies the change into Conventional Commit type/scope using whole-word matching and project-aware keywords.
+6. **Body generation**: Adds concise, localized bullets for detected change categories.
+7. **Formatting**: Keeps the subject short and emits a shell-ready multiline `git commit` command.
 
-## 📖 Example Workflow
+## Project Structure
 
-The repository includes a comprehensive log of real-world usage demonstrating how raw developer summaries are transformed into production-ready commits. See:
-👉 [`COMMIT_GENERATION_EXAMPLES.md`](COMMIT_GENERATION_EXAMPLES.md)
-
-Each entry shows:
-- The original developer summary
-- The generated `git commit` command
-- The linguistic & structural reasoning behind the output
-
-## 📁 Project Structure
-
-```
+```text
 ├── smart_commit_nltk.py          # Main PyQt6 application
-├── COMMIT_GENERATION_EXAMPLES.md # Real-world usage examples
-└── README.md                     # This file
+├── Roadmap.md                    # Current progress and planned improvements
+├── COMMIT_GENERATION_EXAMPLES.md # Real-world examples and expected outputs
+├── commit_examples_data/         # Parsed JSON/SQLite examples and comparison tools
+└── README.md                     # Project documentation
 ```
+
+## Current Limitations
+
+- Spanish grammar support is rule-based. NLTK Punkt can split Spanish sentences, but this project does not currently use a full Spanish POS tagger.
+- The generator is heuristic, not a large language model. It improves through specific patterns, examples, and evaluation data.
+- It works best with summaries that describe concrete changes, files, features, validation, and user-visible behavior.
 
 ## Contributing
 
-Contributions are welcome! If you'd like to improve the linguistic rules, add new scope/type detection patterns, or enhance the UI, feel free to open an issue or submit a pull request.
+Good contributions include:
+
+- Adding more Spanish and English phrase patterns.
+- Expanding `commit_examples_data` with real summaries and expected commits.
+- Improving comparison metrics.
+- Adding tests for language detection, Markdown cleanup, type/scope selection, and body generation.
 
 ## License
 
-This project is open-source and available under the GPL 3
-
----
-*Built for developers who value precision, speed, and clean Git history.* 🐍📦✨
-```
+This project is open-source and available under GPL 3.
 

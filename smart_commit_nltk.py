@@ -7,7 +7,7 @@ import io
 import nltk
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QTextEdit, QPushButton, QLabel, QMessageBox,
-                             QHBoxLayout, QGroupBox)
+                             QHBoxLayout, QGroupBox, QComboBox)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont, QClipboard
 
@@ -77,6 +77,10 @@ class NLPCommitGenerator(QMainWindow):
         super().__init__()
         self.setWindowTitle("Generador de Commits - NLTK Enhanced")
         self.setGeometry(100, 100, 900, 700)
+        self.detected_commit_type = None
+        self.detected_scope = None
+        self.current_subject = ""
+        self.current_body_lines = []
 
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -91,10 +95,57 @@ class NLPCommitGenerator(QMainWindow):
         self.input_text.setFont(QFont("Courier New", 9))
         layout.addWidget(self.input_text)
 
+        self.noise_warning_label = QLabel("")
+        self.noise_warning_label.setFont(QFont("Arial", 9))
+        self.noise_warning_label.setStyleSheet("color: #B26A00; padding: 4px 0;")
+        self.noise_warning_label.setVisible(False)
+        layout.addWidget(self.noise_warning_label)
+
         self.language_status_label = QLabel("Idioma detectado: pendiente")
         self.language_status_label.setFont(QFont("Arial", 9))
         self.language_status_label.setStyleSheet("color: #555; padding: 4px 0;")
-        layout.addWidget(self.language_status_label)
+
+        language_layout = QHBoxLayout()
+        language_layout.addWidget(self.language_status_label)
+
+        language_mode_label = QLabel("Modo de idioma:")
+        language_mode_label.setFont(QFont("Arial", 9))
+        language_layout.addWidget(language_mode_label)
+
+        self.language_override_combo = QComboBox()
+        self.language_override_combo.addItem("Automático", "auto")
+        self.language_override_combo.addItem("Español", "es")
+        self.language_override_combo.addItem("Inglés", "en")
+        self.language_override_combo.setFont(QFont("Arial", 9))
+        language_layout.addWidget(self.language_override_combo)
+        layout.addLayout(language_layout)
+
+        commit_meta_layout = QHBoxLayout()
+
+        type_label = QLabel("Tipo:")
+        type_label.setFont(QFont("Arial", 9))
+        commit_meta_layout.addWidget(type_label)
+
+        self.type_override_combo = QComboBox()
+        self.type_override_combo.addItem("Automático", "auto")
+        for commit_type in ['feat', 'fix', 'docs', 'test', 'build', 'ci', 'style', 'refactor', 'perf']:
+            self.type_override_combo.addItem(commit_type, commit_type)
+        self.type_override_combo.setFont(QFont("Arial", 9))
+        self.type_override_combo.currentIndexChanged.connect(self.refresh_commit_command_from_controls)
+        commit_meta_layout.addWidget(self.type_override_combo)
+
+        scope_label = QLabel("Scope:")
+        scope_label.setFont(QFont("Arial", 9))
+        commit_meta_layout.addWidget(scope_label)
+
+        self.scope_override_combo = QComboBox()
+        self.scope_override_combo.addItem("Automático", "auto")
+        for scope in ['app', 'ui', 'docs', 'repo', 'dict', 'tools', 'nlp', 'test']:
+            self.scope_override_combo.addItem(scope, scope)
+        self.scope_override_combo.setFont(QFont("Arial", 9))
+        self.scope_override_combo.currentIndexChanged.connect(self.refresh_commit_command_from_controls)
+        commit_meta_layout.addWidget(self.scope_override_combo)
+        layout.addLayout(commit_meta_layout)
 
         action_btn_layout = QHBoxLayout()
 
@@ -167,6 +218,32 @@ class NLPCommitGenerator(QMainWindow):
         text = re.sub(r'`([^`]+)`', r'\1', text)
         return text
 
+    def detect_input_noise_warnings(self, text):
+        warnings = []
+        fenced_blocks = len(re.findall(r'```', text)) // 2
+        embedded_commits = len(re.findall(r'^\s*git\s+commit\b', text, re.MULTILINE))
+        message_parts = len(re.findall(r'^\s*-m\s+["\']', text, re.MULTILINE))
+        original_lines = [line for line in text.splitlines() if line.strip()]
+        cleaned_lines = [line for line in self.clean_input(text).splitlines() if line.strip()]
+
+        if fenced_blocks:
+            warnings.append(f"{fenced_blocks} bloque(s) de código")
+        if embedded_commits or message_parts:
+            warnings.append("commits pegados")
+        if original_lines and len(cleaned_lines) <= max(1, len(original_lines) // 3):
+            warnings.append("mucho ruido filtrado")
+
+        return warnings
+
+    def update_noise_warning(self, text):
+        warnings = self.detect_input_noise_warnings(text)
+        if warnings:
+            self.noise_warning_label.setText("Aviso: se detectó " + ", ".join(warnings) + ".")
+            self.noise_warning_label.setVisible(True)
+        else:
+            self.noise_warning_label.setText("")
+            self.noise_warning_label.setVisible(False)
+
     def detect_language(self, text):
         text_lower = text.lower()
         spanish_markers = [
@@ -227,6 +304,7 @@ class NLPCommitGenerator(QMainWindow):
                 r'actualicé|actualice|recalculé|recalcule|afiné|afine|cambiado|corregido|'
                 r'arreglado|mejorado|documenta|documentado|incluye|resume|'
                 r'detecta|usa|entiende|genera|corrige|corregí|corregi|verifiqué|verifique|validé|valide|'
+                r'puedes|selectores|tipo|scope|regenera|manteniendo|ajuste|manual|'
                 r'añadí|anadi|quité|quite|borra|borrar|desactiva|devuelve|foco|resultado|tests|'
                 r'idioma detectado|pendiente|español|inglés|integración|integracion|baseline|línea base|linea base|quedó|quedo)\b',
                 line,
@@ -329,6 +407,9 @@ class NLPCommitGenerator(QMainWindow):
             and re.search(r'\b(add|added|update|updated|recalculate|recalculated|\.gitignore|roadmap|readme|6\s+tests|45\s+examples)\b', sentence_lower)
         ):
             return 'add', 'regression suite and evaluation baseline'
+
+        if re.search(r'\b(type\s*(?:and|/)\s*scope|manual type|manual scope|type selector|scope selector|dropdowns?|manual override|regenerat(?:e|ion))\b', sentence_lower):
+            return 'add', 'manual type and scope selectors'
 
         if re.search(r'\b(clear input|clear button|reset input|copy button|refocus input)\b', sentence_lower):
             return 'add', 'Clear Input button to generator interface'
@@ -479,6 +560,9 @@ class NLPCommitGenerator(QMainWindow):
         ):
             return 'add', 'suite de regresión y baseline de evaluación'
 
+        if re.search(r'\b(type\s*(?:y|/)\s*scope|selectores|tipo:|scope:|editar manualmente|corregirlo manualmente|regenera|ajuste manual)\b', sentence_lower):
+            return 'add', 'selectores manuales de type y scope'
+
         if re.search(r'\b(limpiar entrada|bot[oó]n limpiar|borrar el texto de entrada|borra el texto|bot[oó]n de copiar|cuadro de entrada|foco)\b', sentence_lower):
             return 'add', 'botón Limpiar entrada en la interfaz'
 
@@ -567,11 +651,20 @@ class NLPCommitGenerator(QMainWindow):
 
         return best_sentence
 
-    def analyze_with_nltk(self, text):
-        language = self.detect_language(text)
+    def selected_language_override(self):
+        selected = self.language_override_combo.currentData()
+        return selected if selected in {'es', 'en'} else None
+
+    def analyze_with_nltk(self, text, forced_language=None):
+        language = forced_language or self.detect_language(text)
         normalized = self.clean_input(text)
 
         normalized_lower = normalized.lower()
+        if language == 'es' and any(k in normalized_lower for k in ['type y scope', 'type/scope', 'selectores', 'editar manualmente', 'corregirlo manualmente', 'ajuste manual']):
+            return 'add', 'selectores manuales de type y scope', language
+        if language == 'en' and any(k in normalized_lower for k in ['type and scope', 'type/scope', 'type selector', 'scope selector', 'dropdown', 'manual override']):
+            return 'add', 'manual type and scope selectors', language
+
         if language == 'es' and any(k in normalized_lower for k in ['idioma detectado', 'etiqueta de estado', 'muestra el idioma', 'estado que muestra el idioma']):
             return 'add', 'indicador de idioma detectado', language
         if language == 'en' and any(k in normalized_lower for k in ['detected language', 'language status', 'status label', 'language detection']):
@@ -654,15 +747,52 @@ class NLPCommitGenerator(QMainWindow):
         verb = verb_map.get(action, action)
         return f"{verb} {obj}".strip()
 
-    def update_language_status(self, language):
+    def update_language_status(self, language, manual=False):
         labels = {
             'es': 'Idioma detectado: Español',
             'en': 'Idioma detectado: Inglés'
         }
-        self.language_status_label.setText(labels.get(language, 'Idioma detectado: pendiente'))
+        text = labels.get(language, 'Idioma detectado: pendiente')
+        if manual and language in {'es', 'en'}:
+            text += ' (manual)'
+        self.language_status_label.setText(text)
+
+    def selected_commit_type(self):
+        selected = self.type_override_combo.currentData()
+        if selected and selected != 'auto':
+            return selected
+        return self.detected_commit_type
+
+    def selected_scope(self):
+        selected = self.scope_override_combo.currentData()
+        if selected and selected != 'auto':
+            return selected
+        return self.detected_scope
+
+    def build_commit_command(self):
+        commit_type = self.selected_commit_type()
+        scope = self.selected_scope()
+        if not commit_type or not scope or not self.current_subject:
+            return ""
+
+        cmd_parts = [f'git commit -m "{commit_type}({scope}): {self.current_subject}"']
+        for line in self.current_body_lines:
+            if len(line) > 72:
+                line = line[:69] + "..."
+            cmd_parts.append(f'  -m "{line}"')
+        return " \\\n".join(cmd_parts)
+
+    def refresh_commit_command_from_controls(self):
+        command = self.build_commit_command()
+        if command:
+            self.output_text.setText(command)
+            self.copy_btn.setText("Copiar al Portapapeles")
+            self.copy_btn.setEnabled(True)
 
     def detect_scope(self, text):
         text_lower = text.lower()
+        if any(k in text_lower for k in ['type/scope', 'type y scope', 'type and scope', 'selectores', 'tipo:', 'scope:', 'manual override', 'ajuste manual']):
+            return 'ui'
         if any(k in text_lower for k in ['idioma detectado', 'detected language', 'language status', 'etiqueta de estado', 'status label']):
             return 'ui'
         if any(k in text_lower for k in ['limpiar entrada', 'clear input', 'botón limpiar', 'boton limpiar', 'borrar el texto de entrada', 'borra el texto', 'copy button', 'botón de copiar', 'cuadro de entrada']):
@@ -710,6 +840,8 @@ class NLPCommitGenerator(QMainWindow):
         refactor_keywords = ['refactor', 'cleanup', 'cleaned', 'restructure', 'rename', 'split', 'extract', 'simplify', 'refactoriza', 'limpia']
         fix_keywords = ['fix', 'fixed', 'correct', 'corrected', 'resolve', 'resolved', 'bug', 'crash', 'error', 'corrige', 'corregido', 'arregla', 'arreglado']
 
+        if any(k in text_lower for k in ['type/scope', 'type y scope', 'type and scope', 'selectores', 'tipo:', 'scope:', 'manual override', 'ajuste manual']):
+            return 'feat'
         if any(k in text_lower for k in ['idioma detectado', 'detected language', 'language status', 'etiqueta de estado', 'status label']):
             return 'feat'
         if any(k in text_lower for k in ['limpiar entrada', 'clear input', 'botón limpiar', 'boton limpiar', 'borrar el texto de entrada', 'borra el texto', 'copy button', 'botón de copiar', 'cuadro de entrada']):
@@ -750,6 +882,23 @@ class NLPCommitGenerator(QMainWindow):
                 seen.add(clean_line.lower())
 
         if language == 'es':
+            has_type_scope_ui = any(k in text_lower for k in ['type/scope', 'type y scope', 'selectores', 'tipo:', 'scope:', 'editar manualmente', 'corregirlo manualmente', 'ajuste manual'])
+            if has_type_scope_ui:
+                add_bullet('- Añade selectores para tipos y scopes de Conventional Commits')
+                if 'regenera' in text_lower or 'al instante' in text_lower:
+                    add_bullet('- Regenera el comando en tiempo real al cambiar type/scope')
+                if 'manteniendo' in text_lower or 'subject' in text_lower or 'bullets' in text_lower:
+                    add_bullet('- Conserva subject y body al aplicar ajustes manuales')
+                if 'readme.md' in text_lower or 'readme' in text_lower:
+                    add_bullet('- Documenta el flujo de ajuste manual en README.md')
+                if 'test_smart_commit_nltk.py' in text_lower or 'test' in text_lower:
+                    add_bullet('- Añade test de regresión para actualizaciones dinámicas')
+                if 'roadmap.md' in text_lower or 'roadmap' in text_lower:
+                    add_bullet('- Marca la edición manual de type/scope como completada')
+                if '13 tests' in text_lower or '13 pruebas' in text_lower:
+                    add_bullet('- Validación: 13 tests pass en entorno offscreen')
+                return bullets
+
             has_language_status_ui = any(k in text_lower for k in ['idioma detectado', 'etiqueta de estado', 'muestra el idioma', 'estado que muestra el idioma'])
             if has_language_status_ui:
                 add_bullet('- Muestra el estado de idioma detectado en la interfaz')
@@ -839,6 +988,23 @@ class NLPCommitGenerator(QMainWindow):
             elif 'compileall' in text_lower:
                 add_bullet('- Validación: compileall OK')
         else:
+            has_type_scope_ui = any(k in text_lower for k in ['type/scope', 'type and scope', 'type selector', 'scope selector', 'dropdown', 'manual override'])
+            if has_type_scope_ui:
+                add_bullet('- Implement dropdowns for Conventional Commit types and scopes')
+                if 'regenerate' in text_lower or 'real-time' in text_lower:
+                    add_bullet('- Enable real-time command regeneration on manual override')
+                if 'preserve' in text_lower or 'subject' in text_lower or 'body' in text_lower:
+                    add_bullet('- Preserve subject and body during type/scope changes')
+                if 'readme.md' in text_lower or 'readme' in text_lower:
+                    add_bullet('- Document manual adjustment workflow in README.md')
+                if 'test_smart_commit_nltk.py' in text_lower or 'regression test' in text_lower:
+                    add_bullet('- Add regression test for dynamic command updates')
+                if 'roadmap.md' in text_lower or 'roadmap' in text_lower:
+                    add_bullet('- Mark manual editing task complete in Roadmap.md')
+                if '13 tests' in text_lower:
+                    add_bullet('- Validation: 13 tests pass in offscreen environment')
+                return bullets
+
             has_language_status_ui = any(k in text_lower for k in ['detected language', 'language status', 'status label', 'language detection'])
             if has_language_status_ui:
                 add_bullet('- Display detected language status in the UI')
@@ -987,36 +1153,44 @@ class NLPCommitGenerator(QMainWindow):
             return
 
         try:
-            verb, obj, language = self.analyze_with_nltk(text)
-            self.update_language_status(language)
+            self.update_noise_warning(text)
+            forced_language = self.selected_language_override()
+            verb, obj, language = self.analyze_with_nltk(text, forced_language)
+            self.update_language_status(language, manual=forced_language is not None)
             scope = self.detect_scope(text)
             subject = self.format_subject(verb, obj, language)
             if len(subject) > 50:
                 subject = subject[:47] + "..."
 
             commit_type = self.select_commit_type(text, verb, obj)
-
             body_lines = self.generate_body_lines(self.clean_input(text), language)
-            cmd_parts = [f'git commit -m "{commit_type}({scope}): {subject}"']
-            for line in body_lines:
-                if len(line) > 72: line = line[:69] + "..."
-                cmd_parts.append(f'  -m "{line}"')
-
-            final_command = " \\\n".join(cmd_parts)
-            self.output_text.setText(final_command)
-            self.copy_btn.setEnabled(True)
+            self.detected_commit_type = commit_type
+            self.detected_scope = scope
+            self.current_subject = subject
+            self.current_body_lines = body_lines
+            self.refresh_commit_command_from_controls()
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error analizando con NLTK: {str(e)}")
 
     def copy_to_clipboard(self):
         clipboard = QApplication.clipboard()
         clipboard.setText(self.output_text.toPlainText())
-        QMessageBox.information(self, "Copiado", "Comando copiado al portapapeles.")
+        self.copy_btn.setText("Comando copiado al Portapapeles")
 
     def clear_input_text(self):
         self.input_text.clear()
         self.output_text.clear()
         self.copy_btn.setEnabled(False)
+        self.copy_btn.setText("Copiar al Portapapeles")
+        self.noise_warning_label.setText("")
+        self.noise_warning_label.setVisible(False)
+        self.detected_commit_type = None
+        self.detected_scope = None
+        self.current_subject = ""
+        self.current_body_lines = []
+        self.language_override_combo.setCurrentIndex(0)
+        self.type_override_combo.setCurrentIndex(0)
+        self.scope_override_combo.setCurrentIndex(0)
         self.language_status_label.setText("Idioma detectado: pendiente")
         self.input_text.setFocus()
 

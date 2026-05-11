@@ -15,8 +15,12 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Botón para generar commits con NLTK.
 - [x] Botón para limpiar el texto de entrada del usuario.
 - [x] Indicador de idioma detectado: pendiente, Español o Inglés.
+- [x] Selector manual de idioma: Automático, Español o Inglés.
+- [x] Selectores manuales para ajustar type y scope antes de copiar.
+- [x] Advertencia no intrusiva cuando el input tiene mucho ruido o bloques de código.
 - [x] Área de salida con comando `git commit` multilinea.
 - [x] Botón para copiar el comando al portapapeles.
+- [x] Confirmación de copiado en el propio botón, sin mensaje modal.
 
 ### [x] Generador Base con NLTK
 - [x] Tokenización y POS tagging para textos en inglés.
@@ -92,7 +96,12 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Test para priorizar summaries del botón Limpiar entrada sobre menciones de tests/Roadmap.
 - [x] Test para mostrar y reiniciar el idioma detectado en la interfaz.
 - [x] Test para priorizar summaries de idioma detectado sobre menciones de Roadmap.
-- [x] Ejecución exitosa de 11 tests de regresión.
+- [x] Test para forzar manualmente el idioma de generación.
+- [x] Test para editar manualmente type/scope y regenerar el comando.
+- [x] Test para priorizar summaries de type/scope sobre menciones de tests/Roadmap.
+- [x] Test para confirmar copiado en el botón sin mensaje modal.
+- [x] Test para advertencias de ruido por bloques de código y commits pegados.
+- [x] Ejecución exitosa de 16 tests de regresión.
 
 ### [x] Higiene de Artefactos Generados
 - [x] Creación de `.gitignore` para `__pycache__/` y archivos `*.py[cod]`.
@@ -122,9 +131,9 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [ ] Sacar del índice de Git cualquier `__pycache__` ya trackeado.
 
 ### [ ] Interfaz de Usuario
-- [ ] Permitir cambiar manualmente el idioma detectado.
-- [ ] Permitir editar type/scope desde la UI antes de copiar.
-- [ ] Mostrar advertencias cuando el input tenga mucho ruido o muchos bloques de código.
+- [x] Permitir cambiar manualmente el idioma detectado.
+- [x] Permitir editar type/scope desde la UI antes de copiar.
+- [x] Mostrar advertencias cuando el input tenga mucho ruido o muchos bloques de código.
 - [ ] Añadir vista previa separada para subject y body.
 
 ### [ ] Calidad del Commit

@@ -21,6 +21,22 @@ class SmartCommitGeneratorTests(unittest.TestCase):
     def setUpClass(cls):
         cls.generator = NLPCommitGenerator()
 
+    def setUp(self):
+        self.generator.input_text.clear()
+        self.generator.output_text.clear()
+        self.generator.copy_btn.setEnabled(False)
+        self.generator.copy_btn.setText('Copiar al Portapapeles')
+        self.generator.noise_warning_label.setText('')
+        self.generator.noise_warning_label.setVisible(False)
+        self.generator.language_override_combo.setCurrentIndex(0)
+        self.generator.type_override_combo.setCurrentIndex(0)
+        self.generator.scope_override_combo.setCurrentIndex(0)
+        self.generator.language_status_label.setText('Idioma detectado: pendiente')
+        self.generator.detected_commit_type = None
+        self.generator.detected_scope = None
+        self.generator.current_subject = ''
+        self.generator.current_body_lines = []
+
     def render_command(self, text):
         self.generator.input_text.setPlainText(text)
         self.generator.generate_commit()
@@ -106,13 +122,19 @@ y deja pendientes las mejoras futuras para Git, ML, UI, testing y multilenguaje.
         self.generator.output_text.setPlainText('git commit -m "docs(repo): test"')
         self.generator.copy_btn.setEnabled(True)
         self.generator.language_status_label.setText('Idioma detectado: Español')
+        self.generator.noise_warning_label.setText('Aviso: ruido.')
+        self.generator.noise_warning_label.setVisible(True)
 
         self.generator.clear_input_text()
 
         self.assertEqual(self.generator.input_text.toPlainText(), '')
         self.assertEqual(self.generator.output_text.toPlainText(), '')
         self.assertFalse(self.generator.copy_btn.isEnabled())
+        self.assertEqual(self.generator.copy_btn.text(), 'Copiar al Portapapeles')
+        self.assertFalse(self.generator.noise_warning_label.isVisible())
         self.assertEqual(self.generator.language_status_label.text(), 'Idioma detectado: pendiente')
+        self.assertEqual(self.generator.type_override_combo.currentData(), 'auto')
+        self.assertEqual(self.generator.scope_override_combo.currentData(), 'auto')
 
     def test_language_status_updates_after_generating_commit(self):
         self.render_command('He creado Roadmap.md con tareas completadas.')
@@ -120,6 +142,78 @@ y deja pendientes las mejoras futuras para Git, ML, UI, testing y multilenguaje.
 
         self.render_command('Created Roadmap.md with completed tasks.')
         self.assertEqual(self.generator.language_status_label.text(), 'Idioma detectado: Inglés')
+
+    def test_manual_language_override_controls_generation_language(self):
+        self.generator.language_override_combo.setCurrentIndex(
+            self.generator.language_override_combo.findData('en')
+        )
+
+        command = self.render_command('Updated Roadmap.md con tareas completadas.')
+
+        self.assertEqual(self.generator.language_status_label.text(), 'Idioma detectado: Inglés (manual)')
+        self.assertIn('git commit -m "docs(docs): update project roadmap"', command)
+
+    def test_manual_type_and_scope_override_updates_generated_command(self):
+        command = self.render_command('He creado Roadmap.md con tareas completadas.')
+        self.assertIn('docs(repo): agrega roadmap con seguimiento de progreso', command)
+
+        self.generator.type_override_combo.setCurrentIndex(
+            self.generator.type_override_combo.findData('feat')
+        )
+        self.generator.scope_override_combo.setCurrentIndex(
+            self.generator.scope_override_combo.findData('ui')
+        )
+
+        updated = self.generator.output_text.toPlainText()
+        self.assertIn('git commit -m "feat(ui): agrega roadmap con seguimiento de progreso"', updated)
+        self.assertIn('-m "- Documenta funcionalidades completadas y progreso del proyecto"', updated)
+
+    def test_type_scope_summary_takes_priority_over_testing_and_roadmap(self):
+        text = """Continué con la mejora del Roadmap: ya puedes editar manualmente `type` y `scope` desde la UI antes de copiar.
+
+Añadí dos selectores:
+
+- **Tipo:** `Automático`, `feat`, `fix`, `docs`, `test`, `build`, `ci`, `style`, `refactor`, `perf`
+- **Scope:** `Automático`, `app`, `ui`, `docs`, `repo`, `dict`, `tools`, `nlp`, `test`
+
+El programa propone `type/scope`, y si quieres corregirlo manualmente el comando se regenera
+al instante manteniendo el subject y los bullets.
+
+Actualicé Roadmap.md, README.md y tests/test_smart_commit_nltk.py.
+Resultado: **13 tests OK**.
+"""
+        command = self.render_command(text)
+
+        self.assertIn('git commit -m "feat(ui): agrega selectores manuales de type y scope"', command)
+        self.assertIn('-m "- Regenera el comando en tiempo real al cambiar type/scope"', command)
+        self.assertIn('-m "- Conserva subject y body al aplicar ajustes manuales"', command)
+        self.assertIn('-m "- Validación: 13 tests pass en entorno offscreen"', command)
+        self.assertNotIn('test(repo): agrega suite', command)
+
+    def test_copy_button_confirms_without_modal_text_change(self):
+        self.render_command('He creado Roadmap.md con tareas completadas.')
+        self.assertEqual(self.generator.copy_btn.text(), 'Copiar al Portapapeles')
+
+        self.generator.copy_to_clipboard()
+
+        self.assertEqual(self.generator.copy_btn.text(), 'Comando copiado al Portapapeles')
+        self.assertIn('git commit -m', QApplication.clipboard().text())
+
+    def test_noise_warning_detects_fenced_code_and_embedded_commits(self):
+        text = """He creado Roadmap.md.
+
+```bash
+git commit -m "docs(repo): embedded" \\
+  -m "- Embedded body"
+```
+"""
+        warnings = self.generator.detect_input_noise_warnings(text)
+        self.assertIn('1 bloque(s) de código', warnings)
+        self.assertIn('mucho ruido filtrado', warnings)
+
+        self.render_command(text)
+        self.assertFalse(self.generator.noise_warning_label.isHidden())
+        self.assertIn('bloque(s) de código', self.generator.noise_warning_label.text())
 
     def test_clear_input_summary_takes_priority_over_tests_and_roadmap(self):
         text = """Listo, implementé el botón **“Limpiar entrada”** en [smart_commit_nltk.py](/tmp/smart_commit_nltk.py).

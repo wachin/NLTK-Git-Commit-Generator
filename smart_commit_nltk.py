@@ -129,6 +129,7 @@ class NLPCommitGenerator(QMainWindow):
 
     def extract_object_phrase(self, phrase):
         phrase = re.sub(r'\[.*?\]', ' ', phrase)
+        phrase = phrase.replace('->', ' -> ')
         phrase = phrase.replace('-', ' ')
         phrase = phrase.replace('_', ' ')
         phrase = re.sub(r'([a-z])([A-Z])', r'\1 \2', phrase)
@@ -142,26 +143,29 @@ class NLPCommitGenerator(QMainWindow):
         obj_words = []
         started = False
         stop_tags = ('IN', 'CC', 'TO', 'PRP', 'PRP$', 'WDT', 'WP', 'WP$', 'WRB', 'DT')
-        allowed_prefixes = ('NN', 'JJ', 'CD', 'VBG')
+        allowed_prefixes = ('NN', 'JJ', 'CD', 'VBG', 'NNP', 'NNS')
+        generic_start = {'the', 'a', 'an', 'this', 'that', 'these', 'those', 'new', 'real', 'useful', 'actual', 'existing', 'same', 'shared', 'direct', 'first', 'initial', 'basic', 'small', 'genuine', 'local', 'localized'}
 
         for word, tag in tagged:
             lower = word.lower()
             if not started:
+                if lower in generic_start:
+                    continue
                 if any(tag.startswith(prefix) for prefix in allowed_prefixes) or lower in {
                     'api', 'ui', 'ux', 'cli', 'db', 'sql', 'html', 'css', 'javascript', 'python', 'java', 'json', 'yaml', 'xml',
                     'service', 'endpoint', 'query', 'schema', 'migration', 'token', 'auth', 'password', 'session', 'cache',
                     'pipeline', 'dashboard', 'widget', 'plugin', 'extension', 'module', 'component', 'router', 'layout', 'dialog',
                     'window', 'view', 'form', 'button', 'menu', 'help', 'guide', 'documentation', 'roadmap', 'readme', 'tests',
                     'coverage', 'validation', 'lyrics', 'channels', 'pianola', 'program', 'volume', 'midi', 'preferences', 'settings',
-                    'encoding', 'font', 'copy', 'print', 'fullscreen', 'track', 'tabs', 'color', 'label', 'keyboard'
-                }:
+                    'encoding', 'font', 'copy', 'print', 'fullscreen', 'track', 'tabs', 'color', 'label', 'keyboard', 'action', 'toggle', 'selector', 'dialog', 'spinbox', 'combo', 'combobox', 'panel', 'mode'
+                } or lower == '->':
                     obj_words.append(lower)
                     started = True
                 continue
 
-            if tag.startswith(stop_tags) or lower in {',', '.', ';', ':', ')', '('}:
+            if tag.startswith(stop_tags) or lower in {',', '.', ';', ':', ')', '(', '``', "''"}:
                 break
-            if any(tag.startswith(prefix) for prefix in allowed_prefixes) or lower in {'and', 'for', 'with', 'to', 'from', 'by', 'of', 'on', 'in', 'as'}:
+            if any(tag.startswith(prefix) for prefix in allowed_prefixes) or lower in {'and', 'for', 'with', 'to', 'from', 'by', 'of', 'on', 'in', 'as', '->', '>'}:
                 obj_words.append(lower)
             else:
                 break
@@ -197,6 +201,17 @@ class NLPCommitGenerator(QMainWindow):
         sentence_lower = sentence_lower.replace("`", "")
 
         special_patterns = [
+            (r'\bhelp\s*->\s*user guide\b', 'add'),
+            (r'\bview\s*->\s*rhythm\b', 'add'),
+            (r'\bview\s*->\s*channels\b', 'add'),
+            (r'\bview\s*->\s*lyrics\b', 'add'),
+            (r'\bhelp\s*->\s*about\b', 'docs'),
+            (r'\bencoding selector\b', 'add'),
+            (r'\bsave button\b', 'add'),
+            (r'\bfullscreen\b', 'add'),
+            (r'\bcopy and font\b', 'add'),
+            (r'\btrack-aware\b', 'add'),
+            (r'\bprogram\s+(?:spinbox|selector|control)\b', 'add'),
             (r'\b(?:in \[[^\]]+\].*?\b(?:i|we)\s+added\s+real\s+(.+?))(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
             (r'\b(?:in \[[^\]]+\].*?\b(?:i|we)\s+added\s+(?:a\s+new\s+)?(.+?))(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
             (r'\b(?:i|we)\s+added\s+real\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
@@ -221,7 +236,11 @@ class NLPCommitGenerator(QMainWindow):
         for pattern, action in special_patterns:
             match = re.search(pattern, sentence_lower, re.IGNORECASE)
             if match:
-                obj = self.extract_object_phrase(match.group(1))
+                if match.groups():
+                    obj_text = match.group(1)
+                else:
+                    obj_text = match.group(0)
+                obj = self.extract_object_phrase(obj_text)
                 if obj:
                     return action, obj
 
@@ -343,6 +362,37 @@ class NLPCommitGenerator(QMainWindow):
             return 'app'
         return 'app'
 
+    def select_commit_type(self, text, subject_verb, subject_obj):
+        text_lower = text.lower()
+        docs_keywords = ['readme', 'roadmap', 'docs', 'documentation', '.md', '.rst', 'guide', 'help', 'docstring', 'comment']
+        test_keywords = ['test', 'tests', 'unittest', 'pytest', 'coverage', 'qa', 'spec', 'mock']
+        ci_keywords = ['ci', 'continuous integration', 'github action', 'workflow', 'pipeline', 'circleci', 'travis', 'jenkins', 'gitlab-ci', 'azure-pipelines']
+        build_keywords = ['build', 'docker', 'dockerfile', 'dependency', 'dependencies', 'npm', 'package.json', 'yarn.lock', 'pip', 'requirements', 'maven', 'gradle', 'pom.xml', 'pyproject.toml']
+        perf_keywords = ['perf', 'performance', 'speed', 'latency', 'memory', 'optimiz', 'cache', 'caching']
+        style_keywords = ['style', 'format', 'formatted', 'lint', 'whitespace', 'indent', 'prettier', 'eslint']
+        refactor_keywords = ['refactor', 'cleanup', 'cleaned', 'restructure', 'rename', 'split', 'extract', 'simplify']
+        fix_keywords = ['fix', 'fixed', 'correct', 'corrected', 'resolve', 'resolved', 'bug', 'crash', 'error']
+
+        if any(k in text_lower for k in ci_keywords):
+            return 'ci'
+        if any(k in text_lower for k in build_keywords):
+            return 'build'
+        if any(k in text_lower for k in test_keywords) and not any(k in text_lower for k in docs_keywords):
+            return 'test'
+        if any(k in text_lower for k in perf_keywords) or subject_verb in ['perf', 'optimize', 'optimize', 'improve', 'improved']:
+            return 'perf'
+        if any(k in text_lower for k in style_keywords) or subject_verb in ['style', 'format', 'formatted', 'lint']:
+            return 'style'
+        if any(k in text_lower for k in refactor_keywords) or subject_verb in ['refactor', 'cleanup', 'clean', 'rename', 'restructure', 'simplify']:
+            return 'refactor'
+        if any(k in text_lower for k in docs_keywords) and subject_verb not in ['fix', 'perf', 'refactor', 'test', 'build', 'ci', 'style']:
+            return 'docs'
+        if any(k in text_lower for k in fix_keywords) or subject_verb in ['fix', 'correct', 'resolve', 'resolve', 'corrected', 'resolved']:
+            return 'fix'
+        if subject_verb in ['doc', 'document', 'documentation']:
+            return 'docs'
+        return 'feat'
+
     def generate_body_lines(self, text):
         text_lower = text.lower()
         bullets = []
@@ -429,9 +479,7 @@ class NLPCommitGenerator(QMainWindow):
             if len(subject) > 50:
                 subject = subject[:47] + "..."
 
-            commit_type = "feat"
-            if verb == "fix": commit_type = "fix"
-            elif verb in ["update", "doc"]: commit_type = "docs"
+            commit_type = self.select_commit_type(text, verb, obj)
 
             body_lines = self.generate_body_lines(text)
             cmd_parts = [f'git commit -m "{commit_type}({scope}): {subject}"']

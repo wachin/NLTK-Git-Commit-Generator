@@ -1,8 +1,8 @@
 {
   "total_examples": 45,
   "exact_subject_matches": 0,
-  "exact_body_count_matches": 9,
-  "average_subject_similarity": 0.5091813449090572,
+  "exact_body_count_matches": 10,
+  "average_subject_similarity": 0.5280880590907792,
   "average_body_line_ratio": 0.030555555555555555,
   "entries": [
     {
@@ -22,7 +22,7 @@
         "- Add Rhythm view panel with beat, bar, meter, and bpm display",
         "- Validation: compileall OK, 106 tests pass",
         "- Add embedded rhythmview panel",
-        "- Updates same playback position flow",
+        "- Updates playback position flow",
         "- Mark complete .. verification"
       ],
       "expected_body_lines": [
@@ -38,9 +38,9 @@
     {
       "title": "2. Preferences: Solo Reduction & GM Reset",
       "expected_subject": "feat(app): add solo reduction and GM reset prefs",
-      "generated_subject": "feat(ui): add useful preferences slice",
+      "generated_subject": "feat(ui): add preferences slice",
       "subject_match": false,
-      "subject_similarity": 0.4883720930232558,
+      "subject_similarity": 0.43037974683544306,
       "expected_body_count": 6,
       "generated_body_count": 6,
       "body_count_match": true,
@@ -51,9 +51,9 @@
         "- Update Roadmap.md to mark completed items",
         "- Add General preferences and playback behavior settings",
         "- Validation: compileall OK, 110 tests pass",
-        "- Add useful preferences slice",
+        "- Add preferences slice",
         "- Dialog ’ s",
-        "- Add actual gm"
+        "- Add gm"
       ],
       "expected_body_lines": [
         "- Persist solo_volume_reduction (default 50%) and midi_reset",
@@ -67,9 +67,9 @@
     {
       "title": "3. User Guide Implementation",
       "expected_subject": "docs(app): add localized PyQt6 user guide",
-      "generated_subject": "feat(ui): add new",
+      "generated_subject": "feat(ui): add help > user guide",
       "subject_match": false,
-      "subject_similarity": 0.3103448275862069,
+      "subject_similarity": 0.5833333333333334,
       "expected_body_count": 6,
       "generated_body_count": 5,
       "body_count_match": false,
@@ -80,8 +80,8 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 111 tests pass",
-        "- Add new",
-        "- Add two new guide files"
+        "- Add two new guide files",
+        "- Update help indexes"
       ],
       "expected_body_lines": [
         "- Add Help > User Guide action with shared localized lookup",
@@ -95,9 +95,9 @@
     {
       "title": "4. Channels View (Initial)",
       "expected_subject": "feat(ui): add Channels view with live level meters",
-      "generated_subject": "feat(ui): move first real channels view",
+      "generated_subject": "feat(ui): move channels view",
       "subject_match": false,
-      "subject_similarity": 0.5168539325842697,
+      "subject_similarity": 0.5897435897435898,
       "expected_body_count": 8,
       "generated_body_count": 5,
       "body_count_match": false,
@@ -108,7 +108,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 114 tests pass",
-        "- Move first real channels view",
+        "- Move channels view",
         "- Add channels"
       ],
       "expected_body_lines": [
@@ -139,7 +139,7 @@
         "- Add or update user guide and localized help content",
         "- Add per-channel Mute/Solo controls to the Channels view",
         "- Validation: compileall OK, 119 tests pass",
-        "- Has real",
+        "- Has mute",
         "- Update user guides",
         "- Update channel"
       ],
@@ -190,9 +190,9 @@
     {
       "title": "7. Channels View: Program Control",
       "expected_subject": "feat(app): add per-channel program control",
-      "generated_subject": "feat(ui): add channels view",
+      "generated_subject": "feat(ui): add program control",
       "subject_match": false,
-      "subject_similarity": 0.5797101449275363,
+      "subject_similarity": 0.7605633802816901,
       "expected_body_count": 7,
       "generated_body_count": 8,
       "body_count_match": false,
@@ -203,8 +203,8 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 125 tests pass",
-        "- Add channels view",
-        "- Has program",
+        "- Add program control",
+        "- Add program spinbox",
         "- ’ s",
         "- Add channel program overrides",
         "- Send nt"
@@ -267,8 +267,8 @@
         "- Use GM instrument names for channel program selection",
         "- Validation: compileall OK, 128 tests pass",
         "- Improve channel patch selector",
-        "- Replace raw numeric program spinbox",
-        "- Add small general midi name table",
+        "- Add program spinbox",
+        "- Add general midi name table",
         "- Update .. .. verification"
       ],
       "expected_body_lines": [
@@ -284,9 +284,9 @@
     {
       "title": "10. Lyrics Window (Initial)",
       "expected_subject": "feat(ui): add Lyrics window with text type filtering",
-      "generated_subject": "feat(ui): move first real lyrics",
+      "generated_subject": "feat(ui): move lyrics",
       "subject_match": false,
-      "subject_similarity": 0.38095238095238093,
+      "subject_similarity": 0.4383561643835616,
       "expected_body_count": 7,
       "generated_body_count": 8,
       "body_count_match": false,
@@ -298,7 +298,7 @@
         "- Add or update user guide and localized help content",
         "- Add Lyrics window with text-event filtering",
         "- Validation: compileall OK, 131 tests pass",
-        "- Move first real lyrics",
+        "- Move lyrics",
         "- Add view > lyrics",
         "- Supports filtering",
         "- Update user guides"
@@ -316,12 +316,12 @@
     {
       "title": "11. Lyrics Window: Track Filtering",
       "expected_subject": "feat(ui): add track filtering to Lyrics window",
-      "generated_subject": "feat(ui): add lyrics view",
+      "generated_subject": "feat(ui): add track aware",
       "subject_match": false,
-      "subject_similarity": 0.647887323943662,
+      "subject_similarity": 0.5915492957746479,
       "expected_body_count": 7,
-      "generated_body_count": 8,
-      "body_count_match": false,
+      "generated_body_count": 7,
+      "body_count_match": true,
       "expected_body_first": "- Preserve source track info in TextEvent via drumstick_py/file.py",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -331,7 +331,6 @@
         "- Add Lyrics window with text-event filtering",
         "- Add track-aware filtering for lyrics events",
         "- Validation: compileall OK, 134 tests pass",
-        "- Add lyrics view",
         "- Remembers source track",
         "- Update user guides"
       ],
@@ -362,7 +361,7 @@
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 136 tests pass",
         "- Gave lyrics",
-        "- Has copy",
+        "- Add copy",
         "- Puts text",
         "- Add tests",
         "- Update .. verification"
@@ -406,12 +405,12 @@
     {
       "title": "14. Lyrics Window: Save & Encoding",
       "expected_subject": "feat(ui): add encoding selector and save to Lyrics window",
-      "generated_subject": "docs(ui): update lyrics",
+      "generated_subject": "feat(ui): add encoding selector",
       "subject_match": false,
-      "subject_similarity": 0.375,
+      "subject_similarity": 0.7045454545454546,
       "expected_body_count": 7,
-      "generated_body_count": 7,
-      "body_count_match": true,
+      "generated_body_count": 6,
+      "body_count_match": false,
       "expected_body_first": "- Add Encoding dropdown (UTF-8, Latin-1, CP1252) for text display",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -420,7 +419,6 @@
         "- Add or update user guide and localized help content",
         "- Add encoding selector and save support for exported lyrics",
         "- Validation: compileall OK, 138 tests pass",
-        "- Update lyrics",
         "- Saving current filtered lyrics text .. honoring",
         "- Refreshed user"
       ],
@@ -441,8 +439,8 @@
       "subject_match": false,
       "subject_similarity": 0.5294117647058824,
       "expected_body_count": 6,
-      "generated_body_count": 7,
-      "body_count_match": false,
+      "generated_body_count": 6,
+      "body_count_match": true,
       "expected_body_first": "- Add Fullscreen/Window toggle button with dynamic label",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -451,8 +449,7 @@
         "- Add or update user guide and localized help content",
         "- Add fullscreen mode for the dialog",
         "- Validation: compileall OK, 140 tests pass",
-        "- Finished tidy lyrics window slice",
-        "- Has fullscreen",
+        "- Add fullscreen",
         "- Add coverage"
       ],
       "expected_body_lines": [
@@ -513,8 +510,8 @@
         "- Add encoding selector and save support for exported lyrics",
         "- Validation: compileall OK, 145 tests pass",
         "- Keep raw bytes",
-        "- Encoding selector",
-        "- Add coverage"
+        "- Add coverage",
+        "- Refreshed user"
       ],
       "expected_body_lines": [
         "- Store raw bytes in TextEvent; decode via shared helper on demand",
@@ -560,9 +557,9 @@
     {
       "title": "19. Roadmap & GUI Reference Process",
       "expected_subject": "docs(roadmap): integrate GUI reference check process",
-      "generated_subject": "docs(app): update new roadmap gui/ material",
+      "generated_subject": "docs(app): update roadmap gui/ material",
       "subject_match": false,
-      "subject_similarity": 0.37894736842105264,
+      "subject_similarity": 0.3956043956043956,
       "expected_body_count": 6,
       "generated_body_count": 3,
       "body_count_match": false,
@@ -641,11 +638,11 @@
     {
       "title": "23. Piano Player Window (Initial)",
       "expected_subject": "feat(ui): add Piano Player window with tabbed tracks",
-      "generated_subject": "feat(ui): add first real piano player window slice",
+      "generated_subject": "feat(ui): add piano player window slice",
       "subject_match": false,
-      "subject_similarity": 0.6470588235294118,
+      "subject_similarity": 0.7252747252747253,
       "expected_body_count": 9,
-      "generated_body_count": 8,
+      "generated_body_count": 7,
       "body_count_match": false,
       "expected_body_first": "- Add View > Piano Player action and PianolaDialog class",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -654,9 +651,8 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 151 tests pass",
-        "- Add first real piano player window slice",
+        "- Add piano player window slice",
         "- Add midi tracks",
-        "- Add new",
         "- Tracks contain midi",
         "- Doc user"
       ],
@@ -688,7 +684,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 151 tests pass",
-        "- Refined first",
+        "- Refined piano player",
         "- Add midi track infos",
         "- Refreshed user"
       ],
@@ -776,7 +772,7 @@
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 157 tests pass",
         "- Move pianola window",
-        "- Has real",
+        "- Has track visibility controls",
         "- Refactor duplicate pianola clear",
         "- Add coverage",
         "- Guides .. verification"
@@ -794,9 +790,9 @@
     {
       "title": "28. Piano Player: Fullscreen",
       "expected_subject": "feat(ui): add fullscreen mode to Piano Player window",
-      "generated_subject": "feat(ui): add pianola window",
+      "generated_subject": "feat(ui): add fullscreen",
       "subject_match": false,
-      "subject_similarity": 0.675,
+      "subject_similarity": 0.631578947368421,
       "expected_body_count": 5,
       "generated_body_count": 8,
       "body_count_match": false,
@@ -808,10 +804,10 @@
         "- Add or update user guide and localized help content",
         "- Add fullscreen mode for the dialog",
         "- Validation: compileall OK, 159 tests pass",
-        "- Add pianola window",
-        "- Has fullscreen",
-        "- Used same behavior pattern",
-        "- Add coverage"
+        "- Add fullscreen",
+        "- Used behavior pattern",
+        "- Add coverage",
+        "- Refreshed user"
       ],
       "expected_body_lines": [
         "- Add Fullscreen toggle button with Esc key exit support",

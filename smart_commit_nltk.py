@@ -127,6 +127,33 @@ class NLPCommitGenerator(QMainWindow):
         text = re.sub(r'\s+', ' ', text).strip()
         return text
 
+    def clean_input(self, text):
+        # Remove noise patterns: Read commands, terminal commands, file references, conversation notes
+        lines = text.split('\n')
+        cleaned_lines = []
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            # Skip lines that look like file reads, terminal commands, or conversation
+            if re.search(r'^(Read|Ran terminal command|Replacing|Made changes|Replacing \d+ lines)', line, re.IGNORECASE):
+                continue
+            if re.search(r'^(command -v|for f in|echo|----|sed|pdftotext|python3)', line):
+                continue
+            if re.search(r'^(file:///|lines \d+ to \d+|content\.txt)', line):
+                continue
+            if re.search(r'^(Replacing \d+ lines with \d+ lines)', line):
+                continue
+            if re.search(r'^(Voy a|Reviso la|Encuentro que|He encontrado|Verifico si)', line):
+                continue
+            if re.search(r'^(Y analizo|Sed|Replacing)', line):
+                continue
+            # Skip very short lines or lines without action verbs
+            if len(line) < 10 or not re.search(r'\b(we|i|added|created|implemented|updated|changed|fixed|refactored|improved|made)\b', line, re.IGNORECASE):
+                continue
+            cleaned_lines.append(line)
+        return '\n'.join(cleaned_lines)
+
     def extract_object_phrase(self, phrase):
         phrase = re.sub(r'\[.*?\]', ' ', phrase)
         phrase = phrase.replace('->', ' -> ')
@@ -177,6 +204,9 @@ class NLPCommitGenerator(QMainWindow):
     def score_sentence_for_subject(self, sentence):
         score = 0
         s = sentence.lower()
+        # Prefer sentences starting with action verbs
+        if re.search(r'^\s*(add|implement|create|introduce|build|update|change|modify|fix|resolve|correct|enhance|extend|replace|improve|remove|delete|rename|merge|optimize|document|format|configure)', s):
+            score += 20
         if re.search(r'\bin \[[^\]]+\].*?\b(i|we)\s+(added|created|implemented|updated|changed|modified|fixed|resolved|corrected|replaced|introduced|moved|landed|carried|kept)\b', s):
             score += 20
         if re.search(r'\b(i|we)\s+(added|created|implemented|updated|changed|modified|fixed|resolved|corrected|replaced|introduced|moved|landed|carried|kept|made)\b', s):
@@ -277,11 +307,29 @@ class NLPCommitGenerator(QMainWindow):
 
     def is_commitworthy_sentence(self, sentence):
         normalized = sentence.lower()
-        if re.search(r"\b(we|i)\s+(added|implemented|created|introduced|built|landed|pushed|moved|refactored|cleaned|updated|changed|modified|fixed|resolved|corrected|enhanced|extended|replaced|improved|made)\b", normalized):
-            return True
-        if re.search(r"\b(it|this|that)\s+(updates|now|shows|supports|uses|sends)\b", normalized):
+        # Must have action verb (with or without subject pronoun)
+        action_verbs = [
+            'add', 'implement', 'create', 'introduce', 'build', 'land', 'push', 'move', 'refactor', 'clean',
+            'update', 'change', 'modify', 'fix', 'resolve', 'correct', 'enhance', 'extend', 'replace', 'improve',
+            'make', 'remove', 'delete', 'rename', 'merge', 'optimize', 'document', 'format', 'configure'
+        ]
+        has_action = any(re.search(rf"\b{verb}\b", normalized) for verb in action_verbs)
+        if not has_action:
             return False
-        return False
+        
+        # Avoid sentences that are just descriptions or results
+        if re.search(r"\b(it|this|that)\s+(updates|now|shows|supports|uses|sends|displays|provides|includes|contains)\b", normalized):
+            return False
+        # Avoid test/validation sentences
+        if re.search(r"\b(verification|compileall|tests|passed|OK|validation)\b", normalized):
+            return False
+        # Avoid generic or conversational sentences
+        if re.search(r"\b(yo|tu|usted|nosotros|ellos|este|eso|aquí|ahí|allí|como|porque|si|no|pero|sin embargo)\b", normalized):
+            return False
+        # Avoid very short sentences
+        if len(normalized.split()) < 4:
+            return False
+        return True
 
     def pick_best_sentence(self, text):
         sentences = nltk.sent_tokenize(text)
@@ -303,7 +351,7 @@ class NLPCommitGenerator(QMainWindow):
         return best_sentence
 
     def analyze_with_nltk(self, text):
-        normalized = self.clean_summary_text(text)
+        normalized = self.clean_input(text)
         best_sentence = self.pick_best_sentence(normalized)
         subject_verb, subject_obj = self.extract_action_phrase(best_sentence)
 
@@ -452,13 +500,18 @@ class NLPCommitGenerator(QMainWindow):
             candidate = sentence.strip()
             if len(candidate) < 12:
                 continue
-            action, obj = self.extract_action_phrase(candidate)
-            if action and obj and not is_similar_to_existing(obj):
-                if action == 'add' and obj in ['user', 'view', 'window', 'help']:
-                    continue
-                bullet = f'- {action.capitalize()} {obj}'
-                add_bullet(bullet)
-            if len(bullets) >= 8:
+            if self.is_commitworthy_sentence(candidate):
+                # Clean and format the sentence
+                cleaned = candidate.strip()
+                # Remove trailing punctuation if it's not part of the sentence
+                cleaned = re.sub(r'[.!?]+$', '', cleaned)
+                # Capitalize first letter
+                cleaned = cleaned[0].upper() + cleaned[1:] if cleaned else cleaned
+                # Add as bullet point if not similar to existing
+                bullet = f'- {cleaned}'
+                if not is_similar_to_existing(cleaned):
+                    add_bullet(bullet)
+            if len(bullets) >= 5:
                 break
 
         if not bullets:
@@ -481,7 +534,7 @@ class NLPCommitGenerator(QMainWindow):
 
             commit_type = self.select_commit_type(text, verb, obj)
 
-            body_lines = self.generate_body_lines(text)
+            body_lines = self.generate_body_lines(self.clean_input(text))
             cmd_parts = [f'git commit -m "{commit_type}({scope}): {subject}"']
             for line in body_lines:
                 if len(line) > 72: line = line[:69] + "..."

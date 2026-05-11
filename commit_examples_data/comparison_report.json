@@ -1,9 +1,9 @@
 {
   "total_examples": 45,
   "exact_subject_matches": 0,
-  "exact_body_count_matches": 10,
-  "average_subject_similarity": 0.5280880590907792,
-  "average_body_line_ratio": 0.030555555555555555,
+  "exact_body_count_matches": 0,
+  "average_subject_similarity": 0.5087244980403032,
+  "average_body_line_ratio": 0.038835978835978835,
   "entries": [
     {
       "title": "1. Rhythm View Implementation",
@@ -12,7 +12,7 @@
       "subject_match": false,
       "subject_similarity": 0.782608695652174,
       "expected_body_count": 7,
-      "generated_body_count": 6,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Add RhythmView panel showing meter, bar, beat, BPM, and strip",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -20,10 +20,7 @@
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add Rhythm view panel with beat, bar, meter, and bpm display",
-        "- Validation: compileall OK, 106 tests pass",
-        "- Add embedded rhythmview panel",
-        "- Updates playback position flow",
-        "- Mark complete .. verification"
+        "- Validation: compileall OK, 106 tests pass"
       ],
       "expected_body_lines": [
         "- Add RhythmView panel showing meter, bar, beat, BPM, and strip",
@@ -38,22 +35,19 @@
     {
       "title": "2. Preferences: Solo Reduction & GM Reset",
       "expected_subject": "feat(app): add solo reduction and GM reset prefs",
-      "generated_subject": "feat(ui): add preferences slice",
+      "generated_subject": "feat(ui): add general tab settings",
       "subject_match": false,
-      "subject_similarity": 0.43037974683544306,
+      "subject_similarity": 0.4634146341463415,
       "expected_body_count": 6,
-      "generated_body_count": 6,
-      "body_count_match": true,
+      "generated_body_count": 3,
+      "body_count_match": false,
       "expected_body_first": "- Persist solo_volume_reduction (default 50%) and midi_reset",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 110 tests pass",
-        "- Add preferences slice",
-        "- Dialog ’ s",
-        "- Add gm"
+        "- Validation: compileall OK, 110 tests pass"
       ],
       "expected_body_lines": [
         "- Persist solo_volume_reduction (default 50%) and midi_reset",
@@ -71,7 +65,7 @@
       "subject_match": false,
       "subject_similarity": 0.5833333333333334,
       "expected_body_count": 6,
-      "generated_body_count": 5,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Add Help > User Guide action with shared localized lookup",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -80,8 +74,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 111 tests pass",
-        "- Add two new guide files",
-        "- Update help indexes"
+        "- In [app.py]..., I added: a new `Help -> User Guide` action, shared localized document lookup for help files, a direct user-guide dialog"
       ],
       "expected_body_lines": [
         "- Add Help > User Guide action with shared localized lookup",
@@ -95,11 +88,11 @@
     {
       "title": "4. Channels View (Initial)",
       "expected_subject": "feat(ui): add Channels view with live level meters",
-      "generated_subject": "feat(ui): move channels view",
+      "generated_subject": "feat(ui): add view > channels",
       "subject_match": false,
-      "subject_similarity": 0.5897435897435898,
+      "subject_similarity": 0.5316455696202531,
       "expected_body_count": 8,
-      "generated_body_count": 5,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Add View > Channels action and non-modal ChannelsDialog",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -107,9 +100,7 @@
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 114 tests pass",
-        "- Move channels view",
-        "- Add channels"
+        "- Validation: compileall OK, 114 tests pass"
       ],
       "expected_body_lines": [
         "- Add View > Channels action and non-modal ChannelsDialog",
@@ -129,7 +120,7 @@
       "subject_match": false,
       "subject_similarity": 0.43478260869565216,
       "expected_body_count": 8,
-      "generated_body_count": 7,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Implement per-channel mute/solo tracking in player.py",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -138,10 +129,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add per-channel Mute/Solo controls to the Channels view",
-        "- Validation: compileall OK, 119 tests pass",
-        "- Has mute",
-        "- Update user guides",
-        "- Update channel"
+        "- Validation: compileall OK, 119 tests pass"
       ],
       "expected_body_lines": [
         "- Implement per-channel mute/solo tracking in player.py",
@@ -157,12 +145,12 @@
     {
       "title": "6. Channels View: Volume Sliders",
       "expected_subject": "feat(app): add per-channel volume sliders",
-      "generated_subject": "feat(ui): add channels",
+      "generated_subject": "feat(ui): add channel volume percentages",
       "subject_match": false,
-      "subject_similarity": 0.6349206349206349,
+      "subject_similarity": 0.7407407407407407,
       "expected_body_count": 8,
-      "generated_body_count": 8,
-      "body_count_match": true,
+      "generated_body_count": 4,
+      "body_count_match": false,
       "expected_body_first": "- Implement per-channel volume scaling before global volume",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -170,11 +158,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add per-channel volume sliders and real-time CC7 updates",
-        "- Validation: compileall OK, 122 tests pass",
-        "- Add channels",
-        "- Has volume",
-        "- Fix channel dialog ’",
-        "- Update user guides"
+        "- Validation: compileall OK, 122 tests pass"
       ],
       "expected_body_lines": [
         "- Implement per-channel volume scaling before global volume",
@@ -190,11 +174,11 @@
     {
       "title": "7. Channels View: Program Control",
       "expected_subject": "feat(app): add per-channel program control",
-      "generated_subject": "feat(ui): add program control",
+      "generated_subject": "feat(ui): add channel program overrides",
       "subject_match": false,
-      "subject_similarity": 0.7605633802816901,
+      "subject_similarity": 0.7407407407407407,
       "expected_body_count": 7,
-      "generated_body_count": 8,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Program spinbox to ChannelsDialog with immediate CC send",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -203,11 +187,8 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Validation: compileall OK, 125 tests pass",
-        "- Add program control",
-        "- Add program spinbox",
-        "- ’ s",
-        "- Add channel program overrides",
-        "- Send nt"
+        "- It’s initialized from the first program-change event",
+        "- Those overrides now do two useful things: send an immediate `program_change`... replace later file-sent `program_change` events... To support sensible initial values, [sequence.py]... now exposes `initial_programs()`"
       ],
       "expected_body_lines": [
         "- Add Program spinbox to ChannelsDialog with immediate CC send",
@@ -222,12 +203,12 @@
     {
       "title": "8. Channels View: Patch Lock",
       "expected_subject": "feat(app): add patch lock to Channels view",
-      "generated_subject": "feat(ui): add channels view",
+      "generated_subject": "feat(ui): add channel lock state",
       "subject_match": false,
-      "subject_similarity": 0.7246376811594203,
+      "subject_similarity": 0.5675675675675675,
       "expected_body_count": 7,
-      "generated_body_count": 7,
-      "body_count_match": true,
+      "generated_body_count": 4,
+      "body_count_match": false,
       "expected_body_first": "- Implement per-channel lock state in player.py",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -235,10 +216,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add per-channel patch lock to suppress file program changes",
-        "- Validation: compileall OK, 128 tests pass",
-        "- Add channels view",
-        "- Has lock",
-        "- Update user guides"
+        "- Validation: compileall OK, 128 tests pass"
       ],
       "expected_body_lines": [
         "- Implement per-channel lock state in player.py",
@@ -253,23 +231,19 @@
     {
       "title": "9. Channels View: GM Names",
       "expected_subject": "feat(ui): use GM names for channel program selector",
-      "generated_subject": "feat(ui): improve channel patch selector",
+      "generated_subject": "feat(ui): add program spinbox",
       "subject_match": false,
-      "subject_similarity": 0.7032967032967034,
+      "subject_similarity": 0.55,
       "expected_body_count": 7,
-      "generated_body_count": 7,
-      "body_count_match": true,
+      "generated_body_count": 3,
+      "body_count_match": false,
       "expected_body_first": "- Replace numeric spinbox with QComboBox showing GM instrument names",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Use GM instrument names for channel program selection",
-        "- Validation: compileall OK, 128 tests pass",
-        "- Improve channel patch selector",
-        "- Add program spinbox",
-        "- Add general midi name table",
-        "- Update .. .. verification"
+        "- Validation: compileall OK, 128 tests pass"
       ],
       "expected_body_lines": [
         "- Replace numeric spinbox with QComboBox showing GM instrument names",
@@ -284,11 +258,11 @@
     {
       "title": "10. Lyrics Window (Initial)",
       "expected_subject": "feat(ui): add Lyrics window with text type filtering",
-      "generated_subject": "feat(ui): move lyrics",
+      "generated_subject": "feat(ui): add view > lyrics",
       "subject_match": false,
-      "subject_similarity": 0.4383561643835616,
+      "subject_similarity": 0.4810126582278481,
       "expected_body_count": 7,
-      "generated_body_count": 8,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Add View > Lyrics action and non-modal LyricsDialog",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -297,11 +271,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add Lyrics window with text-event filtering",
-        "- Validation: compileall OK, 131 tests pass",
-        "- Move lyrics",
-        "- Add view > lyrics",
-        "- Supports filtering",
-        "- Update user guides"
+        "- Validation: compileall OK, 131 tests pass"
       ],
       "expected_body_lines": [
         "- Add View > Lyrics action and non-modal LyricsDialog",
@@ -316,12 +286,12 @@
     {
       "title": "11. Lyrics Window: Track Filtering",
       "expected_subject": "feat(ui): add track filtering to Lyrics window",
-      "generated_subject": "feat(ui): add track aware",
+      "generated_subject": "docs(ui): update user guides ",
       "subject_match": false,
-      "subject_similarity": 0.5915492957746479,
+      "subject_similarity": 0.4,
       "expected_body_count": 7,
-      "generated_body_count": 7,
-      "body_count_match": true,
+      "generated_body_count": 5,
+      "body_count_match": false,
       "expected_body_first": "- Preserve source track info in TextEvent via drumstick_py/file.py",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -330,9 +300,7 @@
         "- Add or update user guide and localized help content",
         "- Add Lyrics window with text-event filtering",
         "- Add track-aware filtering for lyrics events",
-        "- Validation: compileall OK, 134 tests pass",
-        "- Remembers source track",
-        "- Update user guides"
+        "- Validation: compileall OK, 134 tests pass"
       ],
       "expected_body_lines": [
         "- Preserve source track info in TextEvent via drumstick_py/file.py",
@@ -351,7 +319,7 @@
       "subject_match": false,
       "subject_similarity": 0.5,
       "expected_body_count": 6,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Add Copy button to export filtered text to clipboard",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -359,12 +327,7 @@
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 136 tests pass",
-        "- Gave lyrics",
-        "- Add copy",
-        "- Puts text",
-        "- Add tests",
-        "- Update .. verification"
+        "- Validation: compileall OK, 136 tests pass"
       ],
       "expected_body_lines": [
         "- Add Copy button to export filtered text to clipboard",
@@ -382,16 +345,13 @@
       "subject_match": false,
       "subject_similarity": 0.2647058823529412,
       "expected_body_count": 6,
-      "generated_body_count": 4,
+      "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Add C++ and Python/PyQt6 port credits with clickable mailto links",
       "generated_body_first": "- Validation: compileall OK, 136 tests pass",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Validation: compileall OK, 136 tests pass",
-        "- ’ ve",
-        "- Help >",
-        "- Update help"
+        "- Validation: compileall OK, 136 tests pass"
       ],
       "expected_body_lines": [
         "- Add C++ and Python/PyQt6 port credits with clickable mailto links",
@@ -409,7 +369,7 @@
       "subject_match": false,
       "subject_similarity": 0.7045454545454546,
       "expected_body_count": 7,
-      "generated_body_count": 6,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Add Encoding dropdown (UTF-8, Latin-1, CP1252) for text display",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -418,9 +378,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add encoding selector and save support for exported lyrics",
-        "- Validation: compileall OK, 138 tests pass",
-        "- Saving current filtered lyrics text .. honoring",
-        "- Refreshed user"
+        "- Validation: compileall OK, 138 tests pass"
       ],
       "expected_body_lines": [
         "- Add Encoding dropdown (UTF-8, Latin-1, CP1252) for text display",
@@ -439,8 +397,8 @@
       "subject_match": false,
       "subject_similarity": 0.5294117647058824,
       "expected_body_count": 6,
-      "generated_body_count": 6,
-      "body_count_match": true,
+      "generated_body_count": 4,
+      "body_count_match": false,
       "expected_body_first": "- Add Fullscreen/Window toggle button with dynamic label",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -448,9 +406,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add fullscreen mode for the dialog",
-        "- Validation: compileall OK, 140 tests pass",
-        "- Add fullscreen",
-        "- Add coverage"
+        "- Validation: compileall OK, 140 tests pass"
       ],
       "expected_body_lines": [
         "- Add Fullscreen/Window toggle button with dynamic label",
@@ -464,11 +420,11 @@
     {
       "title": "16. Lyrics Window: Print",
       "expected_subject": "feat(ui): add print support to Lyrics window",
-      "generated_subject": "feat(ui): move lyrics window",
+      "generated_subject": "feat(ui): add print button",
       "subject_match": false,
-      "subject_similarity": 0.6666666666666666,
+      "subject_similarity": 0.7142857142857143,
       "expected_body_count": 6,
-      "generated_body_count": 7,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Add Print button using Qt standard print dialog for filtered text",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -477,10 +433,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add Print support for filtered lyrics text",
-        "- Validation: compileall OK, 142 tests pass",
-        "- Move lyrics window",
-        "- Add print button",
-        "- Refreshed user"
+        "- Validation: compileall OK, 142 tests pass"
       ],
       "expected_body_lines": [
         "- Add Print button using Qt standard print dialog for filtered text",
@@ -498,8 +451,8 @@
       "subject_match": false,
       "subject_similarity": 0.42857142857142855,
       "expected_body_count": 8,
-      "generated_body_count": 8,
-      "body_count_match": true,
+      "generated_body_count": 5,
+      "body_count_match": false,
       "expected_body_first": "- Store raw bytes in TextEvent; decode via shared helper on demand",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
@@ -508,10 +461,7 @@
         "- Add or update user guide and localized help content",
         "- Add Lyrics window with text-event filtering",
         "- Add encoding selector and save support for exported lyrics",
-        "- Validation: compileall OK, 145 tests pass",
-        "- Keep raw bytes",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 145 tests pass"
       ],
       "expected_body_lines": [
         "- Store raw bytes in TextEvent; decode via shared helper on demand",
@@ -531,7 +481,7 @@
       "subject_match": false,
       "subject_similarity": 0.5909090909090909,
       "expected_body_count": 6,
-      "generated_body_count": 7,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Sync LyricsDialog with playback tick for real-time updates",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -539,11 +489,7 @@
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 146 tests pass",
-        "- Add next lyrics milestone",
-        "- Keeps current playback tick",
-        "- Add timed lyrics fixture",
-        "- Update user"
+        "- Validation: compileall OK, 146 tests pass"
       ],
       "expected_body_lines": [
         "- Sync LyricsDialog with playback tick for real-time updates",
@@ -557,19 +503,17 @@
     {
       "title": "19. Roadmap & GUI Reference Process",
       "expected_subject": "docs(roadmap): integrate GUI reference check process",
-      "generated_subject": "docs(app): update roadmap gui/ material",
+      "generated_subject": "feat(app): add roadmap gui/dmidiplayer gui.md",
       "subject_match": false,
-      "subject_similarity": 0.3956043956043956,
+      "subject_similarity": 0.28865979381443296,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Add Roadmap-GUI/dmidiplayer-GUI.md to primary reading list",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add roadmap gui/dmidiplayer gui.md",
-        "- Update round"
+        "- Update Roadmap.md to mark completed items"
       ],
       "expected_body_lines": [
         "- Add Roadmap-GUI/dmidiplayer-GUI.md to primary reading list",
@@ -587,7 +531,7 @@
       "subject_match": false,
       "subject_similarity": 0.3333333333333333,
       "expected_body_count": 6,
-      "generated_body_count": 8,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Prefer track with lyric meta events (0x05) over generic text",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -596,11 +540,7 @@
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add Lyrics window with text-event filtering",
-        "- Validation: compileall OK, 147 tests pass",
-        "- Prefers track",
-        "- Falls track",
-        "- Add regression test",
-        "- Update user guides"
+        "- Validation: compileall OK, 147 tests pass"
       ],
       "expected_body_lines": [
         "- Prefer track with lyric meta events (0x05) over generic text",
@@ -618,14 +558,13 @@
       "subject_match": false,
       "subject_similarity": 0.36363636363636365,
       "expected_body_count": 5,
-      "generated_body_count": 2,
+      "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Specify default first tab and max 8 tracks per tab rule",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add tab rule"
+        "- Update Roadmap.md to mark completed items"
       ],
       "expected_body_lines": [
         "- Specify default first tab and max 8 tracks per tab rule",
@@ -638,11 +577,11 @@
     {
       "title": "23. Piano Player Window (Initial)",
       "expected_subject": "feat(ui): add Piano Player window with tabbed tracks",
-      "generated_subject": "feat(ui): add piano player window slice",
+      "generated_subject": "feat(ui): add view > piano player",
       "subject_match": false,
-      "subject_similarity": 0.7252747252747253,
+      "subject_similarity": 0.5647058823529412,
       "expected_body_count": 9,
-      "generated_body_count": 7,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Add View > Piano Player action and PianolaDialog class",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
@@ -650,11 +589,7 @@
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 151 tests pass",
-        "- Add piano player window slice",
-        "- Add midi tracks",
-        "- Tracks contain midi",
-        "- Doc user"
+        "- Validation: compileall OK, 151 tests pass"
       ],
       "expected_body_lines": [
         "- Add View > Piano Player action and PianolaDialog class",
@@ -675,18 +610,15 @@
       "subject_match": false,
       "subject_similarity": 0.64,
       "expected_body_count": 6,
-      "generated_body_count": 6,
-      "body_count_match": true,
+      "generated_body_count": 3,
+      "body_count_match": false,
       "expected_body_first": "- Add midi_track_infos() to expose labels and channel data",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 151 tests pass",
-        "- Refined piano player",
-        "- Add midi track infos",
-        "- Refreshed user"
+        "- Validation: compileall OK, 151 tests pass"
       ],
       "expected_body_lines": [
         "- Add midi_track_infos() to expose labels and channel data",
@@ -704,19 +636,14 @@
       "subject_match": false,
       "subject_similarity": 0.525,
       "expected_body_count": 6,
-      "generated_body_count": 7,
+      "generated_body_count": 2,
       "body_count_match": false,
       "expected_body_first": "- Add configurable note range support to PianoKeyboard widget",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
-        "- Validation: compileall OK, 152 tests pass",
-        "- Add pianola window",
-        "- Supports configurable note range",
-        "- Includes track",
-        "- Pick range",
-        "- Update .. .. .. tests"
+        "- Validation: compileall OK, 152 tests pass"
       ],
       "expected_body_lines": [
         "- Add configurable note range support to PianoKeyboard widget",
@@ -734,17 +661,14 @@
       "subject_match": false,
       "subject_similarity": 0.43010752688172044,
       "expected_body_count": 6,
-      "generated_body_count": 5,
+      "generated_body_count": 2,
       "body_count_match": false,
       "expected_body_first": "- Implement visible_white_notes() and visible_black_notes() helpers",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
-        "- Validation: compileall OK, 154 tests pass",
-        "- Improve keyboard layer",
-        "- Add visible white notes",
-        "- Add dedicated widget test file"
+        "- Validation: compileall OK, 154 tests pass"
       ],
       "expected_body_lines": [
         "- Implement visible_white_notes() and visible_black_notes() helpers",
@@ -762,20 +686,15 @@
       "subject_match": false,
       "subject_similarity": 0.43373493975903615,
       "expected_body_count": 7,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Add Show checkbox per track row with keyboard area collapsing",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.14285714285714285,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 157 tests pass",
-        "- Move pianola window",
-        "- Has track visibility controls",
-        "- Refactor duplicate pianola clear",
-        "- Add coverage",
-        "- Guides .. verification"
+        "- Validation: compileall OK, 157 tests pass"
       ],
       "expected_body_lines": [
         "- Add Show checkbox per track row with keyboard area collapsing",
@@ -794,20 +713,16 @@
       "subject_match": false,
       "subject_similarity": 0.631578947368421,
       "expected_body_count": 5,
-      "generated_body_count": 8,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Add Fullscreen toggle button with Esc key exit support",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.2,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add fullscreen mode for the dialog",
-        "- Validation: compileall OK, 159 tests pass",
-        "- Add fullscreen",
-        "- Used behavior pattern",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 159 tests pass"
       ],
       "expected_body_lines": [
         "- Add Fullscreen toggle button with Esc key exit support",
@@ -824,20 +739,15 @@
       "subject_match": false,
       "subject_similarity": 0.7105263157894737,
       "expected_body_count": 7,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Add Range selector with Exact and Used octaves options",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.14285714285714285,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 160 tests pass",
-        "- Add pianola window",
-        "- Has range",
-        "- Used octaves",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 160 tests pass"
       ],
       "expected_body_lines": [
         "- Add Range selector with Exact and Used octaves options",
@@ -856,20 +766,15 @@
       "subject_match": false,
       "subject_similarity": 0.5333333333333333,
       "expected_body_count": 6,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Track per-note velocity in PianoKeyboard for active notes",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.16666666666666666,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 162 tests pass",
-        "- Add pianola work",
-        "- Tracks note velocity",
-        "- Pass velocity",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 162 tests pass"
       ],
       "expected_body_lines": [
         "- Track per-note velocity in PianoKeyboard for active notes",
@@ -887,20 +792,15 @@
       "subject_match": false,
       "subject_similarity": 0.4819277108433735,
       "expected_body_count": 6,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Support never/minimal/active/always display modes in PianoKeyboard",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.16666666666666666,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 164 tests pass",
-        "- Add pianola work",
-        "- Supports note name display modes",
-        "- Has labels",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 164 tests pass"
       ],
       "expected_body_lines": [
         "- Support never/minimal/active/always display modes in PianoKeyboard",
@@ -918,20 +818,15 @@
       "subject_match": false,
       "subject_similarity": 0.5185185185185185,
       "expected_body_count": 7,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Support configurable active-color palettes in PianoKeyboard widget",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.14285714285714285,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 166 tests pass",
-        "- Add pianola window",
-        "- Supports configurable active color palettes",
-        "- Has colors",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 166 tests pass"
       ],
       "expected_body_lines": [
         "- Support configurable active-color palettes in PianoKeyboard widget",
@@ -950,20 +845,15 @@
       "subject_match": false,
       "subject_similarity": 0.4878048780487805,
       "expected_body_count": 6,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Support octave offset in PianoKeyboard for Scientific/Yamaha modes",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.16666666666666666,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 168 tests pass",
-        "- Add pianola work",
-        "- Supports octave offset",
-        "- Has octaves",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 168 tests pass"
       ],
       "expected_body_lines": [
         "- Support octave offset in PianoKeyboard for Scientific/Yamaha modes",
@@ -981,20 +871,15 @@
       "subject_match": false,
       "subject_similarity": 0.3037974683544304,
       "expected_body_count": 7,
-      "generated_body_count": 8,
+      "generated_body_count": 3,
       "body_count_match": false,
       "expected_body_first": "- Add mouse and QWERTY keyboard input support to PianoKeyboard widget",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.14285714285714285,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 172 tests pass",
-        "- Update pianola work",
-        "- Supports mouse note playing",
-        "- Wired signals",
-        "- Add coverage",
-        "- Refreshed user"
+        "- Validation: compileall OK, 172 tests pass"
       ],
       "expected_body_lines": [
         "- Add mouse and QWERTY keyboard input support to PianoKeyboard widget",
@@ -1013,20 +898,16 @@
       "subject_match": false,
       "subject_similarity": 0.7368421052631579,
       "expected_body_count": 6,
-      "generated_body_count": 8,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Persist color mode, note labels, and octave designation settings",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.16666666666666666,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 174 tests pass",
-        "- Move solid preferences slice",
-        "- Add pianola preferences",
-        "- Has player piano",
-        "- Update fake settings"
+        "- Validation: compileall OK, 174 tests pass"
       ],
       "expected_body_lines": [
         "- Persist color mode, note labels, and octave designation settings",
@@ -1044,20 +925,16 @@
       "subject_match": false,
       "subject_similarity": 0.8405797101449275,
       "expected_body_count": 7,
-      "generated_body_count": 8,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Persist font family, size, and past/future text colors",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.14285714285714285,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 176 tests pass",
-        "- Update preferences",
-        "- Add lyrics preferences",
-        "- Has lyrics",
-        "- Update lyrics dialog"
+        "- Validation: compileall OK, 176 tests pass"
       ],
       "expected_body_lines": [
         "- Persist font family, size, and past/future text colors",
@@ -1072,24 +949,20 @@
     {
       "title": "37. Preferences: Note-Name Font",
       "expected_subject": "feat(app): add configurable note-name font to Pianola",
-      "generated_subject": "feat(ui): add preferences",
+      "generated_subject": "feat(ui): add player piano font settings",
       "subject_match": false,
-      "subject_similarity": 0.41025641025641024,
+      "subject_similarity": 0.5591397849462365,
       "expected_body_count": 6,
-      "generated_body_count": 8,
+      "generated_body_count": 4,
       "body_count_match": false,
       "expected_body_first": "- Support custom font family and size in PianoKeyboard widget",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.125,
+      "body_line_ratio": 0.16666666666666666,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add or update user guide and localized help content",
         "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 176 tests pass",
-        "- Add preferences",
-        "- Has configurable note label font",
-        "- Add player piano font settings",
-        "- Refreshed user"
+        "- Validation: compileall OK, 176 tests pass"
       ],
       "expected_body_lines": [
         "- Support custom font family and size in PianoKeyboard widget",
@@ -1107,18 +980,15 @@
       "subject_match": false,
       "subject_similarity": 0.5,
       "expected_body_count": 6,
-      "generated_body_count": 6,
-      "body_count_match": true,
+      "generated_body_count": 3,
+      "body_count_match": false,
       "expected_body_first": "- Persist pianola/single_color setting with default blue highlight",
       "generated_body_first": "- Update Roadmap.md to mark completed items",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
         "- Update Roadmap.md to mark completed items",
         "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 176 tests pass",
-        "- Add port",
-        "- Add persisted pianola/single color setting",
-        "- Update related docs"
+        "- Validation: compileall OK, 176 tests pass"
       ],
       "expected_body_lines": [
         "- Persist pianola/single_color setting with default blue highlight",
@@ -1136,17 +1006,14 @@
       "subject_match": false,
       "subject_similarity": 0.6021505376344086,
       "expected_body_count": 7,
-      "generated_body_count": 5,
+      "generated_body_count": 2,
       "body_count_match": false,
       "expected_body_first": "- Implement set_velocity_tinting_enabled() in PianoKeyboard widget",
       "generated_body_first": "- Add General preferences and playback behavior settings",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
         "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 178 tests pass",
-        "- Add port",
-        "- Has set velocity tinting",
-        "- Includes note velocity"
+        "- Validation: compileall OK, 178 tests pass"
       ],
       "expected_body_lines": [
         "- Implement set_velocity_tinting_enabled() in PianoKeyboard widget",
@@ -1165,8 +1032,8 @@
       "subject_match": false,
       "subject_similarity": 0.5348837209302325,
       "expected_body_count": 7,
-      "generated_body_count": 7,
-      "body_count_match": true,
+      "generated_body_count": 4,
+      "body_count_match": false,
       "expected_body_first": "- Add File > Song Settings Load/Save actions and auto-load pref",
       "generated_body_first": "- Add per-channel Mute/Solo controls to the Channels view",
       "body_line_ratio": 0.0,
@@ -1174,10 +1041,7 @@
         "- Add per-channel Mute/Solo controls to the Channels view",
         "- Add per-channel volume sliders and real-time CC7 updates",
         "- Add encoding selector and save support for exported lyrics",
-        "- Validation: compileall OK, 180 tests pass",
-        "- Update bigger piece",
-        "- Add > song settings > load",
-        "- Expanded .. verification"
+        "- Validation: compileall OK, 180 tests pass"
       ],
       "expected_body_lines": [
         "- Add File > Song Settings Load/Save actions and auto-load pref",
@@ -1192,17 +1056,17 @@
     {
       "title": "42. WPS Dicts: Regional Variants",
       "expected_subject": "feat(dict): expand WPS dictionaries with LibreOffice variants",
-      "generated_subject": "feat(dict): variantes agregadas",
+      "generated_subject": "docs(dict): update project",
       "subject_match": false,
-      "subject_similarity": 0.43478260869565216,
+      "subject_similarity": 0.367816091954023,
       "expected_body_count": 6,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Generate 71 language folders with dict.conf, main.aff, and main.dic",
-      "generated_body_first": "- Variantes agregadas",
+      "generated_body_first": "- Creé 20 carpetas nuevas en: [build/wps-libreoffice-dicts]... Nuevas variantes agregadas: de_AT, de_CH, en_CA, en_ZA, es_CR, es_CU, es_DO, es_EC, es_GQ, es_GT, es_HN, es_NI, es_PA, es_PE, es_PH, es_PY, es_SV, es_US, es_UY, es_VE... También actualicé el reporte: [BUILD_SOURCE_MAP.txt]... Verificación: ahora hay 71 carpetas en total y 213 archivos esperados",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Variantes agregadas"
+        "- Creé 20 carpetas nuevas en: [build/wps-libreoffice-dicts]... Nuevas variantes agregadas: de_AT, de_CH, en_CA, en_ZA, es_CR, es_CU, es_DO, es_EC, es_GQ, es_GT, es_HN, es_NI, es_PA, es_PE, es_PH, es_PY, es_SV, es_US, es_UY, es_VE... También actualicé el reporte: [BUILD_SOURCE_MAP.txt]... Verificación: ahora hay 71 carpetas en total y 213 archivos esperados"
       ],
       "expected_body_lines": [
         "- Generate 71 language folders with dict.conf, main.aff, and main.dic",
@@ -1216,19 +1080,17 @@
     {
       "title": "43. WPS Dicts: Converter Tool",
       "expected_subject": "feat(tools): add PyQt6 dictionary converter GUI",
-      "generated_subject": "feat(dict): fuente libre office",
+      "generated_subject": "docs(dict): update project",
       "subject_match": false,
-      "subject_similarity": 0.358974358974359,
+      "subject_similarity": 0.2465753424657534,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Implement side-by-side view for LibreOffice sources and WPS targets",
-      "generated_body_first": "- Fuente libre office",
+      "generated_body_first": "- Implement feature enhancements and improvements",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Fuente libre office",
-        "- Antes .. sólo",
-        "- Dos cosas"
+        "- Implement feature enhancements and improvements"
       ],
       "expected_body_lines": [
         "- Implement side-by-side view for LibreOffice sources and WPS targets",
@@ -1242,18 +1104,17 @@
     {
       "title": "44. WPS Dicts: Repo Setup & README",
       "expected_subject": "docs(repo): add .gitignore and update README with install steps",
-      "generated_subject": "feat(dict): dos cambios",
+      "generated_subject": "docs(dict): update project",
       "subject_match": false,
-      "subject_similarity": 0.20930232558139536,
+      "subject_similarity": 0.3595505617977528,
       "expected_body_count": 6,
-      "generated_body_count": 2,
+      "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Create .gitignore to exclude caches, venvs, and temp files",
-      "generated_body_first": "- Dos cambios",
+      "generated_body_first": "- Actualicé [README.md]... eliminé `# Tutorial en construcción...`, corregí la instalación para usar: `sudo cp -r build/wps-libreoffice-dicts/* /opt/kingsoft/wps-office/office6/dicts/spellcheck/`... y añadí al final la explicación de la herramienta PyQt6",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Dos cambios",
-        "- Eliminé tutorial"
+        "- Actualicé [README.md]... eliminé `# Tutorial en construcción...`, corregí la instalación para usar: `sudo cp -r build/wps-libreoffice-dicts/* /opt/kingsoft/wps-office/office6/dicts/spellcheck/`... y añadí al final la explicación de la herramienta PyQt6"
       ],
       "expected_body_lines": [
         "- Create .gitignore to exclude caches, venvs, and temp files",
@@ -1267,17 +1128,17 @@
     {
       "title": "45. WPS Dicts: Enriched Configs (Batch 1)",
       "expected_subject": "feat(dict): enrich dict.conf with localized display names",
-      "generated_subject": "feat(dict): los 20",
+      "generated_subject": "docs(dict): update project",
       "subject_match": false,
-      "subject_similarity": 0.4266666666666667,
+      "subject_similarity": 0.26506024096385544,
       "expected_body_count": 4,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Add DisplayName entries for zh_CN, en_US, es_ES, and other locales",
-      "generated_body_first": "- Los 20",
+      "generated_body_first": "- Enriquecí los 20 `dict.conf` nuevos de `build/wps-libreoffice-dicts` para que tengan el mismo estilo de los originales de WPS: [Dictionary] DisplayName=... DisplayName[zh_CN]=... etc",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Los 20"
+        "- Enriquecí los 20 `dict.conf` nuevos de `build/wps-libreoffice-dicts` para que tengan el mismo estilo de los originales de WPS: [Dictionary] DisplayName=... DisplayName[zh_CN]=... etc"
       ],
       "expected_body_lines": [
         "- Add DisplayName entries for zh_CN, en_US, es_ES, and other locales",
@@ -1289,17 +1150,17 @@
     {
       "title": "46. WPS Dicts: Enriched Configs (Batch 2)",
       "expected_subject": "feat(dict): enrich hr_HR, km_KH, and qu_EC dict configs",
-      "generated_subject": "feat(dict): tres archivos",
+      "generated_subject": "docs(dict): update project",
       "subject_match": false,
-      "subject_similarity": 0.45,
+      "subject_similarity": 0.2962962962962963,
       "expected_body_count": 3,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Add 8 localized DisplayName entries to match WPS standards",
-      "generated_body_first": "- Tres archivos",
+      "generated_body_first": "- Implement feature enhancements and improvements",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Tres archivos"
+        "- Implement feature enhancements and improvements"
       ],
       "expected_body_lines": [
         "- Add 8 localized DisplayName entries to match WPS standards",
@@ -1310,17 +1171,17 @@
     {
       "title": "47. WPS Dicts: README Tables",
       "expected_subject": "docs(readme): add available dictionaries tables",
-      "generated_subject": "feat(dict): disponibles * * con una tabla",
+      "generated_subject": "docs(dict): update project",
       "subject_match": false,
-      "subject_similarity": 0.38636363636363635,
+      "subject_similarity": 0.3287671232876712,
       "expected_body_count": 4,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- List all 71 dictionaries in build/wps-libreoffice-dicts",
-      "generated_body_first": "- Disponibles * * con una tabla",
+      "generated_body_first": "- Implement feature enhancements and improvements",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Disponibles * * con una tabla"
+        "- Implement feature enhancements and improvements"
       ],
       "expected_body_lines": [
         "- List all 71 dictionaries in build/wps-libreoffice-dicts",

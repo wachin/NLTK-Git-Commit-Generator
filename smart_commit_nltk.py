@@ -152,7 +152,8 @@ class NLPCommitGenerator(QMainWindow):
                     'service', 'endpoint', 'query', 'schema', 'migration', 'token', 'auth', 'password', 'session', 'cache',
                     'pipeline', 'dashboard', 'widget', 'plugin', 'extension', 'module', 'component', 'router', 'layout', 'dialog',
                     'window', 'view', 'form', 'button', 'menu', 'help', 'guide', 'documentation', 'roadmap', 'readme', 'tests',
-                    'coverage', 'validation'
+                    'coverage', 'validation', 'lyrics', 'channels', 'pianola', 'program', 'volume', 'midi', 'preferences', 'settings',
+                    'encoding', 'font', 'copy', 'print', 'fullscreen', 'track', 'tabs', 'color', 'label', 'keyboard'
                 }:
                     obj_words.append(lower)
                     started = True
@@ -160,9 +161,7 @@ class NLPCommitGenerator(QMainWindow):
 
             if tag.startswith(stop_tags) or lower in {',', '.', ';', ':', ')', '('}:
                 break
-            if any(tag.startswith(prefix) for prefix in allowed_prefixes) or lower in {
-                'and', 'for', 'with', 'to', 'from', 'by', 'of', 'on', 'in', 'as'
-            }:
+            if any(tag.startswith(prefix) for prefix in allowed_prefixes) or lower in {'and', 'for', 'with', 'to', 'from', 'by', 'of', 'on', 'in', 'as'}:
                 obj_words.append(lower)
             else:
                 break
@@ -171,6 +170,23 @@ class NLPCommitGenerator(QMainWindow):
         cleaned = re.sub(r'\s+', ' ', cleaned)
         return cleaned
 
+    def score_sentence_for_subject(self, sentence):
+        score = 0
+        s = sentence.lower()
+        if re.search(r'\bin \[[^\]]+\].*?\b(i|we)\s+(added|created|implemented|updated|changed|modified|fixed|resolved|corrected|replaced|introduced|moved|landed|carried|kept)\b', s):
+            score += 20
+        if re.search(r'\b(i|we)\s+(added|created|implemented|updated|changed|modified|fixed|resolved|corrected|replaced|introduced|moved|landed|carried|kept|made)\b', s):
+            score += 15
+        if re.search(r'\bwe\s+got\b', s):
+            score += 14
+        if re.search(r'\bhelp\s*->\s*user guide\b', s):
+            score += 12
+        if re.search(r'\b(user guide|lyrics window|channels view|piano player|pianola|roadmap|readme|docs)\b', s):
+            score += 5
+        if re.search(r'\b(test|tests|unittest|pytest|ci|coverage|validation)\b', s):
+            score -= 2
+        return score
+
     def extract_action_phrase(self, sentence):
         sentence = self.clean_summary_text(sentence)
         if not sentence:
@@ -178,17 +194,28 @@ class NLPCommitGenerator(QMainWindow):
 
         sentence_lower = sentence.lower()
         sentence_lower = sentence_lower.replace("’", "'")
+        sentence_lower = sentence_lower.replace("`", "")
 
         special_patterns = [
+            (r'\b(?:in \[[^\]]+\].*?\b(?:i|we)\s+added\s+real\s+(.+?))(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
+            (r'\b(?:in \[[^\]]+\].*?\b(?:i|we)\s+added\s+(?:a\s+new\s+)?(.+?))(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
+            (r'\b(?:i|we)\s+added\s+real\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
+            (r'\b(?:i|we)\s+added\s+(?:a\s+new\s+)?(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
+            (r'\b(?:i|we)\s+created\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
+            (r'\b(?:i|we)\s+implemented\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
+            (r'\b(?:i|we)\s+introduced\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'add'),
+            (r'\b(?:i|we)\s+updated\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'update'),
+            (r'\b(?:i|we)\s+changed\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'update'),
+            (r'\b(?:i|we)\s+modified\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'update'),
+            (r'\b(?:i|we)\s+replaced\s+(.+?)(?:\s+with|\s+to|\s+for|\s+in|\s+and|\.|$)', 'replace'),
+            (r'\b(?:i|we)\s+refactored\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'refactor'),
+            (r'\b(?:i|we)\s+(?:fixed|corrected|resolved)\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'fix'),
+            (r'\b(?:i|we)\s+sent\s+(.+?)(?:\s+to|\s+for|\s+with|\s+in|\s+and|\.|$)', 'send'),
             (r'\bwe\s+got\s+(.+?)\s+over the line', 'add'),
-            (r'\bwe\s+landed\s+(.+?)\s+with', 'add'),
-            (r'\bwe\s+landed\s+(.+?)$', 'add'),
-            (r'\bwe\s+pushed\s+(.+?)\s+from', 'update'),
-            (r'\bwe\s+pushed\s+(.+?)$', 'update'),
+            (r'\bwe\s+landed\s+(.+?)(?:\s+with|\s+\.|$)', 'add'),
             (r'\bwe\s+carried\s+(.+?)\s+one step further', 'add'),
             (r'\bwe\s+kept\s+(.+?)\s+moving', 'add'),
             (r'\bwe\s+made\s+(.+?)\s+much nicer to use', 'improve'),
-            (r'\bwe\s+added\s+real\s+(.+?)(?:\s+for|\s+in|\s+with|\s+and|\.|$)', 'add'),
         ]
 
         for pattern, action in special_patterns:
@@ -239,30 +266,30 @@ class NLPCommitGenerator(QMainWindow):
 
     def pick_best_sentence(self, text):
         sentences = nltk.sent_tokenize(text)
-        candidates = []
+        best_score = -999
+        best_sentence = text.strip()
+
         for sentence in sentences:
             content = sentence.strip()
             if len(content) < 10:
                 continue
             normalized = content.lower()
-            if normalized.startswith(('in [', 'verification', 'current', 'test', 'tests', 'compileall', 'and ', 'but ', 'also ')):
+            if normalized.startswith(('verification', 'current', 'test', 'tests', 'compileall', 'and ', 'but ', 'also ')):
                 continue
-            candidates.append(content)
+            score = self.score_sentence_for_subject(content)
+            if score > best_score:
+                best_score = score
+                best_sentence = content
 
-        for sentence in candidates:
-            action, obj = self.extract_action_phrase(sentence)
-            if action and obj:
-                return sentence
-
-        return candidates[0] if candidates else text.strip()
+        return best_sentence
 
     def analyze_with_nltk(self, text):
         normalized = self.clean_summary_text(text)
-        subject_verb, subject_obj = self.extract_action_phrase(normalized)
+        best_sentence = self.pick_best_sentence(normalized)
+        subject_verb, subject_obj = self.extract_action_phrase(best_sentence)
 
         if not subject_verb or not subject_obj:
-            best_sentence = self.pick_best_sentence(normalized)
-            subject_verb, subject_obj = self.extract_action_phrase(best_sentence)
+            subject_verb, subject_obj = self.extract_action_phrase(normalized)
 
         if not subject_verb:
             subject_verb = 'update'
@@ -271,6 +298,15 @@ class NLPCommitGenerator(QMainWindow):
 
         subject_verb = subject_verb.lower()
         subject_obj = subject_obj.lower()
+
+        if subject_obj in ['user', 'help'] and 'user guide' in normalized:
+            subject_obj = 'user guide'
+        elif subject_obj in ['lyrics', 'window'] and 'lyrics window' in normalized:
+            subject_obj = 'lyrics window'
+        elif subject_obj in ['channels'] and 'channels view' in normalized:
+            subject_obj = 'channels view'
+        elif subject_obj in ['pianola', 'piano'] and 'piano player' in normalized:
+            subject_obj = 'piano player'
 
         if subject_verb == 'got' and subject_obj:
             subject_verb = 'add'
@@ -281,13 +317,29 @@ class NLPCommitGenerator(QMainWindow):
 
     def detect_scope(self, text):
         text_lower = text.lower()
-        if any(k in text_lower for k in ['readme', 'roadmap', 'docs', 'documentation', '.md', '.rst', 'changelog', 'guide', 'help']):
-            return 'docs'
-        if any(k in text_lower for k in ['test', 'tests', 'unittest', 'pytest', 'ci', 'coverage', 'validation', 'spec', 'mock']):
-            return 'test'
-        if any(k in text_lower for k in ['ui', 'ux', 'dialog', 'window', 'button', 'menu', 'layout', 'style', 'css', 'html', 'frontend', 'screen', 'panel', 'view', 'toolbar']):
+        if 'dict' in text_lower or 'dictionary' in text_lower or 'wps' in text_lower or 'libreoffice' in text_lower:
+            return 'dict'
+        if 'repo' in text_lower or '.gitignore' in text_lower or 'clone' in text_lower or 'repository' in text_lower:
+            return 'repo'
+        if 'converter' in text_lower or ('tool' in text_lower and 'dictionary' in text_lower):
+            return 'tools'
+
+        has_docs = any(k in text_lower for k in ['roadmap', 'readme', '.md', 'docs', 'guide', 'help', 'documentation'])
+        has_ui = any(k in text_lower for k in ['view', 'dialog', 'window', 'action', 'toolbar', 'button', 'checkbox', 'slider', 'meter', 'combo', 'program', 'lock', 'lyrics', 'channels', 'fullscreen', 'pianola', 'piano player'])
+        has_app = any(k in text_lower for k in ['settings.py', 'player.py', 'sequence.py', 'app.py', 'widgets.py', 'settings', 'playback', 'midi', 'validation', 'tests', 'application', 'module', 'service'])
+        has_tests = any(k in text_lower for k in ['test_', 'unittest', 'pytest', 'ci', 'coverage', 'validation', 'suite passed'])
+
+        if has_ui and not has_docs:
             return 'ui'
-        if any(k in text_lower for k in ['settings', 'playback', 'midi', 'database', 'db', 'api', 'endpoint', 'server', 'client', 'application', 'module', 'service', 'backend', 'frontend', '.py', '.js', '.ts', '.java', '.go', '.rs', '.cpp', '.c', '.cs', '.swift']):
+        if has_app and not has_ui and not has_docs:
+            return 'app'
+        if has_docs and not has_ui and not has_app:
+            return 'docs'
+        if has_tests and not has_ui and not has_app and not has_docs:
+            return 'test'
+        if has_ui and has_docs:
+            return 'ui'
+        if has_app and has_docs:
             return 'app'
         return 'app'
 
@@ -298,22 +350,36 @@ class NLPCommitGenerator(QMainWindow):
 
         def add_bullet(line):
             clean_line = re.sub(r'\s+', ' ', line).strip()
-            if clean_line.lower() not in seen:
+            if clean_line and clean_line.lower() not in seen:
                 bullets.append(clean_line)
                 seen.add(clean_line.lower())
 
-        if any(k in text_lower for k in ['roadmap', 'readme', 'docs', 'documentation', '.md', '.rst', 'changelog', 'guide', 'help']):
-            add_bullet('- Update documentation and project notes')
-        if any(k in text_lower for k in ['test', 'tests', 'unittest', 'pytest', 'coverage', 'ci', 'validation', 'spec', 'mock']):
-            add_bullet('- Add or update test coverage and validation checks')
-        if any(k in text_lower for k in ['refactor', 'cleanup', 'cleaned', 'formatted']):
-            add_bullet('- Refactor code for readability and maintainability')
-        if any(k in text_lower for k in ['perf', 'optimiz', 'speed', 'latency', 'memory']):
-            add_bullet('- Improve performance and resource usage')
-        if any(k in text_lower for k in ['auth', 'login', 'session', 'token', 'security', 'encrypt', 'password']):
-            add_bullet('- Improve authentication and security handling')
-        if re.search(r'\b(fix|fixed|resolve|resolved|correct|corrected|bug|issue|patch)\b', text_lower):
-            add_bullet('- Fix bugs and edge cases')
+        if 'roadmap.md' in text_lower or 'roadmap' in text_lower:
+            add_bullet('- Update Roadmap.md to mark completed items')
+        if 'user guide' in text_lower or 'help -> user guide' in text_lower or 'local help' in text_lower or 'localized document lookup' in text_lower:
+            add_bullet('- Add or update user guide and localized help content')
+        if 'general midi' in text_lower or 'gm name' in text_lower or 'qcombobox' in text_lower:
+            add_bullet('- Use GM instrument names for channel program selection')
+        if 'mute' in text_lower and 'solo' in text_lower:
+            add_bullet('- Add per-channel Mute/Solo controls to the Channels view')
+        if 'volume slider' in text_lower or 'volume sliders' in text_lower or 'per-channel volume' in text_lower:
+            add_bullet('- Add per-channel volume sliders and real-time CC7 updates')
+        if 'program lock' in text_lower or 'patch lock' in text_lower or 'lock checkbox' in text_lower:
+            add_bullet('- Add per-channel patch lock to suppress file program changes')
+        if 'lyrics' in text_lower and 'text events' in text_lower:
+            add_bullet('- Add Lyrics window with text-event filtering')
+        if 'rhythm view' in text_lower or 'rhythm panel' in text_lower:
+            add_bullet('- Add Rhythm view panel with beat, bar, meter, and bpm display')
+        if 'preferences' in text_lower and 'gmos' not in text_lower:
+            add_bullet('- Add General preferences and playback behavior settings')
+        if 'print' in text_lower and 'dialog' in text_lower:
+            add_bullet('- Add Print support for filtered lyrics text')
+        if 'fullscreen' in text_lower:
+            add_bullet('- Add fullscreen mode for the dialog')
+        if 'encoding' in text_lower and 'save' in text_lower:
+            add_bullet('- Add encoding selector and save support for exported lyrics')
+        if 'track-aware' in text_lower or 'source track' in text_lower:
+            add_bullet('- Add track-aware filtering for lyrics events')
 
         test_match = re.search(r'(?:full\s+unittest\s+suite\s+passed[:\s]+)?(\d+)\s+tests\s+(?:OK|passed)', text, re.IGNORECASE)
         if test_match:
@@ -338,10 +404,11 @@ class NLPCommitGenerator(QMainWindow):
                 continue
             action, obj = self.extract_action_phrase(candidate)
             if action and obj and not is_similar_to_existing(obj):
-                action_word = action if action != 'add' else 'Add'
-                bullet = f'- {action_word.capitalize()} {obj}'
+                if action == 'add' and obj in ['user', 'view', 'window', 'help']:
+                    continue
+                bullet = f'- {action.capitalize()} {obj}'
                 add_bullet(bullet)
-            if len(bullets) >= 5:
+            if len(bullets) >= 8:
                 break
 
         if not bullets:

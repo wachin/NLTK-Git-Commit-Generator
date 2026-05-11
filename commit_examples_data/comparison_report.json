@@ -1,0 +1,1337 @@
+{
+  "total_examples": 45,
+  "exact_subject_matches": 0,
+  "exact_body_count_matches": 9,
+  "average_subject_similarity": 0.5091813449090572,
+  "average_body_line_ratio": 0.030555555555555555,
+  "entries": [
+    {
+      "title": "1. Rhythm View Implementation",
+      "expected_subject": "feat(ui): add embedded Rhythm view with playback sync",
+      "generated_subject": "feat(ui): add embedded rhythmview panel",
+      "subject_match": false,
+      "subject_similarity": 0.782608695652174,
+      "expected_body_count": 7,
+      "generated_body_count": 6,
+      "body_count_match": false,
+      "expected_body_first": "- Add RhythmView panel showing meter, bar, beat, BPM, and strip",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add Rhythm view panel with beat, bar, meter, and bpm display",
+        "- Validation: compileall OK, 106 tests pass",
+        "- Add embedded rhythmview panel",
+        "- Updates same playback position flow",
+        "- Mark complete .. verification"
+      ],
+      "expected_body_lines": [
+        "- Add RhythmView panel showing meter, bar, beat, BPM, and strip",
+        "- Sync updates with playback position, tempo changes, and seeks",
+        "- Add View > Rhythm toggle for show/hide control",
+        "- Implement time_signature_at_tick() in sequence.py for UI queries",
+        "- Add tests for rhythm action, toggling, and live updates",
+        "- Update Roadmap.md to mark rhythm view items complete",
+        "- Validation: compileall OK, 106 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "2. Preferences: Solo Reduction & GM Reset",
+      "expected_subject": "feat(app): add solo reduction and GM reset prefs",
+      "generated_subject": "feat(ui): add useful preferences slice",
+      "subject_match": false,
+      "subject_similarity": 0.4883720930232558,
+      "expected_body_count": 6,
+      "generated_body_count": 6,
+      "body_count_match": true,
+      "expected_body_first": "- Persist solo_volume_reduction (default 50%) and midi_reset",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add General preferences and playback behavior settings",
+        "- Validation: compileall OK, 110 tests pass",
+        "- Add useful preferences slice",
+        "- Dialog ’ s",
+        "- Add actual gm"
+      ],
+      "expected_body_lines": [
+        "- Persist solo_volume_reduction (default 50%) and midi_reset",
+        "- Add General tab controls for both settings in Preferences dialog",
+        "- Send GM reset SysEx before playback when enabled in player.py",
+        "- Add tests for persistence, clamping, and reset behavior",
+        "- Update Roadmap.md to mark General tab items complete",
+        "- Validation: compileall OK, 110 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "3. User Guide Implementation",
+      "expected_subject": "docs(app): add localized PyQt6 user guide",
+      "generated_subject": "feat(ui): add new",
+      "subject_match": false,
+      "subject_similarity": 0.3103448275862069,
+      "expected_body_count": 6,
+      "generated_body_count": 5,
+      "body_count_match": false,
+      "expected_body_first": "- Add Help > User Guide action with shared localized lookup",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 111 tests pass",
+        "- Add new",
+        "- Add two new guide files"
+      ],
+      "expected_body_lines": [
+        "- Add Help > User Guide action with shared localized lookup",
+        "- Create comprehensive EN/ES guides for UI controls and menus",
+        "- Update local help indexes to reference new user guide",
+        "- Add tests for action existence and path resolution",
+        "- Update Roadmap.md to mark local help items complete",
+        "- Validation: compileall OK, 111 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "4. Channels View (Initial)",
+      "expected_subject": "feat(ui): add Channels view with live level meters",
+      "generated_subject": "feat(ui): move first real channels view",
+      "subject_match": false,
+      "subject_similarity": 0.5168539325842697,
+      "expected_body_count": 8,
+      "generated_body_count": 5,
+      "body_count_match": false,
+      "expected_body_first": "- Add View > Channels action and non-modal ChannelsDialog",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 114 tests pass",
+        "- Move first real channels view",
+        "- Add channels"
+      ],
+      "expected_body_lines": [
+        "- Add View > Channels action and non-modal ChannelsDialog",
+        "- Display used channels with editable labels and activity meters",
+        "- Sync meter updates with playback events; clear on stop/seek",
+        "- Implement used_channels() in sequence.py for UI queries",
+        "- Update user guides (EN/ES) to document the new Channels window",
+        "- Add tests for dialog lifecycle, listing, and meter updates",
+        "- Update Roadmap.md to mark Channels view items complete",
+        "- Validation: compileall OK, 114 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "5. Channels View: Mute & Solo",
+      "expected_subject": "feat(app): add interactive Mute/Solo to Channels view",
+      "generated_subject": "feat(ui): add channel playback controls",
+      "subject_match": false,
+      "subject_similarity": 0.43478260869565216,
+      "expected_body_count": 8,
+      "generated_body_count": 7,
+      "body_count_match": false,
+      "expected_body_first": "- Implement per-channel mute/solo tracking in player.py",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add per-channel Mute/Solo controls to the Channels view",
+        "- Validation: compileall OK, 119 tests pass",
+        "- Has real",
+        "- Update user guides",
+        "- Update channel"
+      ],
+      "expected_body_lines": [
+        "- Implement per-channel mute/solo tracking in player.py",
+        "- Filter playback events based on channel state",
+        "- Apply solo reduction preference to non-soloed channels",
+        "- Add Mute/Solo checkboxes to ChannelsDialog in app.py",
+        "- Update user guides (EN/ES) with new control documentation",
+        "- Add tests for silencing, reduction, and UI wiring",
+        "- Update Roadmap.md to mark mute/solo items complete",
+        "- Validation: compileall OK, 119 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "6. Channels View: Volume Sliders",
+      "expected_subject": "feat(app): add per-channel volume sliders",
+      "generated_subject": "feat(ui): add channels",
+      "subject_match": false,
+      "subject_similarity": 0.6349206349206349,
+      "expected_body_count": 8,
+      "generated_body_count": 8,
+      "body_count_match": true,
+      "expected_body_first": "- Implement per-channel volume scaling before global volume",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add per-channel volume sliders and real-time CC7 updates",
+        "- Validation: compileall OK, 122 tests pass",
+        "- Add channels",
+        "- Has volume",
+        "- Fix channel dialog ’",
+        "- Update user guides"
+      ],
+      "expected_body_lines": [
+        "- Implement per-channel volume scaling before global volume",
+        "- Send immediate CC7 updates on slider change",
+        "- Add Volume slider to ChannelsDialog alongside Mute/Solo",
+        "- Fix level meter index after previous UI expansion",
+        "- Update user guides (EN/ES) with new volume control docs",
+        "- Add tests for scaling order, CC7 sends, and UI wiring",
+        "- Update Roadmap.md to mark volume slider item complete",
+        "- Validation: compileall OK, 122 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "7. Channels View: Program Control",
+      "expected_subject": "feat(app): add per-channel program control",
+      "generated_subject": "feat(ui): add channels view",
+      "subject_match": false,
+      "subject_similarity": 0.5797101449275363,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add Program spinbox to ChannelsDialog with immediate CC send",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 125 tests pass",
+        "- Add channels view",
+        "- Has program",
+        "- ’ s",
+        "- Add channel program overrides",
+        "- Send nt"
+      ],
+      "expected_body_lines": [
+        "- Add Program spinbox to ChannelsDialog with immediate CC send",
+        "- Implement program overrides that replace file events during playback",
+        "- Expose initial_programs() in sequence.py for UI initialization",
+        "- Update user guides (EN/ES) with new program control docs",
+        "- Add tests for overrides, immediate sends, and UI wiring",
+        "- Update Roadmap.md to mark basic patch selector complete",
+        "- Validation: compileall OK, 125 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "8. Channels View: Patch Lock",
+      "expected_subject": "feat(app): add patch lock to Channels view",
+      "generated_subject": "feat(ui): add channels view",
+      "subject_match": false,
+      "subject_similarity": 0.7246376811594203,
+      "expected_body_count": 7,
+      "generated_body_count": 7,
+      "body_count_match": true,
+      "expected_body_first": "- Implement per-channel lock state in player.py",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add per-channel patch lock to suppress file program changes",
+        "- Validation: compileall OK, 128 tests pass",
+        "- Add channels view",
+        "- Has lock",
+        "- Update user guides"
+      ],
+      "expected_body_lines": [
+        "- Implement per-channel lock state in player.py",
+        "- Suppress file program changes for locked channels",
+        "- Add Lock checkbox column to ChannelsDialog",
+        "- Update user guides (EN/ES) with new lock control docs",
+        "- Add tests for lock behavior and UI wiring",
+        "- Update Roadmap.md to mark patch lock item complete",
+        "- Validation: compileall OK, 128 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "9. Channels View: GM Names",
+      "expected_subject": "feat(ui): use GM names for channel program selector",
+      "generated_subject": "feat(ui): improve channel patch selector",
+      "subject_match": false,
+      "subject_similarity": 0.7032967032967034,
+      "expected_body_count": 7,
+      "generated_body_count": 7,
+      "body_count_match": true,
+      "expected_body_first": "- Replace numeric spinbox with QComboBox showing GM instrument names",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Use GM instrument names for channel program selection",
+        "- Validation: compileall OK, 128 tests pass",
+        "- Improve channel patch selector",
+        "- Replace raw numeric program spinbox",
+        "- Add small general midi name table",
+        "- Update .. .. verification"
+      ],
+      "expected_body_lines": [
+        "- Replace numeric spinbox with QComboBox showing GM instrument names",
+        "- Add internal GM name table and gm_program_label() helper",
+        "- Maintain 0-127 program value mapping underneath UI labels",
+        "- Update tests to verify combo box behavior and display text",
+        "- Update user guides (EN/ES) to reflect new selector UI",
+        "- Update Roadmap.md to mark GM name selector complete",
+        "- Validation: compileall OK, 128 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "10. Lyrics Window (Initial)",
+      "expected_subject": "feat(ui): add Lyrics window with text type filtering",
+      "generated_subject": "feat(ui): move first real lyrics",
+      "subject_match": false,
+      "subject_similarity": 0.38095238095238093,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add View > Lyrics action and non-modal LyricsDialog",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add Lyrics window with text-event filtering",
+        "- Validation: compileall OK, 131 tests pass",
+        "- Move first real lyrics",
+        "- Add view > lyrics",
+        "- Supports filtering",
+        "- Update user guides"
+      ],
+      "expected_body_lines": [
+        "- Add View > Lyrics action and non-modal LyricsDialog",
+        "- Display MIDI/KAR text events with filter for type (Lyrics, Text, etc.)",
+        "- Expose text_events() in sequence.py for UI queries",
+        "- Update user guides (EN/ES) to document the new Lyrics window",
+        "- Add tests for dialog lifecycle, event listing, and filtering",
+        "- Update Roadmap.md to mark initial lyrics view items complete",
+        "- Validation: compileall OK, 131 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "11. Lyrics Window: Track Filtering",
+      "expected_subject": "feat(ui): add track filtering to Lyrics window",
+      "generated_subject": "feat(ui): add lyrics view",
+      "subject_match": false,
+      "subject_similarity": 0.647887323943662,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Preserve source track info in TextEvent via drumstick_py/file.py",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add Lyrics window with text-event filtering",
+        "- Add track-aware filtering for lyrics events",
+        "- Validation: compileall OK, 134 tests pass",
+        "- Add lyrics view",
+        "- Remembers source track",
+        "- Update user guides"
+      ],
+      "expected_body_lines": [
+        "- Preserve source track info in TextEvent via drumstick_py/file.py",
+        "- Add Track filter with auto-selection of most text-heavy track",
+        "- Prefix lines with track number in All tracks view for clarity",
+        "- Update user guides (EN/ES) with new filtering documentation",
+        "- Add tests for track metadata, selection, and filtering logic",
+        "- Update Roadmap.md to mark track filtering items complete",
+        "- Validation: compileall OK, 134 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "12. Lyrics Window: Copy & Font",
+      "expected_subject": "feat(ui): add Copy and Font controls to Lyrics window",
+      "generated_subject": "feat(ui): add tests",
+      "subject_match": false,
+      "subject_similarity": 0.5,
+      "expected_body_count": 6,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add Copy button to export filtered text to clipboard",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 136 tests pass",
+        "- Gave lyrics",
+        "- Has copy",
+        "- Puts text",
+        "- Add tests",
+        "- Update .. verification"
+      ],
+      "expected_body_lines": [
+        "- Add Copy button to export filtered text to clipboard",
+        "- Add Font button for real-time lyrics pane styling",
+        "- Update user guides (EN/ES) with new control documentation",
+        "- Add tests for clipboard content and font dialog behavior",
+        "- Update Roadmap.md to mark copy/font items complete",
+        "- Validation: compileall OK, 136 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "13. About Dialog Enhancement",
+      "expected_subject": "docs(app): enhance About dialog with credits and tech",
+      "generated_subject": "feat(app): ’ ve",
+      "subject_match": false,
+      "subject_similarity": 0.2647058823529412,
+      "expected_body_count": 6,
+      "generated_body_count": 4,
+      "body_count_match": false,
+      "expected_body_first": "- Add C++ and Python/PyQt6 port credits with clickable mailto links",
+      "generated_body_first": "- Validation: compileall OK, 136 tests pass",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Validation: compileall OK, 136 tests pass",
+        "- ’ ve",
+        "- Help >",
+        "- Update help"
+      ],
+      "expected_body_lines": [
+        "- Add C++ and Python/PyQt6 port credits with clickable mailto links",
+        "- Hide emails via hover text while keeping names visible",
+        "- Include GPL notice and 'Technologies used' section",
+        "- Update user guides (EN/ES) to reflect new About content",
+        "- Add tests for credit presence, links, and technology list",
+        "- Validation: compileall OK, 136 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "14. Lyrics Window: Save & Encoding",
+      "expected_subject": "feat(ui): add encoding selector and save to Lyrics window",
+      "generated_subject": "docs(ui): update lyrics",
+      "subject_match": false,
+      "subject_similarity": 0.375,
+      "expected_body_count": 7,
+      "generated_body_count": 7,
+      "body_count_match": true,
+      "expected_body_first": "- Add Encoding dropdown (UTF-8, Latin-1, CP1252) for text display",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add encoding selector and save support for exported lyrics",
+        "- Validation: compileall OK, 138 tests pass",
+        "- Update lyrics",
+        "- Saving current filtered lyrics text .. honoring",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Add Encoding dropdown (UTF-8, Latin-1, CP1252) for text display",
+        "- Implement Save button to export filtered text with selected encoding",
+        "- Emit textSaved signal for status bar confirmation feedback",
+        "- Update user guides (EN/ES) with new export documentation",
+        "- Add tests for saving, encoding handling, and UI feedback",
+        "- Update Roadmap.md to mark lyrics export item complete",
+        "- Validation: compileall OK, 138 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "15. Lyrics Window: Fullscreen",
+      "expected_subject": "feat(ui): add fullscreen mode to Lyrics window",
+      "generated_subject": "feat(ui): add coverage",
+      "subject_match": false,
+      "subject_similarity": 0.5294117647058824,
+      "expected_body_count": 6,
+      "generated_body_count": 7,
+      "body_count_match": false,
+      "expected_body_first": "- Add Fullscreen/Window toggle button with dynamic label",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add fullscreen mode for the dialog",
+        "- Validation: compileall OK, 140 tests pass",
+        "- Finished tidy lyrics window slice",
+        "- Has fullscreen",
+        "- Add coverage"
+      ],
+      "expected_body_lines": [
+        "- Add Fullscreen/Window toggle button with dynamic label",
+        "- Support Esc key to exit fullscreen cleanly",
+        "- Update user guides (EN/ES) with new fullscreen documentation",
+        "- Add tests for toggle behavior and Esc exit path",
+        "- Update Roadmap.md to mark fullscreen item complete",
+        "- Validation: compileall OK, 140 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "16. Lyrics Window: Print",
+      "expected_subject": "feat(ui): add print support to Lyrics window",
+      "generated_subject": "feat(ui): move lyrics window",
+      "subject_match": false,
+      "subject_similarity": 0.6666666666666666,
+      "expected_body_count": 6,
+      "generated_body_count": 7,
+      "body_count_match": false,
+      "expected_body_first": "- Add Print button using Qt standard print dialog for filtered text",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add Print support for filtered lyrics text",
+        "- Validation: compileall OK, 142 tests pass",
+        "- Move lyrics window",
+        "- Add print button",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Add Print button using Qt standard print dialog for filtered text",
+        "- Emit textPrinted signal for status bar confirmation on success",
+        "- Update user guides (EN/ES) with new printing documentation",
+        "- Add tests for accepted/cancelled print flows and feedback",
+        "- Update Roadmap.md to mark print lyrics item complete",
+        "- Validation: compileall OK, 142 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "17. Lyrics Window: Auto-Detection Encoding",
+      "expected_subject": "feat(app): add auto-detection and override for lyrics encoding",
+      "generated_subject": "feat(ui): add coverage",
+      "subject_match": false,
+      "subject_similarity": 0.42857142857142855,
+      "expected_body_count": 8,
+      "generated_body_count": 8,
+      "body_count_match": true,
+      "expected_body_first": "- Store raw bytes in TextEvent; decode via shared helper on demand",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add Lyrics window with text-event filtering",
+        "- Add encoding selector and save support for exported lyrics",
+        "- Validation: compileall OK, 145 tests pass",
+        "- Keep raw bytes",
+        "- Encoding selector",
+        "- Add coverage"
+      ],
+      "expected_body_lines": [
+        "- Store raw bytes in TextEvent; decode via shared helper on demand",
+        "- Implement auto-detection: UTF-8 -> CP1252 heuristic -> Latin-1 fallback",
+        "- Add Auto option to Encoding selector in LyricsDialog",
+        "- Update save logic: Auto writes UTF-8, others use selected encoding",
+        "- Add tests for detection, manual override, and save behavior",
+        "- Update user guides (EN/ES) with new encoding documentation",
+        "- Update Roadmap.md to mark encoding detection item complete",
+        "- Validation: compileall OK, 145 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "18. Lyrics Window: Highlighting",
+      "expected_subject": "feat(ui): add live lyric highlighting during playback",
+      "generated_subject": "feat(ui): add next lyrics milestone",
+      "subject_match": false,
+      "subject_similarity": 0.5909090909090909,
+      "expected_body_count": 6,
+      "generated_body_count": 7,
+      "body_count_match": false,
+      "expected_body_first": "- Sync LyricsDialog with playback tick for real-time updates",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 146 tests pass",
+        "- Add next lyrics milestone",
+        "- Keeps current playback tick",
+        "- Add timed lyrics fixture",
+        "- Update user"
+      ],
+      "expected_body_lines": [
+        "- Sync LyricsDialog with playback tick for real-time updates",
+        "- Render HTML with distinct styles for past, current, and future lines",
+        "- Add timed-lyrics fixture and tests for state transitions",
+        "- Update user guides (EN/ES) with new highlighting documentation",
+        "- Update Roadmap.md to mark lyric highlighting item complete",
+        "- Validation: compileall OK, 146 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "19. Roadmap & GUI Reference Process",
+      "expected_subject": "docs(roadmap): integrate GUI reference check process",
+      "generated_subject": "docs(app): update new roadmap gui/ material",
+      "subject_match": false,
+      "subject_similarity": 0.37894736842105264,
+      "expected_body_count": 6,
+      "generated_body_count": 3,
+      "body_count_match": false,
+      "expected_body_first": "- Add Roadmap-GUI/dmidiplayer-GUI.md to primary reading list",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add roadmap gui/dmidiplayer gui.md",
+        "- Update round"
+      ],
+      "expected_body_lines": [
+        "- Add Roadmap-GUI/dmidiplayer-GUI.md to primary reading list",
+        "- Create GUI Reference Check section with visual comparison checklist",
+        "- Link key reference screenshots (Playlist, Lyrics, Channels, Piano)",
+        "- Require visual verification before marking windows complete",
+        "- Update roadmap date to 2026-05-07",
+        "- No code changes; documentation and process update only"
+      ]
+    },
+    {
+      "title": "20. Lyric Track Priority Fix & Pianola Rules",
+      "expected_subject": "fix(app): prioritize lyric tracks in Lyrics window",
+      "generated_subject": "docs(ui): update user guides",
+      "subject_match": false,
+      "subject_similarity": 0.3333333333333333,
+      "expected_body_count": 6,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Prefer track with lyric meta events (0x05) over generic text",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add Lyrics window with text-event filtering",
+        "- Validation: compileall OK, 147 tests pass",
+        "- Prefers track",
+        "- Falls track",
+        "- Add regression test",
+        "- Update user guides"
+      ],
+      "expected_body_lines": [
+        "- Prefer track with lyric meta events (0x05) over generic text",
+        "- Fallback to most text-heavy track if no dedicated lyrics exist",
+        "- Add regression test to lock in correct track selection logic",
+        "- Update Roadmap.md with explicit visibility rules for all views",
+        "- Update user guides (EN/ES) to clarify lyrics track priority",
+        "- Validation: compileall OK, 147 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "21. Pianola Tab Architecture Definition",
+      "expected_subject": "docs(roadmap): define tab architecture for Pianola view",
+      "generated_subject": "feat(ui): add tab rule",
+      "subject_match": false,
+      "subject_similarity": 0.36363636363636365,
+      "expected_body_count": 5,
+      "generated_body_count": 2,
+      "body_count_match": false,
+      "expected_body_first": "- Specify default first tab and max 8 tracks per tab rule",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add tab rule"
+      ],
+      "expected_body_lines": [
+        "- Specify default first tab and max 8 tracks per tab rule",
+        "- Define overflow logic: tracks 9-16 to tab 2, 17+ to tab 3",
+        "- Require clickable tabs for easy navigation of instruments",
+        "- Establish build contract before implementing Pianola window",
+        "- No code changes; documentation and architectural planning only"
+      ]
+    },
+    {
+      "title": "23. Piano Player Window (Initial)",
+      "expected_subject": "feat(ui): add Piano Player window with tabbed tracks",
+      "generated_subject": "feat(ui): add first real piano player window slice",
+      "subject_match": false,
+      "subject_similarity": 0.6470588235294118,
+      "expected_body_count": 9,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add View > Piano Player action and PianolaDialog class",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 151 tests pass",
+        "- Add first real piano player window slice",
+        "- Add midi tracks",
+        "- Add new",
+        "- Tracks contain midi",
+        "- Doc user"
+      ],
+      "expected_body_lines": [
+        "- Add View > Piano Player action and PianolaDialog class",
+        "- Implement midi_tracks() in sequence.py to filter active tracks",
+        "- Split tracks into tabs of 8 (1-8, 9-16, 17+) per roadmap rules",
+        "- Display per-track rows with labels and live PianoKeyboard widgets",
+        "- Route playback note updates to relevant track keyboards",
+        "- Clear state on stop/seek/load transitions for consistency",
+        "- Update user guides (EN/ES) and Roadmap.md with new view docs",
+        "- Add tests for action, track filtering, tab splitting, and activity",
+        "- Validation: compileall OK, 151 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "24. Piano Player: Richer Track Info",
+      "expected_subject": "feat(ui): enrich Pianola rows with track info",
+      "generated_subject": "feat(ui): add midi track infos",
+      "subject_match": false,
+      "subject_similarity": 0.64,
+      "expected_body_count": 6,
+      "generated_body_count": 6,
+      "body_count_match": true,
+      "expected_body_first": "- Add midi_track_infos() to expose labels and channel data",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 151 tests pass",
+        "- Refined first",
+        "- Add midi track infos",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Add midi_track_infos() to expose labels and channel data",
+        "- Display rich headings (e.g., 'Track 2 - Part 2') per row",
+        "- Show channel summary (e.g., 'Channels: 2') above keyboards",
+        "- Update user guides (EN/ES) and Roadmap.md with new details",
+        "- Add tests for label rendering and channel summary accuracy",
+        "- Validation: compileall OK, 151 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "25. Piano Player: Auto-Range Keyboards",
+      "expected_subject": "feat(ui): auto-range Pianola keyboards to used notes",
+      "generated_subject": "feat(ui): add pianola window",
+      "subject_match": false,
+      "subject_similarity": 0.525,
+      "expected_body_count": 6,
+      "generated_body_count": 7,
+      "body_count_match": false,
+      "expected_body_first": "- Add configurable note range support to PianoKeyboard widget",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Validation: compileall OK, 152 tests pass",
+        "- Add pianola window",
+        "- Supports configurable note range",
+        "- Includes track",
+        "- Pick range",
+        "- Update .. .. .. tests"
+      ],
+      "expected_body_lines": [
+        "- Add configurable note range support to PianoKeyboard widget",
+        "- Expose min/max note per track via midi_track_infos() in sequence.py",
+        "- Initialize each Pianola row keyboard with its specific note range",
+        "- Update user guides (EN/ES) and Roadmap.md with new behavior docs",
+        "- Add tests for per-track note range calculation and application",
+        "- Validation: compileall OK, 152 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "26. PianoKeyboard: Black Keys",
+      "expected_subject": "feat(ui): add black keys and range support to PianoKeyboard",
+      "generated_subject": "feat(app): add visible white notes",
+      "subject_match": false,
+      "subject_similarity": 0.43010752688172044,
+      "expected_body_count": 6,
+      "generated_body_count": 5,
+      "body_count_match": false,
+      "expected_body_first": "- Implement visible_white_notes() and visible_black_notes() helpers",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Validation: compileall OK, 154 tests pass",
+        "- Improve keyboard layer",
+        "- Add visible white notes",
+        "- Add dedicated widget test file"
+      ],
+      "expected_body_lines": [
+        "- Implement visible_white_notes() and visible_black_notes() helpers",
+        "- Render black keys on top of white-key base for realistic look",
+        "- Support range-aware rendering via existing set_note_range()",
+        "- Add test_widgets.py for note lists and MIDI-range clamping",
+        "- Update user guides (EN/ES) and Roadmap.md with new widget docs",
+        "- Validation: compileall OK, 154 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "27. Piano Player: Visibility Controls",
+      "expected_subject": "feat(ui): add per-track visibility controls to Pianola",
+      "generated_subject": "feat(ui): move pianola window",
+      "subject_match": false,
+      "subject_similarity": 0.43373493975903615,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add Show checkbox per track row with keyboard area collapsing",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 157 tests pass",
+        "- Move pianola window",
+        "- Has real",
+        "- Refactor duplicate pianola clear",
+        "- Add coverage",
+        "- Guides .. verification"
+      ],
+      "expected_body_lines": [
+        "- Add Show checkbox per track row with keyboard area collapsing",
+        "- Implement Show All / Hide All buttons for bulk visibility toggling",
+        "- Report visibility changes in main window status bar",
+        "- Fix duplicate Pianola clear on seek and ensure stop/pause cleanup",
+        "- Update user guides (EN/ES) and Roadmap.md with new control docs",
+        "- Add tests for individual/bulk toggling and activity clearing",
+        "- Validation: compileall OK, 157 tests pass"
+      ]
+    },
+    {
+      "title": "28. Piano Player: Fullscreen",
+      "expected_subject": "feat(ui): add fullscreen mode to Piano Player window",
+      "generated_subject": "feat(ui): add pianola window",
+      "subject_match": false,
+      "subject_similarity": 0.675,
+      "expected_body_count": 5,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add Fullscreen toggle button with Esc key exit support",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add fullscreen mode for the dialog",
+        "- Validation: compileall OK, 159 tests pass",
+        "- Add pianola window",
+        "- Has fullscreen",
+        "- Used same behavior pattern",
+        "- Add coverage"
+      ],
+      "expected_body_lines": [
+        "- Add Fullscreen toggle button with Esc key exit support",
+        "- Reuse Lyrics window pattern for consistent app-wide behavior",
+        "- Update user guides (EN/ES) and Roadmap.md with new docs",
+        "- Add tests for fullscreen toggle and Esc exit path",
+        "- Validation: compileall OK, 159 tests pass"
+      ]
+    },
+    {
+      "title": "29. Piano Player: Range Modes",
+      "expected_subject": "feat(ui): add range modes to Piano Player window",
+      "generated_subject": "feat(ui): add pianola window",
+      "subject_match": false,
+      "subject_similarity": 0.7105263157894737,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add Range selector with Exact and Used octaves options",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 160 tests pass",
+        "- Add pianola window",
+        "- Has range",
+        "- Used octaves",
+        "- Add coverage",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Add Range selector with Exact and Used octaves options",
+        "- Expand keyboards to full octave boundaries in Used octaves mode",
+        "- Keep Exact mode as default for tight per-track note spans",
+        "- Show status bar confirmation when range mode changes",
+        "- Update user guides (EN/ES) and Roadmap.md with new docs",
+        "- Add tests for range expansion logic and UI feedback",
+        "- Validation: compileall OK, 160 tests pass"
+      ]
+    },
+    {
+      "title": "30. Piano Player: Velocity Tinting",
+      "expected_subject": "feat(ui): add velocity tinting to Piano keyboards",
+      "generated_subject": "feat(ui): add pianola work",
+      "subject_match": false,
+      "subject_similarity": 0.5333333333333333,
+      "expected_body_count": 6,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Track per-note velocity in PianoKeyboard for active notes",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 162 tests pass",
+        "- Add pianola work",
+        "- Tracks note velocity",
+        "- Pass velocity",
+        "- Add coverage",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Track per-note velocity in PianoKeyboard for active notes",
+        "- Tint active keys based on intensity instead of uniform color",
+        "- Pass velocity from playback events to main and Pianola keyboards",
+        "- Update user guides (EN/ES) and Roadmap.md with new visual docs",
+        "- Add tests for velocity storage, clearing, and color variation",
+        "- Validation: compileall OK, 162 tests pass"
+      ]
+    },
+    {
+      "title": "31. Piano Player: Note Labels",
+      "expected_subject": "feat(ui): add configurable note labels to Piano keyboards",
+      "generated_subject": "feat(ui): add pianola work",
+      "subject_match": false,
+      "subject_similarity": 0.4819277108433735,
+      "expected_body_count": 6,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Support never/minimal/active/always display modes in PianoKeyboard",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 164 tests pass",
+        "- Add pianola work",
+        "- Supports note name display modes",
+        "- Has labels",
+        "- Add coverage",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Support never/minimal/active/always display modes in PianoKeyboard",
+        "- Implement note-name generation (e.g., C4, A#3) for all keys",
+        "- Add Labels selector to PianolaDialog with status bar feedback",
+        "- Update user guides (EN/ES) and Roadmap.md with new label docs",
+        "- Add tests for label sets, formatting, and UI wiring",
+        "- Validation: compileall OK, 164 tests pass"
+      ]
+    },
+    {
+      "title": "32. Piano Player: Color Modes",
+      "expected_subject": "feat(ui): add per-channel color modes to Piano Player",
+      "generated_subject": "feat(ui): add pianola window",
+      "subject_match": false,
+      "subject_similarity": 0.5185185185185185,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Support configurable active-color palettes in PianoKeyboard widget",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 166 tests pass",
+        "- Add pianola window",
+        "- Supports configurable active color palettes",
+        "- Has colors",
+        "- Add coverage",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Support configurable active-color palettes in PianoKeyboard widget",
+        "- Add Colors selector with Blue and By channel options",
+        "- Assign color families based on primary MIDI channel for distinction",
+        "- Maintain velocity tinting compatibility with new palettes",
+        "- Update user guides (EN/ES) and Roadmap.md with new color docs",
+        "- Add tests for palette overrides and channel-based coloring",
+        "- Validation: compileall OK, 166 tests pass"
+      ]
+    },
+    {
+      "title": "33. Piano Player: Octave Designation",
+      "expected_subject": "feat(ui): add configurable octave designation to Pianola",
+      "generated_subject": "feat(ui): add pianola work",
+      "subject_match": false,
+      "subject_similarity": 0.4878048780487805,
+      "expected_body_count": 6,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Support octave offset in PianoKeyboard for Scientific/Yamaha modes",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 168 tests pass",
+        "- Add pianola work",
+        "- Supports octave offset",
+        "- Has octaves",
+        "- Add coverage",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Support octave offset in PianoKeyboard for Scientific/Yamaha modes",
+        "- Add Octaves selector to PianolaDialog with live label updates",
+        "- Report octave mode changes in main window status bar",
+        "- Update user guides (EN/ES) and Roadmap.md with new notation docs",
+        "- Add tests for label shifting and UI wiring behavior",
+        "- Validation: compileall OK, 168 tests pass"
+      ]
+    },
+    {
+      "title": "34. Piano Player: Manual Input",
+      "expected_subject": "feat(ui): enable manual note playing on Pianola keyboards",
+      "generated_subject": "feat(ui): add coverage",
+      "subject_match": false,
+      "subject_similarity": 0.3037974683544304,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Add mouse and QWERTY keyboard input support to PianoKeyboard widget",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Validation: compileall OK, 172 tests pass",
+        "- Update pianola work",
+        "- Supports mouse note playing",
+        "- Wired signals",
+        "- Add coverage",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Add mouse and QWERTY keyboard input support to PianoKeyboard widget",
+        "- Implement notePressed/noteReleased signals with hit-testing",
+        "- Wire main keyboard to channel 1 and track keyboards to their channels",
+        "- Update level meters and event labels for manual note activity",
+        "- Update user guides (EN/ES) and Roadmap.md with new interaction docs",
+        "- Add tests for key mapping, signal emission, and MIDI routing",
+        "- Validation: compileall OK, 172 tests pass"
+      ]
+    },
+    {
+      "title": "35. Preferences: Player Piano Tab",
+      "expected_subject": "feat(app): add Player Piano preferences tab",
+      "generated_subject": "feat(ui): add pianola preferences",
+      "subject_match": false,
+      "subject_similarity": 0.7368421052631579,
+      "expected_body_count": 6,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Persist color mode, note labels, and octave designation settings",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add General preferences and playback behavior settings",
+        "- Validation: compileall OK, 174 tests pass",
+        "- Move solid preferences slice",
+        "- Add pianola preferences",
+        "- Has player piano",
+        "- Update fake settings"
+      ],
+      "expected_body_lines": [
+        "- Persist color mode, note labels, and octave designation settings",
+        "- Add Player Piano tab to PreferencesDialog with Restore Defaults",
+        "- Apply settings live to open Pianola windows and new instances",
+        "- Update user guides (EN/ES) and Roadmap.md with new preference docs",
+        "- Add tests for persistence, validation, and live application",
+        "- Validation: compileall OK, 174 tests pass"
+      ]
+    },
+    {
+      "title": "36. Preferences: Lyrics Tab",
+      "expected_subject": "feat(app): add Lyrics preferences tab",
+      "generated_subject": "feat(ui): add lyrics preferences",
+      "subject_match": false,
+      "subject_similarity": 0.8405797101449275,
+      "expected_body_count": 7,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Persist font family, size, and past/future text colors",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add General preferences and playback behavior settings",
+        "- Validation: compileall OK, 176 tests pass",
+        "- Update preferences",
+        "- Add lyrics preferences",
+        "- Has lyrics",
+        "- Update lyrics dialog"
+      ],
+      "expected_body_lines": [
+        "- Persist font family, size, and past/future text colors",
+        "- Add Lyrics tab to PreferencesDialog with Restore Defaults support",
+        "- Apply settings live to open Lyrics windows and new instances",
+        "- Update LyricsDialog HTML rendering to use configurable colors",
+        "- Update user guides (EN/ES) and Roadmap.md with new preference docs",
+        "- Add tests for persistence, clamping, and live application",
+        "- Validation: compileall OK, 176 tests pass"
+      ]
+    },
+    {
+      "title": "37. Preferences: Note-Name Font",
+      "expected_subject": "feat(app): add configurable note-name font to Pianola",
+      "generated_subject": "feat(ui): add preferences",
+      "subject_match": false,
+      "subject_similarity": 0.41025641025641024,
+      "expected_body_count": 6,
+      "generated_body_count": 8,
+      "body_count_match": false,
+      "expected_body_first": "- Support custom font family and size in PianoKeyboard widget",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.125,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add or update user guide and localized help content",
+        "- Add General preferences and playback behavior settings",
+        "- Validation: compileall OK, 176 tests pass",
+        "- Add preferences",
+        "- Has configurable note label font",
+        "- Add player piano font settings",
+        "- Refreshed user"
+      ],
+      "expected_body_lines": [
+        "- Support custom font family and size in PianoKeyboard widget",
+        "- Persist note-name font settings in Player Piano preferences tab",
+        "- Apply font changes live to open Pianola windows and new instances",
+        "- Update user guides (EN/ES) and Roadmap.md with new font docs",
+        "- Add tests for persistence, clamping, and live application",
+        "- Validation: compileall OK, 176 tests pass"
+      ]
+    },
+    {
+      "title": "38. Preferences: Single Highlight Color",
+      "expected_subject": "feat(app): add single highlight color to Pianola prefs",
+      "generated_subject": "feat(ui): add persisted pianola/single color se...",
+      "subject_match": false,
+      "subject_similarity": 0.5,
+      "expected_body_count": 6,
+      "generated_body_count": 6,
+      "body_count_match": true,
+      "expected_body_first": "- Persist pianola/single_color setting with default blue highlight",
+      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Update Roadmap.md to mark completed items",
+        "- Add General preferences and playback behavior settings",
+        "- Validation: compileall OK, 176 tests pass",
+        "- Add port",
+        "- Add persisted pianola/single color setting",
+        "- Update related docs"
+      ],
+      "expected_body_lines": [
+        "- Persist pianola/single_color setting with default blue highlight",
+        "- Add Single highlight color control to Preferences Player Piano tab",
+        "- Apply custom color live when Highlight colors is set to Single color",
+        "- Update user guides (EN/ES) and Roadmap.md with new color docs",
+        "- Add tests for persistence, defaults, and live application",
+        "- Validation: compileall OK, 176 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "39. Preferences: Velocity Tinting Toggle",
+      "expected_subject": "feat(app): add velocity tinting toggle to Pianola prefs",
+      "generated_subject": "feat(ui): add pianola/velocity tinting",
+      "subject_match": false,
+      "subject_similarity": 0.6021505376344086,
+      "expected_body_count": 7,
+      "generated_body_count": 5,
+      "body_count_match": false,
+      "expected_body_first": "- Implement set_velocity_tinting_enabled() in PianoKeyboard widget",
+      "generated_body_first": "- Add General preferences and playback behavior settings",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Add General preferences and playback behavior settings",
+        "- Validation: compileall OK, 178 tests pass",
+        "- Add port",
+        "- Has set velocity tinting",
+        "- Includes note velocity"
+      ],
+      "expected_body_lines": [
+        "- Implement set_velocity_tinting_enabled() in PianoKeyboard widget",
+        "- Persist pianola/velocity_tinting setting with default True",
+        "- Add checkbox to Preferences Player Piano tab for live control",
+        "- Apply preference immediately to open and new Pianola windows",
+        "- Update user guides (EN/ES) and Roadmap.md with new option docs",
+        "- Add tests for widget toggle, persistence, and live application",
+        "- Validation: compileall OK, 178 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "40. Per-Song Settings Implementation",
+      "expected_subject": "feat(app): implement per-song settings persistence",
+      "generated_subject": "feat(ui): add > song settings > load",
+      "subject_match": false,
+      "subject_similarity": 0.5348837209302325,
+      "expected_body_count": 7,
+      "generated_body_count": 7,
+      "body_count_match": true,
+      "expected_body_first": "- Add File > Song Settings Load/Save actions and auto-load pref",
+      "generated_body_first": "- Add per-channel Mute/Solo controls to the Channels view",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Add per-channel Mute/Solo controls to the Channels view",
+        "- Add per-channel volume sliders and real-time CC7 updates",
+        "- Add encoding selector and save support for exported lyrics",
+        "- Validation: compileall OK, 180 tests pass",
+        "- Update bigger piece",
+        "- Add > song settings > load",
+        "- Expanded .. verification"
+      ],
+      "expected_body_lines": [
+        "- Add File > Song Settings Load/Save actions and auto-load pref",
+        "- Persist channel state (vol, label, program, mute/solo/lock) per song",
+        "- Save lyrics encoding, transpose, tempo, and volume in .cfg files",
+        "- Unify channel label state across Channels window instances",
+        "- Update user guides (EN/ES) and Roadmap.md with new feature docs",
+        "- Add tests for cfg I/O, auto-loading, and preference persistence",
+        "- Validation: compileall OK, 180 tests pass, offscreen verified"
+      ]
+    },
+    {
+      "title": "42. WPS Dicts: Regional Variants",
+      "expected_subject": "feat(dict): expand WPS dictionaries with LibreOffice variants",
+      "generated_subject": "feat(dict): variantes agregadas",
+      "subject_match": false,
+      "subject_similarity": 0.43478260869565216,
+      "expected_body_count": 6,
+      "generated_body_count": 1,
+      "body_count_match": false,
+      "expected_body_first": "- Generate 71 language folders with dict.conf, main.aff, and main.dic",
+      "generated_body_first": "- Variantes agregadas",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Variantes agregadas"
+      ],
+      "expected_body_lines": [
+        "- Generate 71 language folders with dict.conf, main.aff, and main.dic",
+        "- Add 20 new regional variants (de_AT, en_CA, es_*, etc.)",
+        "- Fallback to legacy WPS dicts for km_KH, ms_MY, qu_EC, sw_TZ",
+        "- Exclude generic 'es' due to missing base orthographic files",
+        "- Update BUILD_SOURCE_MAP.txt with exact origin for each language",
+        "- Verify integrity: 71 folders x 3 files = 213 files present"
+      ]
+    },
+    {
+      "title": "43. WPS Dicts: Converter Tool",
+      "expected_subject": "feat(tools): add PyQt6 dictionary converter GUI",
+      "generated_subject": "feat(dict): fuente libre office",
+      "subject_match": false,
+      "subject_similarity": 0.358974358974359,
+      "expected_body_count": 6,
+      "generated_body_count": 3,
+      "body_count_match": false,
+      "expected_body_first": "- Implement side-by-side view for LibreOffice sources and WPS targets",
+      "generated_body_first": "- Fuente libre office",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Fuente libre office",
+        "- Antes .. sólo",
+        "- Dos cosas"
+      ],
+      "expected_body_lines": [
+        "- Implement side-by-side view for LibreOffice sources and WPS targets",
+        "- Validate .aff/.dic pairs, dict.conf, and special case mappings",
+        "- Handle legacy fallbacks for km_KH, ms_MY, qu_EC, sw_TZ",
+        "- Enable Convert only when no blocking errors are detected",
+        "- Auto-regenerate BUILD_SOURCE_MAP.txt upon successful conversion",
+        "- Verify compilation and internal logic (71 mappings, 0 errors)"
+      ]
+    },
+    {
+      "title": "44. WPS Dicts: Repo Setup & README",
+      "expected_subject": "docs(repo): add .gitignore and update README with install steps",
+      "generated_subject": "feat(dict): dos cambios",
+      "subject_match": false,
+      "subject_similarity": 0.20930232558139536,
+      "expected_body_count": 6,
+      "generated_body_count": 2,
+      "body_count_match": false,
+      "expected_body_first": "- Create .gitignore to exclude caches, venvs, and temp files",
+      "generated_body_first": "- Dos cambios",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Dos cambios",
+        "- Eliminé tutorial"
+      ],
+      "expected_body_lines": [
+        "- Create .gitignore to exclude caches, venvs, and temp files",
+        "- Explicitly keep build/wps-libreoffice-dicts versioned",
+        "- Remove 'under construction' notice from README.md",
+        "- Add sudo cp installation command for WPS spellcheck dicts",
+        "- Document PyQt6 converter tool usage and validation logic",
+        "- Clarify side-by-side comparison and error-blocking behavior"
+      ]
+    },
+    {
+      "title": "45. WPS Dicts: Enriched Configs (Batch 1)",
+      "expected_subject": "feat(dict): enrich dict.conf with localized display names",
+      "generated_subject": "feat(dict): los 20",
+      "subject_match": false,
+      "subject_similarity": 0.4266666666666667,
+      "expected_body_count": 4,
+      "generated_body_count": 1,
+      "body_count_match": false,
+      "expected_body_first": "- Add DisplayName entries for zh_CN, en_US, es_ES, and other locales",
+      "generated_body_first": "- Los 20",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Los 20"
+      ],
+      "expected_body_lines": [
+        "- Add DisplayName entries for zh_CN, en_US, es_ES, and other locales",
+        "- Update converter tool to auto-generate enriched configs",
+        "- Apply changes to 20 new regional variant folders",
+        "- Verify compilation and mapping integrity (71 mappings, 0 errors)"
+      ]
+    },
+    {
+      "title": "46. WPS Dicts: Enriched Configs (Batch 2)",
+      "expected_subject": "feat(dict): enrich hr_HR, km_KH, and qu_EC dict configs",
+      "generated_subject": "feat(dict): tres archivos",
+      "subject_match": false,
+      "subject_similarity": 0.45,
+      "expected_body_count": 3,
+      "generated_body_count": 1,
+      "body_count_match": false,
+      "expected_body_first": "- Add 8 localized DisplayName entries to match WPS standards",
+      "generated_body_first": "- Tres archivos",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Tres archivos"
+      ],
+      "expected_body_lines": [
+        "- Add 8 localized DisplayName entries to match WPS standards",
+        "- Include native Khmer script for km_KH display name",
+        "- Ensure consistency across all regional variant configurations"
+      ]
+    },
+    {
+      "title": "47. WPS Dicts: README Tables",
+      "expected_subject": "docs(readme): add available dictionaries tables",
+      "generated_subject": "feat(dict): disponibles * * con una tabla",
+      "subject_match": false,
+      "subject_similarity": 0.38636363636363635,
+      "expected_body_count": 4,
+      "generated_body_count": 1,
+      "body_count_match": false,
+      "expected_body_first": "- List all 71 dictionaries in build/wps-libreoffice-dicts",
+      "generated_body_first": "- Disponibles * * con una tabla",
+      "body_line_ratio": 0.0,
+      "generated_body_lines": [
+        "- Disponibles * * con una tabla"
+      ],
+      "expected_body_lines": [
+        "- List all 71 dictionaries in build/wps-libreoffice-dicts",
+        "- Highlight hr_HR, km_KH, and qu_EC as added from other sources",
+        "- Note localized dict.conf support for improved UI display",
+        "- Clarify consistent WPS format (conf/aff/dic) across all entries"
+      ]
+    }
+  ]
+}

@@ -48,36 +48,6 @@ Este roadmap documenta el desarrollo del generador de commits inteligente basado
 
 ## Mejoras Futuras Pendientes
 
-### [ ] Integración con Git
-- [ ] Análisis automático de `git diff` para extraer cambios relevantes.
-- [ ] Generación de commits basada en diffs en lugar de texto manual.
-- [ ] Validación de commits generados contra el estado del repo.
-
-### [ ] Mejora en Inteligencia Artificial
-- [ ] Uso de modelos de ML (e.g., BERT) para mejor comprensión semántica.
-- [ ] Entrenamiento con dataset más grande para predicción de tipos/scopes.
-- [ ] Detección de intenciones más precisa (e.g., refactor vs. feature).
-
-### [ ] Soporte Multilenguaje
-- [ ] Extensión a otros lenguajes de programación (JavaScript, Java, etc.).
-- [ ] Adaptación de heurísticas para diferentes convenciones de commits.
-- [ ] Internacionalización de mensajes (soporte para español, etc.).
-
-### [ ] Interfaz de Usuario Avanzada
-- [ ] Mejora de la GUI con PyQt6 para previsualización de commits.
-- [ ] Integración con editores (VS Code extension).
-- [ ] Modo batch para procesar múltiples cambios.
-
-### [ ] Validación y Testing
-- [ ] Suite de tests unitarios para funciones clave.
-- [ ] Validación automática de formato de conventional commits.
-- [ ] Benchmarking contra otros generadores de commits.
-
-### [ ] Características Avanzadas
-- [ ] Detección de breaking changes.
-- [ ] Sugerencias de co-autores basadas en cambios.
-- [ ] Integración con CI/CD para commits automáticos.
-- [ ] Modo interactivo para edición manual de commits generados.
 
 ### [ ] Documentación y Comunidad
 - [ ] Documentación completa en README.md con ejemplos.

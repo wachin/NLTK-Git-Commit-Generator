@@ -56,6 +56,22 @@ python3 -c "import nltk; nltk.download('punkt'); nltk.download('averaged_percept
 4. Review the generated command.
 5. Copy it to the clipboard and run it in your repository.
 
+## Testing and Evaluation
+
+Run the regression tests:
+
+```bash
+QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
+```
+
+Recalculate the example-dataset comparison report:
+
+```bash
+QT_QPA_PLATFORM=offscreen python3 commit_examples_data/compare_generator.py
+```
+
+The comparison report is written to `commit_examples_data/comparison_report.json`. The current heuristics intentionally cap generated bodies at five bullets, so body-count metrics are not expected to match older examples that contain longer commit bodies.
+
 ## Examples
 
 Spanish input about the bilingual NLP improvements can produce:
@@ -108,6 +124,7 @@ git commit -m "docs(repo): agrega roadmap con seguimiento de progreso" \
 ├── Roadmap.md                    # Current progress and planned improvements
 ├── COMMIT_GENERATION_EXAMPLES.md # Real-world examples and expected outputs
 ├── commit_examples_data/         # Parsed JSON/SQLite examples and comparison tools
+├── tests/                        # Regression tests for NLP heuristics
 └── README.md                     # Project documentation
 ```
 
@@ -129,4 +146,3 @@ Good contributions include:
 ## License
 
 This project is open-source and available under GPL 3.
-

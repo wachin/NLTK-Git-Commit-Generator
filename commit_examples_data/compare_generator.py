@@ -1,3 +1,4 @@
+import os
 import json
 import re
 import difflib
@@ -6,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent))
+os.environ.setdefault('QT_QPA_PLATFORM', 'offscreen')
 
 from PyQt6.QtWidgets import QApplication
 from smart_commit_nltk import NLPCommitGenerator
@@ -23,17 +25,14 @@ def format_diff(a: str, b: str) -> str:
 
 def compare_entry(entry, generator):
     orig = entry['original_text']
-    verb, obj = generator.analyze_with_nltk(orig)
+    verb, obj, language = generator.analyze_with_nltk(orig)
     scope = generator.detect_scope(orig)
-    commit_type = 'feat'
-    if verb == 'fix':
-        commit_type = 'fix'
-    elif verb in ['update', 'doc']:
-        commit_type = 'docs'
-    subject = f'{commit_type}({scope}): {verb} {obj}'
+    commit_type = generator.select_commit_type(orig, verb, obj)
+    subject_text = generator.format_subject(verb, obj, language)
+    subject = f'{commit_type}({scope}): {subject_text}'
     if len(subject) > 50:
         subject = subject[:47] + '...'
-    body_lines = generator.generate_body_lines(orig)
+    body_lines = generator.generate_body_lines(generator.clean_input(orig), language)
 
     expected_subject = entry['expected_subject']
     expected_body = entry['expected_body_lines']

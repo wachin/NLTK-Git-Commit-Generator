@@ -13,6 +13,8 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 ### [x] Interfaz de Escritorio
 - [x] Ventana principal en PyQt6 para pegar resúmenes de cambios.
 - [x] Botón para generar commits con NLTK.
+- [x] Botón para limpiar el texto de entrada del usuario.
+- [x] Indicador de idioma detectado: pendiente, Español o Inglés.
 - [x] Área de salida con comando `git commit` multilinea.
 - [x] Botón para copiar el comando al portapapeles.
 
@@ -35,6 +37,9 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Reporte JSON con métricas de similitud.
 - [x] Mejora inicial de similitud de 0.453 a 0.528.
 - [x] Aumento posterior de similitud del subject a 0.509.
+- [x] Actualización de `compare_generator.py` para la firma bilingüe actual.
+- [x] Recalculo de `comparison_report.json` tras las mejoras bilingües.
+- [x] Registro de línea base actual: 45 ejemplos, subject similarity 0.446, body ratio 0.000.
 
 ### [x] Filtrado de Ruido
 - [x] Eliminación de comandos de terminal y frases conversacionales irrelevantes.
@@ -73,23 +78,34 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] README actualizado con capacidades actuales.
 - [x] Ejemplos de salida en español e inglés.
 - [x] Roadmap actualizado con funcionalidades completadas y pendientes.
+- [x] README actualizado con comandos de testing y evaluación.
+
+### [x] Evaluación y Testing Inicial
+- [x] Creación de suite `unittest` para regresiones principales.
+- [x] Tests para `strip_markdown_noise()`.
+- [x] Tests para detección de idioma.
+- [x] Tests para generación bilingüe `feat(nlp)` en español e inglés.
+- [x] Test para roadmap en español como `docs(repo)`.
+- [x] Test para evitar falso positivo de `ci` dentro de palabras comunes.
+- [x] Test para priorizar summaries de testing/evaluación sobre términos bilingües.
+- [x] Test para limpiar entrada, salida y estado del botón copiar.
+- [x] Test para priorizar summaries del botón Limpiar entrada sobre menciones de tests/Roadmap.
+- [x] Test para mostrar y reiniciar el idioma detectado en la interfaz.
+- [x] Test para priorizar summaries de idioma detectado sobre menciones de Roadmap.
+- [x] Ejecución exitosa de 11 tests de regresión.
+
+### [x] Higiene de Artefactos Generados
+- [x] Creación de `.gitignore` para `__pycache__/` y archivos `*.py[cod]`.
 
 ## Mejoras Futuras Pendientes
 
 ### [ ] Evaluación y Testing
-- [ ] Añadir tests unitarios para `strip_markdown_noise()`.
-- [ ] Añadir tests unitarios para detección de idioma.
-- [ ] Añadir tests unitarios para extracción de acciones en español.
-- [ ] Añadir tests unitarios para `select_commit_type()` y `detect_scope()`.
-- [ ] Añadir casos de regresión para evitar que commits incrustados contaminen el resultado.
-- [ ] Recalcular métricas de similitud tras las mejoras bilingües.
-
-### [ ] Integración con Git
-- [ ] Leer `git diff --stat` para detectar archivos modificados.
-- [ ] Leer `git diff --name-status` para saber si un archivo fue creado, modificado o eliminado.
-- [ ] Usar archivos cambiados para mejorar scopes y body lines.
-- [ ] Detectar cambios en `README.md`, `Roadmap.md`, tests, código fuente y datos de ejemplos.
-- [ ] Ofrecer una opción para ejecutar el commit directamente después de revisar el comando.
+- [ ] Añadir más tests unitarios para extracción de acciones en español.
+- [ ] Añadir más tests unitarios para `select_commit_type()` y `detect_scope()`.
+- [ ] Añadir casos de regresión para textos mixtos español/inglés.
+- [ ] Añadir casos de regresión para resúmenes con varios archivos modificados.
+- [ ] Definir nuevas métricas que no penalicen el límite actual de 5 bullets.
+- [ ] Mejorar métricas del dataset histórico sin perder los casos bilingües recientes.
 
 ### [ ] Soporte Lingüístico
 - [ ] Ampliar verbos y patrones en español.
@@ -103,10 +119,9 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [ ] Crear una clase o módulo dedicado para limpieza de input.
 - [ ] Crear un módulo dedicado para type/scope detection.
 - [ ] Crear fixtures reutilizables con ejemplos reales.
-- [ ] Evitar versionar artefactos generados como `__pycache__`.
+- [ ] Sacar del índice de Git cualquier `__pycache__` ya trackeado.
 
 ### [ ] Interfaz de Usuario
-- [ ] Mostrar el idioma detectado antes de generar el commit final.
 - [ ] Permitir cambiar manualmente el idioma detectado.
 - [ ] Permitir editar type/scope desde la UI antes de copiar.
 - [ ] Mostrar advertencias cuando el input tenga mucho ruido o muchos bloques de código.
@@ -115,12 +130,11 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 ### [ ] Calidad del Commit
 - [ ] Mejorar ranking de bullets por importancia.
 - [ ] Detectar validaciones y pruebas aunque aparezcan en frases indirectas.
-- [ ] Detectar cambios de documentación, tests y código en un mismo resumen.
+- [ ] Detectar menciones de documentación, tests y código dentro del texto pegado.
 - [ ] Mejorar truncado de subject para que no corte palabras.
 - [ ] Generar alternativas cuando haya varias interpretaciones posibles.
 
 ---
 
 **Última actualización:** 11 de mayo de 2026  
-**Estado:** Funcional para uso básico e iteración diaria; en progreso hacia mayor precisión con tests, Git diff y más patrones bilingües.
-
+**Estado:** Funcional para uso básico e iteración diaria; ya cuenta con regresiones iniciales y evaluación del dataset. La prioridad siguiente es mejorar la calidad semántica desde el texto pegado, sin depender de integración con Git.

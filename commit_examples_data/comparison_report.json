@@ -1,26 +1,28 @@
 {
   "total_examples": 45,
   "exact_subject_matches": 0,
-  "exact_body_count_matches": 0,
-  "average_subject_similarity": 0.5087244980403032,
-  "average_body_line_ratio": 0.038835978835978835,
+  "exact_body_count_matches": 2,
+  "average_subject_similarity": 0.4459707645485809,
+  "average_body_line_ratio": 0.0,
   "entries": [
     {
       "title": "1. Rhythm View Implementation",
       "expected_subject": "feat(ui): add embedded Rhythm view with playback sync",
-      "generated_subject": "feat(ui): add embedded rhythmview panel",
+      "generated_subject": "docs(ui): add embedded rhythmview panel",
       "subject_match": false,
-      "subject_similarity": 0.782608695652174,
+      "subject_similarity": 0.6956521739130435,
       "expected_body_count": 7,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add RhythmView panel showing meter, bar, beat, BPM, and strip",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add Rhythm view panel with beat, bar, meter, and bpm display",
-        "- Validation: compileall OK, 106 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add RhythmView panel showing meter, bar, beat, BPM, and strip",
@@ -35,19 +37,21 @@
     {
       "title": "2. Preferences: Solo Reduction & GM Reset",
       "expected_subject": "feat(app): add solo reduction and GM reset prefs",
-      "generated_subject": "feat(ui): add general tab settings",
+      "generated_subject": "docs(ui): add general tab settings",
       "subject_match": false,
-      "subject_similarity": 0.4634146341463415,
+      "subject_similarity": 0.36585365853658536,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Persist solo_volume_reduction (default 50%) and midi_reset",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 110 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Persist solo_volume_reduction (default 50%) and midi_reset",
@@ -61,20 +65,21 @@
     {
       "title": "3. User Guide Implementation",
       "expected_subject": "docs(app): add localized PyQt6 user guide",
-      "generated_subject": "feat(ui): add help > user guide",
+      "generated_subject": "docs(repo): add help > user guide",
       "subject_match": false,
-      "subject_similarity": 0.5833333333333334,
+      "subject_similarity": 0.7027027027027027,
       "expected_body_count": 6,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Help > User Guide action with shared localized lookup",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 111 tests pass",
-        "- In [app.py]..., I added: a new `Help -> User Guide` action, shared localized document lookup for help files, a direct user-guide dialog"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Help > User Guide action with shared localized lookup",
@@ -88,19 +93,21 @@
     {
       "title": "4. Channels View (Initial)",
       "expected_subject": "feat(ui): add Channels view with live level meters",
-      "generated_subject": "feat(ui): add view > channels",
+      "generated_subject": "docs(ui): add view > channels",
       "subject_match": false,
-      "subject_similarity": 0.5316455696202531,
+      "subject_similarity": 0.43037974683544306,
       "expected_body_count": 8,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add View > Channels action and non-modal ChannelsDialog",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 114 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add View > Channels action and non-modal ChannelsDialog",
@@ -116,20 +123,21 @@
     {
       "title": "5. Channels View: Mute & Solo",
       "expected_subject": "feat(app): add interactive Mute/Solo to Channels view",
-      "generated_subject": "feat(ui): add channel playback controls",
+      "generated_subject": "docs(ui): add channel playback controls",
       "subject_match": false,
-      "subject_similarity": 0.43478260869565216,
+      "subject_similarity": 0.34782608695652173,
       "expected_body_count": 8,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Implement per-channel mute/solo tracking in player.py",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add per-channel Mute/Solo controls to the Channels view",
-        "- Validation: compileall OK, 119 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Implement per-channel mute/solo tracking in player.py",
@@ -145,20 +153,21 @@
     {
       "title": "6. Channels View: Volume Sliders",
       "expected_subject": "feat(app): add per-channel volume sliders",
-      "generated_subject": "feat(ui): add channel volume percentages",
+      "generated_subject": "docs(ui): add channel volume percentages",
       "subject_match": false,
-      "subject_similarity": 0.7407407407407407,
+      "subject_similarity": 0.6419753086419753,
       "expected_body_count": 8,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Implement per-channel volume scaling before global volume",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add per-channel volume sliders and real-time CC7 updates",
-        "- Validation: compileall OK, 122 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Implement per-channel volume scaling before global volume",
@@ -174,21 +183,21 @@
     {
       "title": "7. Channels View: Program Control",
       "expected_subject": "feat(app): add per-channel program control",
-      "generated_subject": "feat(ui): add channel program overrides",
+      "generated_subject": "docs(ui): add channel program overrides",
       "subject_match": false,
-      "subject_similarity": 0.7407407407407407,
+      "subject_similarity": 0.6419753086419753,
       "expected_body_count": 7,
       "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Program spinbox to ChannelsDialog with immediate CC send",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 125 tests pass",
-        "- It’s initialized from the first program-change event",
-        "- Those overrides now do two useful things: send an immediate `program_change`... replace later file-sent `program_change` events... To support sensible initial values, [sequence.py]... now exposes `initial_programs()`"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Program spinbox to ChannelsDialog with immediate CC send",
@@ -203,20 +212,21 @@
     {
       "title": "8. Channels View: Patch Lock",
       "expected_subject": "feat(app): add patch lock to Channels view",
-      "generated_subject": "feat(ui): add channel lock state",
+      "generated_subject": "docs(ui): add channel lock state",
       "subject_match": false,
-      "subject_similarity": 0.5675675675675675,
+      "subject_similarity": 0.4594594594594595,
       "expected_body_count": 7,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Implement per-channel lock state in player.py",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add per-channel patch lock to suppress file program changes",
-        "- Validation: compileall OK, 128 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Implement per-channel lock state in player.py",
@@ -231,19 +241,21 @@
     {
       "title": "9. Channels View: GM Names",
       "expected_subject": "feat(ui): use GM names for channel program selector",
-      "generated_subject": "feat(ui): add program spinbox",
+      "generated_subject": "docs(ui): add program spinbox",
       "subject_match": false,
-      "subject_similarity": 0.55,
+      "subject_similarity": 0.45,
       "expected_body_count": 7,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Replace numeric spinbox with QComboBox showing GM instrument names",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Use GM instrument names for channel program selection",
-        "- Validation: compileall OK, 128 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Replace numeric spinbox with QComboBox showing GM instrument names",
@@ -258,20 +270,21 @@
     {
       "title": "10. Lyrics Window (Initial)",
       "expected_subject": "feat(ui): add Lyrics window with text type filtering",
-      "generated_subject": "feat(ui): add view > lyrics",
+      "generated_subject": "docs(ui): add view > lyrics",
       "subject_match": false,
-      "subject_similarity": 0.4810126582278481,
+      "subject_similarity": 0.379746835443038,
       "expected_body_count": 7,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add View > Lyrics action and non-modal LyricsDialog",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add Lyrics window with text-event filtering",
-        "- Validation: compileall OK, 131 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add View > Lyrics action and non-modal LyricsDialog",
@@ -286,21 +299,21 @@
     {
       "title": "11. Lyrics Window: Track Filtering",
       "expected_subject": "feat(ui): add track filtering to Lyrics window",
-      "generated_subject": "docs(ui): update user guides ",
+      "generated_subject": "docs(ui): update user guides",
       "subject_match": false,
-      "subject_similarity": 0.4,
+      "subject_similarity": 0.40540540540540543,
       "expected_body_count": 7,
       "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Preserve source track info in TextEvent via drumstick_py/file.py",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add Lyrics window with text-event filtering",
-        "- Add track-aware filtering for lyrics events",
-        "- Validation: compileall OK, 134 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Preserve source track info in TextEvent via drumstick_py/file.py",
@@ -315,19 +328,21 @@
     {
       "title": "12. Lyrics Window: Copy & Font",
       "expected_subject": "feat(ui): add Copy and Font controls to Lyrics window",
-      "generated_subject": "feat(ui): add tests",
+      "generated_subject": "docs(ui): add tests",
       "subject_match": false,
-      "subject_similarity": 0.5,
+      "subject_similarity": 0.3888888888888889,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Copy button to export filtered text to clipboard",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 136 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Copy button to export filtered text to clipboard",
@@ -341,9 +356,9 @@
     {
       "title": "13. About Dialog Enhancement",
       "expected_subject": "docs(app): enhance About dialog with credits and tech",
-      "generated_subject": "feat(app): ’ ve",
+      "generated_subject": "docs(app): ’ ve",
       "subject_match": false,
-      "subject_similarity": 0.2647058823529412,
+      "subject_similarity": 0.38235294117647056,
       "expected_body_count": 6,
       "generated_body_count": 1,
       "body_count_match": false,
@@ -365,9 +380,9 @@
     {
       "title": "14. Lyrics Window: Save & Encoding",
       "expected_subject": "feat(ui): add encoding selector and save to Lyrics window",
-      "generated_subject": "feat(ui): add encoding selector",
+      "generated_subject": "docs(ui): refreshed user guide",
       "subject_match": false,
-      "subject_similarity": 0.7045454545454546,
+      "subject_similarity": 0.3218390804597701,
       "expected_body_count": 7,
       "generated_body_count": 4,
       "body_count_match": false,
@@ -393,20 +408,21 @@
     {
       "title": "15. Lyrics Window: Fullscreen",
       "expected_subject": "feat(ui): add fullscreen mode to Lyrics window",
-      "generated_subject": "feat(ui): add coverage",
+      "generated_subject": "docs(ui): add coverage",
       "subject_match": false,
-      "subject_similarity": 0.5294117647058824,
+      "subject_similarity": 0.4117647058823529,
       "expected_body_count": 6,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Fullscreen/Window toggle button with dynamic label",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add fullscreen mode for the dialog",
-        "- Validation: compileall OK, 140 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Fullscreen/Window toggle button with dynamic label",
@@ -420,20 +436,21 @@
     {
       "title": "16. Lyrics Window: Print",
       "expected_subject": "feat(ui): add print support to Lyrics window",
-      "generated_subject": "feat(ui): add print button",
+      "generated_subject": "docs(ui): add print button",
       "subject_match": false,
-      "subject_similarity": 0.7142857142857143,
+      "subject_similarity": 0.6,
       "expected_body_count": 6,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Print button using Qt standard print dialog for filtered text",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add Print support for filtered lyrics text",
-        "- Validation: compileall OK, 142 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Print button using Qt standard print dialog for filtered text",
@@ -447,21 +464,21 @@
     {
       "title": "17. Lyrics Window: Auto-Detection Encoding",
       "expected_subject": "feat(app): add auto-detection and override for lyrics encoding",
-      "generated_subject": "feat(ui): add coverage",
+      "generated_subject": "docs(ui): add coverage",
       "subject_match": false,
-      "subject_similarity": 0.42857142857142855,
+      "subject_similarity": 0.3333333333333333,
       "expected_body_count": 8,
       "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Store raw bytes in TextEvent; decode via shared helper on demand",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add Lyrics window with text-event filtering",
-        "- Add encoding selector and save support for exported lyrics",
-        "- Validation: compileall OK, 145 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Store raw bytes in TextEvent; decode via shared helper on demand",
@@ -477,19 +494,21 @@
     {
       "title": "18. Lyrics Window: Highlighting",
       "expected_subject": "feat(ui): add live lyric highlighting during playback",
-      "generated_subject": "feat(ui): add next lyrics milestone",
+      "generated_subject": "docs(ui): add next lyrics milestone",
       "subject_match": false,
-      "subject_similarity": 0.5909090909090909,
+      "subject_similarity": 0.5,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Sync LyricsDialog with playback tick for real-time updates",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 146 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Sync LyricsDialog with playback tick for real-time updates",
@@ -503,17 +522,21 @@
     {
       "title": "19. Roadmap & GUI Reference Process",
       "expected_subject": "docs(roadmap): integrate GUI reference check process",
-      "generated_subject": "feat(app): add roadmap gui/dmidiplayer gui.md",
+      "generated_subject": "docs(app): add project roadmap with progress tr...",
       "subject_match": false,
-      "subject_similarity": 0.28865979381443296,
+      "subject_similarity": 0.45098039215686275,
       "expected_body_count": 6,
-      "generated_body_count": 1,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Roadmap-GUI/dmidiplayer-GUI.md to primary reading list",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Roadmap-GUI/dmidiplayer-GUI.md to primary reading list",
@@ -527,20 +550,21 @@
     {
       "title": "20. Lyric Track Priority Fix & Pianola Rules",
       "expected_subject": "fix(app): prioritize lyric tracks in Lyrics window",
-      "generated_subject": "docs(ui): update user guides",
+      "generated_subject": "docs(ui): add regression test",
       "subject_match": false,
-      "subject_similarity": 0.3333333333333333,
+      "subject_similarity": 0.25316455696202533,
       "expected_body_count": 6,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Prefer track with lyric meta events (0x05) over generic text",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add Lyrics window with text-event filtering",
-        "- Validation: compileall OK, 147 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Prefer track with lyric meta events (0x05) over generic text",
@@ -554,17 +578,21 @@
     {
       "title": "21. Pianola Tab Architecture Definition",
       "expected_subject": "docs(roadmap): define tab architecture for Pianola view",
-      "generated_subject": "feat(ui): add tab rule",
+      "generated_subject": "docs(ui): add tab rule",
       "subject_match": false,
-      "subject_similarity": 0.36363636363636365,
+      "subject_similarity": 0.4675324675324675,
       "expected_body_count": 5,
-      "generated_body_count": 1,
-      "body_count_match": false,
+      "generated_body_count": 5,
+      "body_count_match": true,
       "expected_body_first": "- Specify default first tab and max 8 tracks per tab rule",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Specify default first tab and max 8 tracks per tab rule",
@@ -577,19 +605,21 @@
     {
       "title": "23. Piano Player Window (Initial)",
       "expected_subject": "feat(ui): add Piano Player window with tabbed tracks",
-      "generated_subject": "feat(ui): add view > piano player",
+      "generated_subject": "refactor(ui): add view > piano player action",
       "subject_match": false,
-      "subject_similarity": 0.5647058823529412,
+      "subject_similarity": 0.5416666666666666,
       "expected_body_count": 9,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add View > Piano Player action and PianolaDialog class",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 151 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add View > Piano Player action and PianolaDialog class",
@@ -606,19 +636,21 @@
     {
       "title": "24. Piano Player: Richer Track Info",
       "expected_subject": "feat(ui): enrich Pianola rows with track info",
-      "generated_subject": "feat(ui): add midi track infos",
+      "generated_subject": "style(ui): add midi track infos",
       "subject_match": false,
-      "subject_similarity": 0.64,
+      "subject_similarity": 0.5526315789473685,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add midi_track_infos() to expose labels and channel data",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 151 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add midi_track_infos() to expose labels and channel data",
@@ -632,9 +664,9 @@
     {
       "title": "25. Piano Player: Auto-Range Keyboards",
       "expected_subject": "feat(ui): auto-range Pianola keyboards to used notes",
-      "generated_subject": "feat(ui): add pianola window",
+      "generated_subject": "docs(ui): add pianola window",
       "subject_match": false,
-      "subject_similarity": 0.525,
+      "subject_similarity": 0.425,
       "expected_body_count": 6,
       "generated_body_count": 2,
       "body_count_match": false,
@@ -657,18 +689,21 @@
     {
       "title": "26. PianoKeyboard: Black Keys",
       "expected_subject": "feat(ui): add black keys and range support to PianoKeyboard",
-      "generated_subject": "feat(app): add visible white notes",
+      "generated_subject": "docs(app): add visible white notes",
       "subject_match": false,
-      "subject_similarity": 0.43010752688172044,
+      "subject_similarity": 0.34408602150537637,
       "expected_body_count": 6,
-      "generated_body_count": 2,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Implement visible_white_notes() and visible_black_notes() helpers",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Validation: compileall OK, 154 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Implement visible_white_notes() and visible_black_notes() helpers",
@@ -682,19 +717,21 @@
     {
       "title": "27. Piano Player: Visibility Controls",
       "expected_subject": "feat(ui): add per-track visibility controls to Pianola",
-      "generated_subject": "feat(ui): move pianola window",
+      "generated_subject": "refactor(ui): move pianola window",
       "subject_match": false,
-      "subject_similarity": 0.43373493975903615,
+      "subject_similarity": 0.39080459770114945,
       "expected_body_count": 7,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Show checkbox per track row with keyboard area collapsing",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.14285714285714285,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 157 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Show checkbox per track row with keyboard area collapsing",
@@ -709,20 +746,21 @@
     {
       "title": "28. Piano Player: Fullscreen",
       "expected_subject": "feat(ui): add fullscreen mode to Piano Player window",
-      "generated_subject": "feat(ui): add fullscreen",
+      "generated_subject": "docs(ui): add fullscreen",
       "subject_match": false,
-      "subject_similarity": 0.631578947368421,
+      "subject_similarity": 0.5263157894736842,
       "expected_body_count": 5,
-      "generated_body_count": 4,
-      "body_count_match": false,
+      "generated_body_count": 5,
+      "body_count_match": true,
       "expected_body_first": "- Add Fullscreen toggle button with Esc key exit support",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.2,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add fullscreen mode for the dialog",
-        "- Validation: compileall OK, 159 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Fullscreen toggle button with Esc key exit support",
@@ -735,19 +773,21 @@
     {
       "title": "29. Piano Player: Range Modes",
       "expected_subject": "feat(ui): add range modes to Piano Player window",
-      "generated_subject": "feat(ui): add pianola window",
+      "generated_subject": "docs(ui): add pianola window",
       "subject_match": false,
-      "subject_similarity": 0.7105263157894737,
+      "subject_similarity": 0.6052631578947368,
       "expected_body_count": 7,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add Range selector with Exact and Used octaves options",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.14285714285714285,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 160 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add Range selector with Exact and Used octaves options",
@@ -762,19 +802,21 @@
     {
       "title": "30. Piano Player: Velocity Tinting",
       "expected_subject": "feat(ui): add velocity tinting to Piano keyboards",
-      "generated_subject": "feat(ui): add pianola work",
+      "generated_subject": "docs(ui): add pianola work",
       "subject_match": false,
-      "subject_similarity": 0.5333333333333333,
+      "subject_similarity": 0.4266666666666667,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Track per-note velocity in PianoKeyboard for active notes",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.16666666666666666,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 162 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Track per-note velocity in PianoKeyboard for active notes",
@@ -788,19 +830,21 @@
     {
       "title": "31. Piano Player: Note Labels",
       "expected_subject": "feat(ui): add configurable note labels to Piano keyboards",
-      "generated_subject": "feat(ui): add pianola work",
+      "generated_subject": "docs(ui): add pianola work",
       "subject_match": false,
-      "subject_similarity": 0.4819277108433735,
+      "subject_similarity": 0.3855421686746988,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Support never/minimal/active/always display modes in PianoKeyboard",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.16666666666666666,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 164 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Support never/minimal/active/always display modes in PianoKeyboard",
@@ -814,19 +858,21 @@
     {
       "title": "32. Piano Player: Color Modes",
       "expected_subject": "feat(ui): add per-channel color modes to Piano Player",
-      "generated_subject": "feat(ui): add pianola window",
+      "generated_subject": "docs(ui): add pianola window",
       "subject_match": false,
-      "subject_similarity": 0.5185185185185185,
+      "subject_similarity": 0.41975308641975306,
       "expected_body_count": 7,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Support configurable active-color palettes in PianoKeyboard widget",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.14285714285714285,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 166 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Support configurable active-color palettes in PianoKeyboard widget",
@@ -841,19 +887,21 @@
     {
       "title": "33. Piano Player: Octave Designation",
       "expected_subject": "feat(ui): add configurable octave designation to Pianola",
-      "generated_subject": "feat(ui): add pianola work",
+      "generated_subject": "docs(ui): add pianola work",
       "subject_match": false,
-      "subject_similarity": 0.4878048780487805,
+      "subject_similarity": 0.3902439024390244,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Support octave offset in PianoKeyboard for Scientific/Yamaha modes",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.16666666666666666,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 168 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Support octave offset in PianoKeyboard for Scientific/Yamaha modes",
@@ -867,19 +915,21 @@
     {
       "title": "34. Piano Player: Manual Input",
       "expected_subject": "feat(ui): enable manual note playing on Pianola keyboards",
-      "generated_subject": "feat(ui): add coverage",
+      "generated_subject": "docs(ui): add coverage",
       "subject_match": false,
-      "subject_similarity": 0.3037974683544304,
+      "subject_similarity": 0.20253164556962025,
       "expected_body_count": 7,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Add mouse and QWERTY keyboard input support to PianoKeyboard widget",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.14285714285714285,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Validation: compileall OK, 172 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Add mouse and QWERTY keyboard input support to PianoKeyboard widget",
@@ -894,20 +944,21 @@
     {
       "title": "35. Preferences: Player Piano Tab",
       "expected_subject": "feat(app): add Player Piano preferences tab",
-      "generated_subject": "feat(ui): add pianola preferences",
+      "generated_subject": "docs(ui): add pianola preferences",
       "subject_match": false,
-      "subject_similarity": 0.7368421052631579,
+      "subject_similarity": 0.631578947368421,
       "expected_body_count": 6,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Persist color mode, note labels, and octave designation settings",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.16666666666666666,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 174 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Persist color mode, note labels, and octave designation settings",
@@ -921,20 +972,21 @@
     {
       "title": "36. Preferences: Lyrics Tab",
       "expected_subject": "feat(app): add Lyrics preferences tab",
-      "generated_subject": "feat(ui): add lyrics preferences",
+      "generated_subject": "docs(ui): add lyrics preferences",
       "subject_match": false,
-      "subject_similarity": 0.8405797101449275,
+      "subject_similarity": 0.7246376811594203,
       "expected_body_count": 7,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Persist font family, size, and past/future text colors",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.14285714285714285,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 176 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Persist font family, size, and past/future text colors",
@@ -949,20 +1001,21 @@
     {
       "title": "37. Preferences: Note-Name Font",
       "expected_subject": "feat(app): add configurable note-name font to Pianola",
-      "generated_subject": "feat(ui): add player piano font settings",
+      "generated_subject": "docs(ui): add player piano font settings",
       "subject_match": false,
-      "subject_similarity": 0.5591397849462365,
+      "subject_similarity": 0.4731182795698925,
       "expected_body_count": 6,
-      "generated_body_count": 4,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Support custom font family and size in PianoKeyboard widget",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
-      "body_line_ratio": 0.16666666666666666,
+      "generated_body_first": "- Document completed features and project progress",
+      "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add or update user guide and localized help content",
-        "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 176 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Support custom font family and size in PianoKeyboard widget",
@@ -976,19 +1029,21 @@
     {
       "title": "38. Preferences: Single Highlight Color",
       "expected_subject": "feat(app): add single highlight color to Pianola prefs",
-      "generated_subject": "feat(ui): add persisted pianola/single color se...",
+      "generated_subject": "docs(ui): add persisted pianola/single color se...",
       "subject_match": false,
-      "subject_similarity": 0.5,
+      "subject_similarity": 0.4230769230769231,
       "expected_body_count": 6,
-      "generated_body_count": 3,
+      "generated_body_count": 5,
       "body_count_match": false,
       "expected_body_first": "- Persist pianola/single_color setting with default blue highlight",
-      "generated_body_first": "- Update Roadmap.md to mark completed items",
+      "generated_body_first": "- Document completed features and project progress",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Update Roadmap.md to mark completed items",
-        "- Add General preferences and playback behavior settings",
-        "- Validation: compileall OK, 176 tests pass"
+        "- Document completed features and project progress",
+        "- Outline future work for Git, ML, UI, tests, and multilingual support",
+        "- Organize the roadmap with clear status sections",
+        "- Include documentation, community, and testing areas",
+        "- Use checkbox format for completed and pending tasks"
       ],
       "expected_body_lines": [
         "- Persist pianola/single_color setting with default blue highlight",
@@ -1002,9 +1057,9 @@
     {
       "title": "39. Preferences: Velocity Tinting Toggle",
       "expected_subject": "feat(app): add velocity tinting toggle to Pianola prefs",
-      "generated_subject": "feat(ui): add pianola/velocity tinting",
+      "generated_subject": "test(ui): add pianola/velocity tinting",
       "subject_match": false,
-      "subject_similarity": 0.6021505376344086,
+      "subject_similarity": 0.5591397849462365,
       "expected_body_count": 7,
       "generated_body_count": 2,
       "body_count_match": false,
@@ -1028,9 +1083,9 @@
     {
       "title": "40. Per-Song Settings Implementation",
       "expected_subject": "feat(app): implement per-song settings persistence",
-      "generated_subject": "feat(ui): add > song settings > load",
+      "generated_subject": "test(ui): add file > song settings > load",
       "subject_match": false,
-      "subject_similarity": 0.5348837209302325,
+      "subject_similarity": 0.5274725274725275,
       "expected_body_count": 7,
       "generated_body_count": 4,
       "body_count_match": false,
@@ -1056,17 +1111,17 @@
     {
       "title": "42. WPS Dicts: Regional Variants",
       "expected_subject": "feat(dict): expand WPS dictionaries with LibreOffice variants",
-      "generated_subject": "docs(dict): update project",
+      "generated_subject": "build(dict): agrega 20 carpetas nuevas",
       "subject_match": false,
-      "subject_similarity": 0.367816091954023,
+      "subject_similarity": 0.32323232323232326,
       "expected_body_count": 6,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Generate 71 language folders with dict.conf, main.aff, and main.dic",
-      "generated_body_first": "- Creé 20 carpetas nuevas en: [build/wps-libreoffice-dicts]... Nuevas variantes agregadas: de_AT, de_CH, en_CA, en_ZA, es_CR, es_CU, es_DO, es_EC, es_GQ, es_GT, es_HN, es_NI, es_PA, es_PE, es_PH, es_PY, es_SV, es_US, es_UY, es_VE... También actualicé el reporte: [BUILD_SOURCE_MAP.txt]... Verificación: ahora hay 71 carpetas en total y 213 archivos esperados",
+      "generated_body_first": "- Creé 20 carpetas nuevas en: [build/wps-libreoffice-dicts]",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Creé 20 carpetas nuevas en: [build/wps-libreoffice-dicts]... Nuevas variantes agregadas: de_AT, de_CH, en_CA, en_ZA, es_CR, es_CU, es_DO, es_EC, es_GQ, es_GT, es_HN, es_NI, es_PA, es_PE, es_PH, es_PY, es_SV, es_US, es_UY, es_VE... También actualicé el reporte: [BUILD_SOURCE_MAP.txt]... Verificación: ahora hay 71 carpetas en total y 213 archivos esperados"
+        "- Creé 20 carpetas nuevas en: [build/wps-libreoffice-dicts]"
       ],
       "expected_body_lines": [
         "- Generate 71 language folders with dict.conf, main.aff, and main.dic",
@@ -1080,17 +1135,17 @@
     {
       "title": "43. WPS Dicts: Converter Tool",
       "expected_subject": "feat(tools): add PyQt6 dictionary converter GUI",
-      "generated_subject": "docs(dict): update project",
+      "generated_subject": "build(dict): agrega programa pyqt6",
       "subject_match": false,
-      "subject_similarity": 0.2465753424657534,
+      "subject_similarity": 0.24691358024691357,
       "expected_body_count": 6,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Implement side-by-side view for LibreOffice sources and WPS targets",
-      "generated_body_first": "- Implement feature enhancements and improvements",
+      "generated_body_first": "- Implementa mejoras y ajustes del proyecto",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Implement feature enhancements and improvements"
+        "- Implementa mejoras y ajustes del proyecto"
       ],
       "expected_body_lines": [
         "- Implement side-by-side view for LibreOffice sources and WPS targets",
@@ -1104,17 +1159,18 @@
     {
       "title": "44. WPS Dicts: Repo Setup & README",
       "expected_subject": "docs(repo): add .gitignore and update README with install steps",
-      "generated_subject": "docs(dict): update project",
+      "generated_subject": "build(dict): agrega al final la explicación de ...",
       "subject_match": false,
-      "subject_similarity": 0.3595505617977528,
+      "subject_similarity": 0.26548672566371684,
       "expected_body_count": 6,
-      "generated_body_count": 1,
+      "generated_body_count": 2,
       "body_count_match": false,
       "expected_body_first": "- Create .gitignore to exclude caches, venvs, and temp files",
-      "generated_body_first": "- Actualicé [README.md]... eliminé `# Tutorial en construcción...`, corregí la instalación para usar: `sudo cp -r build/wps-libreoffice-dicts/* /opt/kingsoft/wps-office/office6/dicts/spellcheck/`... y añadí al final la explicación de la herramienta PyQt6",
+      "generated_body_first": "- Actualiza documentación del proyecto",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Actualicé [README.md]... eliminé `# Tutorial en construcción...`, corregí la instalación para usar: `sudo cp -r build/wps-libreoffice-dicts/* /opt/kingsoft/wps-office/office6/dicts/spellcheck/`... y añadí al final la explicación de la herramienta PyQt6"
+        "- Actualiza documentación del proyecto",
+        "- Actualicé [README.md]... eliminé # Tutorial en construcción..., corregí la instalación para usar: sudo cp -r build/wps-libreoffice-dicts/* /opt/kingsoft/wps-office/office6/dicts/spellcheck/... y añadí al final la explicación de la herramienta PyQt6"
       ],
       "expected_body_lines": [
         "- Create .gitignore to exclude caches, venvs, and temp files",
@@ -1128,17 +1184,17 @@
     {
       "title": "45. WPS Dicts: Enriched Configs (Batch 1)",
       "expected_subject": "feat(dict): enrich dict.conf with localized display names",
-      "generated_subject": "docs(dict): update project",
+      "generated_subject": "build(dict): actualiza proyecto",
       "subject_match": false,
-      "subject_similarity": 0.26506024096385544,
+      "subject_similarity": 0.38636363636363635,
       "expected_body_count": 4,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Add DisplayName entries for zh_CN, en_US, es_ES, and other locales",
-      "generated_body_first": "- Enriquecí los 20 `dict.conf` nuevos de `build/wps-libreoffice-dicts` para que tengan el mismo estilo de los originales de WPS: [Dictionary] DisplayName=... DisplayName[zh_CN]=... etc",
+      "generated_body_first": "- Enriquecí los 20 dict.conf nuevos de build/wps-libreoffice-dicts para que tengan el mismo estilo de los originales de WPS: [Dictionary] DisplayName=... DisplayName[zh_CN]=... etc",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Enriquecí los 20 `dict.conf` nuevos de `build/wps-libreoffice-dicts` para que tengan el mismo estilo de los originales de WPS: [Dictionary] DisplayName=... DisplayName[zh_CN]=... etc"
+        "- Enriquecí los 20 dict.conf nuevos de build/wps-libreoffice-dicts para que tengan el mismo estilo de los originales de WPS: [Dictionary] DisplayName=... DisplayName[zh_CN]=... etc"
       ],
       "expected_body_lines": [
         "- Add DisplayName entries for zh_CN, en_US, es_ES, and other locales",
@@ -1150,17 +1206,17 @@
     {
       "title": "46. WPS Dicts: Enriched Configs (Batch 2)",
       "expected_subject": "feat(dict): enrich hr_HR, km_KH, and qu_EC dict configs",
-      "generated_subject": "docs(dict): update project",
+      "generated_subject": "feat(dict): actualiza proyecto",
       "subject_match": false,
-      "subject_similarity": 0.2962962962962963,
+      "subject_similarity": 0.3764705882352941,
       "expected_body_count": 3,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- Add 8 localized DisplayName entries to match WPS standards",
-      "generated_body_first": "- Implement feature enhancements and improvements",
+      "generated_body_first": "- Implementa mejoras y ajustes del proyecto",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Implement feature enhancements and improvements"
+        "- Implementa mejoras y ajustes del proyecto"
       ],
       "expected_body_lines": [
         "- Add 8 localized DisplayName entries to match WPS standards",
@@ -1171,17 +1227,17 @@
     {
       "title": "47. WPS Dicts: README Tables",
       "expected_subject": "docs(readme): add available dictionaries tables",
-      "generated_subject": "docs(dict): update project",
+      "generated_subject": "style(dict): agrega en",
       "subject_match": false,
-      "subject_similarity": 0.3287671232876712,
+      "subject_similarity": 0.2898550724637681,
       "expected_body_count": 4,
       "generated_body_count": 1,
       "body_count_match": false,
       "expected_body_first": "- List all 71 dictionaries in build/wps-libreoffice-dicts",
-      "generated_body_first": "- Implement feature enhancements and improvements",
+      "generated_body_first": "- Actualiza documentación del proyecto",
       "body_line_ratio": 0.0,
       "generated_body_lines": [
-        "- Implement feature enhancements and improvements"
+        "- Actualiza documentación del proyecto"
       ],
       "expected_body_lines": [
         "- List all 71 dictionaries in build/wps-libreoffice-dicts",

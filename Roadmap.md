@@ -2,6 +2,56 @@
 
 Este roadmap documenta el progreso del generador de commits inteligente basado en NLTK. El objetivo del proyecto es acercarse al estilo de commits que suele producir una IA avanzada, pero manteniendo una implementación local, ligera y explicable.
 
+## Estado Actual para Retomar
+
+El programa ya es funcional para uso diario: toma texto pegado en español o inglés, limpia ruido de Markdown/comandos, detecta idioma, propone `type(scope)`, genera subject y body localizado, permite corregir manualmente idioma/type/scope y copia el comando sin ventana modal.
+
+La línea de mejora actual no es integrar con Git, sino mejorar la calidad semántica desde el texto pegado, imitando mejor los commits ricos que devuelve una IA.
+
+### Últimos Avances Importantes
+- [x] Eliminada la vista previa separada de subject/body porque no aportaba al flujo.
+- [x] Añadido truncado inteligente de subject con límites de palabra.
+- [x] Corregida la priorización para que cambios semánticos no queden ocultos por menciones secundarias de tests o documentación.
+- [x] Añadida detección general de validaciones indirectas como `Resultado: 20 tests OK`, `suite completa pasa`, `py_compile`, `compileall`, `unittest` y `pytest`.
+- [x] Añadida detección de menciones de archivos para clasificar código, tests, documentación, reportes y configuración.
+- [x] Ampliado el body de 5 a 7 bullets para conservar detalles importantes.
+- [x] Añadido ranking de bullets para poner primero cambios principales, luego tests/docs/reportes y dejar validación al final.
+- [x] Suite actual: 20 tests de regresión pasando.
+
+### Ejemplo de Calidad Actual
+
+Entrada resumida:
+
+```text
+Mejoré la detección de menciones de archivos dentro del texto pegado.
+Actualicé smart_commit_nltk.py, tests/test_smart_commit_nltk.py, README.md,
+Roadmap.md y commit_examples_data/comparison_report.json.
+Resultado: 19 tests OK.
+```
+
+Salida esperada actual:
+
+```bash
+git commit -m "feat(nlp): mejora detección de menciones de archivos" \
+  -m "- Actualiza lógica de código mencionada en el resumen" \
+  -m "- Cubre cambios con tests de regresión" \
+  -m "- Actualiza documentación mencionada en el resumen" \
+  -m "- Actualiza datos o reportes de evaluación" \
+  -m "- Validación: 19 tests pass"
+```
+
+### Comandos Útiles
+
+```bash
+QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
+```
+
+```bash
+QT_QPA_PLATFORM=offscreen python3 commit_examples_data/compare_generator.py
+```
+
+Nota: `__pycache__/smart_commit_nltk.cpython-311.pyc` puede aparecer modificado porque ya está trackeado por Git. `.gitignore` evita nuevos artefactos, pero queda pendiente sacarlo del índice.
+
 ## Funcionalidades Completadas
 
 ### [x] Configuración Inicial del Proyecto
@@ -112,6 +162,14 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Creación de `.gitignore` para `__pycache__/` y archivos `*.py[cod]`.
 
 ## Mejoras Futuras Pendientes
+
+### Siguiente Sesión Recomendada
+- [ ] Probar el programa con el texto del último resumen generado por Codex y comparar contra el commit que daría una IA.
+- [ ] Si el subject sale demasiado genérico, añadir una regla específica de subject antes de tocar el body.
+- [ ] Si el body sale con bullets buenos pero mal ordenados, ajustar `rank_body_lines()`.
+- [ ] Si se pierde información útil del texto pegado, revisar primero `clean_input()`.
+- [ ] Después de cada mejora, añadir o ajustar un test de regresión en `tests/test_smart_commit_nltk.py`.
+- [ ] Ejecutar siempre `QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v`.
 
 ### [ ] Evaluación y Testing
 - [ ] Añadir más tests unitarios para extracción de acciones en español.

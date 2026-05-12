@@ -71,7 +71,7 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Clasificación de roadmaps creados como `docs(repo)`.
 
 ### [x] Generación de Body Lines
-- [x] Generación de hasta 5 bullets relevantes.
+- [x] Generación de hasta 7 bullets relevantes.
 - [x] Bullets localizados en español o inglés según el texto de entrada.
 - [x] Bullets específicos para roadmap con seguimiento de progreso.
 - [x] Bullets específicos para soporte bilingüe/NLP.
@@ -102,7 +102,11 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Test para confirmar copiado en el botón sin mensaje modal.
 - [x] Test para advertencias de ruido por bloques de código y commits pegados.
 - [x] Test para truncar el subject sin cortar palabras.
-- [x] Ejecución exitosa de 17 tests de regresión.
+- [x] Test para priorizar summaries de eliminación de vista previa y truncado sobre menciones de tests.
+- [x] Test para detectar validaciones indirectas como `suite completa pasa: 18 tests OK`.
+- [x] Test para detectar menciones de código, tests, documentación y reportes.
+- [x] Test para ordenar bullets por importancia y podar documentación genérica duplicada.
+- [x] Ejecución exitosa de 20 tests de regresión.
 
 ### [x] Higiene de Artefactos Generados
 - [x] Creación de `.gitignore` para `__pycache__/` y archivos `*.py[cod]`.
@@ -114,7 +118,7 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [ ] Añadir más tests unitarios para `select_commit_type()` y `detect_scope()`.
 - [ ] Añadir casos de regresión para textos mixtos español/inglés.
 - [ ] Añadir casos de regresión para resúmenes con varios archivos modificados.
-- [ ] Definir nuevas métricas que no penalicen el límite actual de 5 bullets.
+- [ ] Definir nuevas métricas que no penalicen el límite actual de 7 bullets.
 - [ ] Mejorar métricas del dataset histórico sin perder los casos bilingües recientes.
 
 ### [ ] Soporte Lingüístico
@@ -137,10 +141,12 @@ Este roadmap documenta el progreso del generador de commits inteligente basado e
 - [x] Mostrar advertencias cuando el input tenga mucho ruido o muchos bloques de código.
 
 ### [ ] Calidad del Commit
-- [ ] Mejorar ranking de bullets por importancia.
-- [ ] Detectar validaciones y pruebas aunque aparezcan en frases indirectas.
-- [ ] Detectar menciones de documentación, tests y código dentro del texto pegado.
+- [x] Mejorar ranking de bullets por importancia.
+- [x] Detectar validaciones y pruebas aunque aparezcan en frases indirectas.
+- [x] Detectar menciones de documentación, tests y código dentro del texto pegado.
 - [x] Mejorar truncado de subject para que no corte palabras.
+- [x] Ampliar el body hasta 7 bullets para conservar cambios relevantes y validación.
+- [x] Priorizar mejoras semánticas combinadas sobre menciones secundarias de tests/documentación.
 - [ ] Generar alternativas cuando haya varias interpretaciones posibles.
 
 ---

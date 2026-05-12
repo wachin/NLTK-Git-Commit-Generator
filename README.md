@@ -72,7 +72,7 @@ Recalculate the example-dataset comparison report:
 QT_QPA_PLATFORM=offscreen python3 commit_examples_data/compare_generator.py
 ```
 
-The comparison report is written to `commit_examples_data/comparison_report.json`. The current heuristics intentionally cap generated bodies at five bullets, so body-count metrics are not expected to match older examples that contain longer commit bodies.
+The comparison report is written to `commit_examples_data/comparison_report.json`. The current heuristics intentionally cap generated bodies at seven bullets, so body-count metrics are not expected to match older examples that contain longer commit bodies.
 
 ## Examples
 

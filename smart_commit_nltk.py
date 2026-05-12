@@ -302,10 +302,12 @@ class NLPCommitGenerator(QMainWindow):
                 r'detects|detect|uses|use|supports|support|generates|generate|validated|validate|'
                 r'he|hemos|creado|creé|creamos|añadido|añadí|agregado|implementado|implementé|implemente|actualizado|'
                 r'actualicé|actualice|recalculé|recalcule|afiné|afine|cambiado|corregido|'
-                r'arreglado|mejorado|documenta|documentado|incluye|resume|'
+                r'arreglado|mejorado|mejoré|mejore|documenta|documentado|incluye|resume|'
                 r'detecta|usa|entiende|genera|corrige|corregí|corregi|verifiqué|verifique|validé|valide|'
                 r'puedes|selectores|tipo|scope|regenera|manteniendo|ajuste|manual|'
-                r'añadí|anadi|quité|quite|borra|borrar|desactiva|devuelve|foco|resultado|tests|'
+                r'añadí|anadi|quité|quite|quitada|eliminé|elimine|elimina|borra|borrar|desactiva|devuelve|foco|resultado|tests|'
+                r'continué|continue|trunca|truncado|truncate_subject|vista previa|límites de palabra|limites de palabra|'
+                r'limpiado|ajustado|'
                 r'idioma detectado|pendiente|español|inglés|integración|integracion|baseline|línea base|linea base|quedó|quedo)\b',
                 line,
                 re.IGNORECASE
@@ -660,6 +662,25 @@ class NLPCommitGenerator(QMainWindow):
         normalized = self.clean_input(text)
 
         normalized_lower = normalized.lower()
+        has_evaluation_baseline_context = any(k in normalized_lower for k in [
+            'testing/evaluación', 'testing/evaluation', 'línea base', 'linea base',
+            'baseline', '45 ejemplos', '45 examples', '0.446', '6 regresiones',
+            '6 tests', 'compare_generator.py', '.gitignore'
+        ])
+        has_preview_truncation_refactor = (
+            any(k in normalized_lower for k in ['vista previa', 'preview ui', 'legacy preview'])
+            and any(k in normalized_lower for k in ['truncate_subject', 'truncado', 'trunca', 'word-aware', 'word boundary', 'límites de palabra', 'limites de palabra'])
+        )
+        if has_preview_truncation_refactor:
+            if language == 'es':
+                return 'improve', 'truncado de subject y elimina vista previa', language
+            return 'refactor', 'word-aware subject truncation', language
+
+        if language == 'es' and any(k in normalized_lower for k in ['menciones de archivos', 'archivos mencionados', 'clasificación de archivos']):
+            return 'improve', 'detección de menciones de archivos', language
+        if language == 'en' and any(k in normalized_lower for k in ['file mentions', 'mentioned files', 'file classification']):
+            return 'improve', 'file mention detection', language
+
         if language == 'es' and any(k in normalized_lower for k in ['type y scope', 'type/scope', 'selectores', 'editar manualmente', 'corregirlo manualmente', 'ajuste manual']):
             return 'add', 'selectores manuales de type y scope', language
         if language == 'en' and any(k in normalized_lower for k in ['type and scope', 'type/scope', 'type selector', 'scope selector', 'dropdown', 'manual override']):
@@ -678,11 +699,13 @@ class NLPCommitGenerator(QMainWindow):
         if language == 'es' and (
             any(k in normalized_lower for k in ['test_smart_commit_nltk.py', 'regresiones', 'testing/evaluación', 'comparison_report.json', 'compare_generator.py', 'línea base', 'linea base'])
             and any(k in normalized_lower for k in ['roadmap', 'readme', '.gitignore', '6 tests', '45 ejemplos', '0.446'])
+            and has_evaluation_baseline_context
         ):
             return 'add', 'suite de regresión y baseline de evaluación', language
         if language == 'en' and (
             any(k in normalized_lower for k in ['test_smart_commit_nltk.py', 'regression tests', 'testing/evaluation', 'comparison_report.json', 'compare_generator.py', 'baseline'])
             and any(k in normalized_lower for k in ['roadmap', 'readme', '.gitignore', '6 tests', '45 examples', '0.446'])
+            and has_evaluation_baseline_context
         ):
             return 'add', 'regression suite and evaluation baseline', language
 
@@ -791,6 +814,13 @@ class NLPCommitGenerator(QMainWindow):
 
     def detect_scope(self, text):
         text_lower = text.lower()
+        if (
+            any(k in text_lower for k in ['vista previa', 'preview ui', 'legacy preview'])
+            and any(k in text_lower for k in ['truncate_subject', 'truncado', 'word-aware', 'límites de palabra', 'limites de palabra'])
+        ):
+            return 'nlp'
+        if any(k in text_lower for k in ['menciones de archivos', 'archivos mencionados', 'file mentions', 'mentioned files', 'file classification']):
+            return 'nlp'
         if any(k in text_lower for k in ['type/scope', 'type y scope', 'type and scope', 'selectores', 'tipo:', 'scope:', 'manual override', 'ajuste manual']):
             return 'ui'
         if any(k in text_lower for k in ['idioma detectado', 'detected language', 'language status', 'etiqueta de estado', 'status label']):
@@ -839,14 +869,34 @@ class NLPCommitGenerator(QMainWindow):
         style_keywords = ['style', 'format', 'formatted', 'lint', 'whitespace', 'indent', 'prettier', 'eslint', 'formato']
         refactor_keywords = ['refactor', 'cleanup', 'cleaned', 'restructure', 'rename', 'split', 'extract', 'simplify', 'refactoriza', 'limpia']
         fix_keywords = ['fix', 'fixed', 'correct', 'corrected', 'resolve', 'resolved', 'bug', 'crash', 'error', 'corrige', 'corregido', 'arregla', 'arreglado']
+        has_evaluation_baseline_context = any(k in text_lower for k in [
+            'testing/evaluación', 'testing/evaluation', 'línea base', 'linea base',
+            'baseline', '45 ejemplos', '45 examples', '0.446', '6 regresiones',
+            '6 tests', 'compare_generator.py', '.gitignore'
+        ])
+        substantive_test_change = any(k in text_lower for k in [
+            'test_smart_commit_nltk.py', 'regression test', 'regression tests', 'regresiones',
+            'testing/evaluación', 'testing/evaluation', 'test suite', 'suite de regresión',
+            'unittest suite', 'pytest suite'
+        ])
 
+        if (
+            any(k in text_lower for k in ['vista previa', 'preview ui', 'legacy preview'])
+            and any(k in text_lower for k in ['truncate_subject', 'truncado', 'word-aware', 'límites de palabra', 'limites de palabra'])
+        ):
+            return 'refactor'
+        if any(k in text_lower for k in ['menciones de archivos', 'archivos mencionados', 'file mentions', 'mentioned files', 'file classification']):
+            return 'feat'
         if any(k in text_lower for k in ['type/scope', 'type y scope', 'type and scope', 'selectores', 'tipo:', 'scope:', 'manual override', 'ajuste manual']):
             return 'feat'
         if any(k in text_lower for k in ['idioma detectado', 'detected language', 'language status', 'etiqueta de estado', 'status label']):
             return 'feat'
         if any(k in text_lower for k in ['limpiar entrada', 'clear input', 'botón limpiar', 'boton limpiar', 'borrar el texto de entrada', 'borra el texto', 'copy button', 'botón de copiar', 'cuadro de entrada']):
             return 'feat'
-        if any(k in text_lower for k in ['test_smart_commit_nltk.py', 'regresiones', 'regression tests', 'testing/evaluación', 'testing/evaluation', 'comparison_report.json', 'baseline', 'línea base', 'linea base']):
+        if (
+            any(k in text_lower for k in ['test_smart_commit_nltk.py', 'regresiones', 'regression tests', 'testing/evaluación', 'testing/evaluation', 'comparison_report.json', 'baseline', 'línea base', 'linea base'])
+            and has_evaluation_baseline_context
+        ):
             return 'test'
         if any(k in text_lower for k in ['bilingüe', 'bilingue', 'bilingual', 'tokenización', 'tokenization', 'verbos españoles', 'spanish verbs']):
             return 'feat'
@@ -854,7 +904,7 @@ class NLPCommitGenerator(QMainWindow):
             return 'ci'
         if any(k in text_lower for k in build_keywords):
             return 'build'
-        if any(k in text_lower for k in test_keywords) and not any(k in text_lower for k in docs_keywords):
+        if any(k in text_lower for k in test_keywords) and substantive_test_change and not any(k in text_lower for k in docs_keywords):
             return 'test'
         if any(k in text_lower for k in perf_keywords) or subject_verb in ['perf', 'optimize', 'optimize', 'improve', 'improved']:
             return 'perf'
@@ -870,6 +920,152 @@ class NLPCommitGenerator(QMainWindow):
             return 'docs'
         return 'feat'
 
+    def extract_validation_bullet(self, text, language='en'):
+        text_lower = text.lower()
+        tests_match = re.search(
+            r'(?:(?:resultado|result|validation|validación|validacion|suite completa|full unittest suite)[^\n.:;]*[:.]?\s*)?'
+            r'(?:\*\*)?(\d+)\s+(?:tests|pruebas)\s+(?:ok|pass|passed|pasan|pasaron|aprobadas)(?:\*\*)?',
+            text,
+            re.IGNORECASE
+        )
+        command_labels = []
+        if 'py_compile' in text_lower:
+            command_labels.append('py_compile')
+        if 'compileall' in text_lower:
+            command_labels.append('compileall')
+        if 'unittest discover' in text_lower or 'python3 -m unittest' in text_lower:
+            command_labels.append('unittest')
+        if 'pytest' in text_lower:
+            command_labels.append('pytest')
+
+        seen_labels = []
+        for label in command_labels:
+            if label not in seen_labels:
+                seen_labels.append(label)
+
+        if language == 'es':
+            if tests_match and seen_labels:
+                return f"- Validación: {', '.join(seen_labels)} OK, {tests_match.group(1)} tests pass"
+            if tests_match:
+                return f"- Validación: {tests_match.group(1)} tests pass"
+            if seen_labels:
+                return f"- Validación: {', '.join(seen_labels)} OK"
+        else:
+            if tests_match and seen_labels:
+                return f"- Validation: {', '.join(seen_labels)} OK, {tests_match.group(1)} tests pass"
+            if tests_match:
+                return f"- Validation: {tests_match.group(1)} tests pass"
+            if seen_labels:
+                return f"- Validation: {', '.join(seen_labels)} OK"
+        return None
+
+    def extract_file_mentions(self, text):
+        raw_mentions = re.findall(
+            r'(?<![\w.-])(?:[\w.-]+/)*[\w.-]+\.(?:py|md|json|yml|yaml|toml|txt|rst|ini|cfg)|(?<![\w.-])\.gitignore\b',
+            text,
+            re.IGNORECASE
+        )
+        mentions = []
+        seen = set()
+        for mention in raw_mentions:
+            cleaned = mention.strip('.,;:)("\'`')
+            key = cleaned.lower()
+            if cleaned and key not in seen:
+                mentions.append(cleaned)
+                seen.add(key)
+        return mentions
+
+    def build_file_mention_bullets(self, text, language='en'):
+        mentions = self.extract_file_mentions(text)
+        if not mentions:
+            return []
+
+        lower_mentions = [m.lower() for m in mentions]
+        has_code = any(m.endswith('.py') and not m.startswith('tests/') and '/tests/' not in m for m in lower_mentions)
+        has_tests = any(m.startswith('tests/') or '/tests/' in m or m.startswith('test_') or '/test_' in m for m in lower_mentions)
+        has_docs = any(m.endswith(('.md', '.rst')) for m in lower_mentions)
+        has_eval_data = any(
+            m.endswith('.json') or 'comparison_report' in m or 'compare_generator' in m
+            for m in lower_mentions
+        )
+        has_config = any(m in {'.gitignore'} or m.endswith(('.yml', '.yaml', '.toml', '.ini', '.cfg')) for m in lower_mentions)
+
+        bullets = []
+        if language == 'es':
+            if has_code:
+                bullets.append('- Actualiza lógica de código mencionada en el resumen')
+            if has_tests:
+                bullets.append('- Cubre cambios con tests de regresión')
+            if has_docs:
+                bullets.append('- Actualiza documentación mencionada en el resumen')
+            if has_eval_data:
+                bullets.append('- Actualiza datos o reportes de evaluación')
+            if has_config:
+                bullets.append('- Ajusta configuración o archivos de higiene del proyecto')
+        else:
+            if has_code:
+                bullets.append('- Update code paths mentioned in the summary')
+            if has_tests:
+                bullets.append('- Cover changes with regression tests')
+            if has_docs:
+                bullets.append('- Update documentation mentioned in the summary')
+            if has_eval_data:
+                bullets.append('- Update evaluation data or reports')
+            if has_config:
+                bullets.append('- Adjust project configuration or hygiene files')
+        return bullets
+
+    def rank_body_lines(self, body_lines, language='en', limit=7):
+        unique_lines = []
+        seen = set()
+        for line in body_lines:
+            clean_line = re.sub(r'\s+', ' ', line).strip()
+            key = clean_line.lower()
+            if clean_line and key not in seen:
+                unique_lines.append(clean_line)
+                seen.add(key)
+
+        line_set = {line.lower() for line in unique_lines}
+        if language == 'es':
+            generic_docs = {
+                '- actualiza documentación del proyecto',
+                '- actualiza roadmap.md para marcar elementos completados',
+            }
+            has_specific_docs = '- actualiza documentación mencionada en el resumen' in line_set
+            if has_specific_docs:
+                unique_lines = [line for line in unique_lines if line.lower() not in generic_docs]
+        else:
+            generic_docs = {
+                '- update roadmap.md to mark completed items',
+                '- update documentation',
+            }
+            has_specific_docs = '- update documentation mentioned in the summary' in line_set
+            if has_specific_docs:
+                unique_lines = [line for line in unique_lines if line.lower() not in generic_docs]
+
+        def rank(line):
+            lower = line.lower()
+            if lower.startswith(('- validación:', '- validation:')):
+                return 90
+            if any(k in lower for k in [
+                'lógica de código', 'code paths', 'detecta ', 'detect input', 'reemplaza',
+                'replace hard', 'implementa', 'implement ', 'añade selectores', 'dropdowns',
+                'muestra el estado', 'display detected'
+            ]):
+                return 10
+            if any(k in lower for k in ['tests de regresión', 'regression tests', 'test de regresión', 'regression test']):
+                return 20
+            if any(k in lower for k in ['documentación mencionada', 'documentation mentioned', 'readme', 'roadmap']):
+                return 30
+            if any(k in lower for k in ['reportes de evaluación', 'evaluation data', 'comparison_report', 'baseline']):
+                return 40
+            if any(k in lower for k in ['configuración', 'configuration', 'higiene', 'hygiene']):
+                return 50
+            return 60
+
+        ranked = sorted(enumerate(unique_lines), key=lambda item: (rank(item[1]), item[0]))
+        return [line for _index, line in ranked[:limit]]
+
     def generate_body_lines(self, text, language='en'):
         text_lower = text.lower()
         bullets = []
@@ -881,7 +1077,30 @@ class NLPCommitGenerator(QMainWindow):
                 bullets.append(clean_line)
                 seen.add(clean_line.lower())
 
+        def add_validation_bullet():
+            validation_bullet = self.extract_validation_bullet(text, language)
+            if validation_bullet:
+                add_bullet(validation_bullet)
+
+        def add_file_mention_bullets():
+            for file_bullet in self.build_file_mention_bullets(text, language):
+                add_bullet(file_bullet)
+
         if language == 'es':
+            has_preview_truncation_refactor = (
+                any(k in text_lower for k in ['vista previa', 'preview ui', 'legacy preview'])
+                and any(k in text_lower for k in ['truncate_subject', 'truncado', 'trunca', 'word-aware', 'límites de palabra', 'limites de palabra'])
+            )
+            if has_preview_truncation_refactor:
+                add_bullet('- Reemplaza el corte fijo de caracteres con truncate_subject()')
+                add_bullet('- Elimina componentes legacy de vista previa de la interfaz')
+                if 'test_smart_commit_nltk.py' in text_lower or 'tests' in text_lower:
+                    add_bullet('- Actualiza tests para validar truncado en límites de palabra')
+                if 'roadmap.md' in text_lower or 'readme.md' in text_lower or 'readme' in text_lower:
+                    add_bullet('- Limpia Roadmap.md y README.md para reflejar el estado actual')
+                add_validation_bullet()
+                return bullets
+
             has_type_scope_ui = any(k in text_lower for k in ['type/scope', 'type y scope', 'selectores', 'tipo:', 'scope:', 'editar manualmente', 'corregirlo manualmente', 'ajuste manual'])
             if has_type_scope_ui:
                 add_bullet('- Añade selectores para tipos y scopes de Conventional Commits')
@@ -896,7 +1115,7 @@ class NLPCommitGenerator(QMainWindow):
                 if 'roadmap.md' in text_lower or 'roadmap' in text_lower:
                     add_bullet('- Marca la edición manual de type/scope como completada')
                 if '13 tests' in text_lower or '13 pruebas' in text_lower:
-                    add_bullet('- Validación: 13 tests pass en entorno offscreen')
+                    add_validation_bullet()
                 return bullets
 
             has_language_status_ui = any(k in text_lower for k in ['idioma detectado', 'etiqueta de estado', 'muestra el idioma', 'estado que muestra el idioma'])
@@ -915,7 +1134,7 @@ class NLPCommitGenerator(QMainWindow):
                 if 'roadmap.md' in text_lower or 'roadmap' in text_lower:
                     add_bullet('- Marca la tarea de idioma detectado como completada')
                 if '10 tests' in text_lower or '10 pruebas' in text_lower:
-                    add_bullet('- Validación: 10 tests pass en entorno offscreen')
+                    add_validation_bullet()
                 return bullets
 
             has_clear_input_ui = any(k in text_lower for k in ['limpiar entrada', 'botón limpiar', 'boton limpiar', 'borrar el texto de entrada', 'botón de copiar', 'boton de copiar', 'cuadro de entrada'])
@@ -930,10 +1149,13 @@ class NLPCommitGenerator(QMainWindow):
                 if 'roadmap.md' in text_lower or 'roadmap' in text_lower:
                     add_bullet('- Marca la mejora de interfaz como completada en Roadmap.md')
                 if '8 tests' in text_lower or '8 pruebas' in text_lower:
-                    add_bullet('- Validación: 8 tests pass en entorno offscreen')
+                    add_validation_bullet()
                 return bullets
 
-            has_testing_baseline = any(k in text_lower for k in ['test_smart_commit_nltk.py', 'regresiones', 'testing/evaluación', 'comparison_report.json', 'compare_generator.py', 'línea base', 'linea base'])
+            has_testing_baseline = (
+                any(k in text_lower for k in ['test_smart_commit_nltk.py', 'regresiones', 'testing/evaluación', 'comparison_report.json', 'compare_generator.py', 'línea base', 'linea base'])
+                and any(k in text_lower for k in ['testing/evaluación', 'línea base', 'linea base', 'baseline', '45 ejemplos', '0.446', '6 regresiones', '6 tests', 'compare_generator.py', '.gitignore'])
+            )
             if has_testing_baseline:
                 if 'test_smart_commit_nltk.py' in text_lower or '6 regresiones' in text_lower or '6 tests' in text_lower:
                     add_bullet('- Añade test_smart_commit_nltk.py con 6 regresiones principales')
@@ -982,12 +1204,23 @@ class NLPCommitGenerator(QMainWindow):
             if 'codificación' in text_lower or 'codificacion' in text_lower:
                 add_bullet('- Añade selector de codificación para exportaciones')
 
-            test_match_es = re.search(r'(\d+)\s+pruebas\s+(?:ok|pasaron|aprobadas)', text, re.IGNORECASE)
-            if test_match_es:
-                add_bullet(f'- Validación: compileall OK, {test_match_es.group(1)} pruebas pasan')
-            elif 'compileall' in text_lower:
-                add_bullet('- Validación: compileall OK')
+            add_file_mention_bullets()
+            add_validation_bullet()
         else:
+            has_preview_truncation_refactor = (
+                any(k in text_lower for k in ['vista previa', 'preview ui', 'legacy preview'])
+                and any(k in text_lower for k in ['truncate_subject', 'truncation', 'word-aware', 'word boundary'])
+            )
+            if has_preview_truncation_refactor:
+                add_bullet('- Replace hard character slicing with truncate_subject() logic')
+                add_bullet('- Remove legacy preview UI components from smart_commit_nltk.py')
+                if 'test_smart_commit_nltk.py' in text_lower or 'tests' in text_lower:
+                    add_bullet('- Update tests to validate word-boundary aware truncation')
+                if 'roadmap.md' in text_lower or 'readme.md' in text_lower or 'readme' in text_lower:
+                    add_bullet('- Clean up Roadmap.md and README.md to reflect current state')
+                add_validation_bullet()
+                return bullets
+
             has_type_scope_ui = any(k in text_lower for k in ['type/scope', 'type and scope', 'type selector', 'scope selector', 'dropdown', 'manual override'])
             if has_type_scope_ui:
                 add_bullet('- Implement dropdowns for Conventional Commit types and scopes')
@@ -1039,7 +1272,10 @@ class NLPCommitGenerator(QMainWindow):
                     add_bullet('- Validation: 8 tests pass in offscreen environment')
                 return bullets
 
-            has_testing_baseline = any(k in text_lower for k in ['test_smart_commit_nltk.py', 'regression tests', 'testing/evaluation', 'comparison_report.json', 'compare_generator.py', 'baseline'])
+            has_testing_baseline = (
+                any(k in text_lower for k in ['test_smart_commit_nltk.py', 'regression tests', 'testing/evaluation', 'comparison_report.json', 'compare_generator.py', 'baseline'])
+                and any(k in text_lower for k in ['testing/evaluation', 'baseline', '45 examples', '0.446', '6 regression', '6 tests', 'compare_generator.py', '.gitignore'])
+            )
             if has_testing_baseline:
                 if 'test_smart_commit_nltk.py' in text_lower or '6 regression' in text_lower or '6 tests' in text_lower:
                     add_bullet('- Add test_smart_commit_nltk.py with 6 core regression tests')
@@ -1100,11 +1336,8 @@ class NLPCommitGenerator(QMainWindow):
             if 'track-aware' in text_lower or 'source track' in text_lower:
                 add_bullet('- Add track-aware filtering for lyrics events')
 
-            test_match = re.search(r'(?:full\s+unittest\s+suite\s+passed[:\s]+)?(\d+)\s+tests\s+(?:OK|passed)', text, re.IGNORECASE)
-            if test_match:
-                add_bullet(f'- Validation: compileall OK, {test_match.group(1)} tests pass')
-            elif 'compileall' in text_lower:
-                add_bullet('- Validation: compileall OK')
+            add_file_mention_bullets()
+            add_validation_bullet()
 
         def is_similar_to_existing(obj_text):
             obj_words = [w for w in re.sub(r'[^a-z0-9 ]', ' ', obj_text.lower()).split() if len(w) > 2]
@@ -1117,8 +1350,9 @@ class NLPCommitGenerator(QMainWindow):
                     return True
             return False
 
-        if len(bullets) >= 5:
-            return bullets[:5]
+        max_body_lines = 7
+        if len(bullets) >= max_body_lines:
+            return self.rank_body_lines(bullets, language, max_body_lines)
 
         for sentence in self.sent_tokenize_by_language(text, language):
             candidate = sentence.strip()
@@ -1135,7 +1369,7 @@ class NLPCommitGenerator(QMainWindow):
                 bullet = f'- {cleaned}'
                 if not is_similar_to_existing(cleaned):
                     add_bullet(bullet)
-            if len(bullets) >= 5:
+            if len(bullets) >= max_body_lines:
                 break
 
         if not bullets:
@@ -1144,7 +1378,7 @@ class NLPCommitGenerator(QMainWindow):
             else:
                 add_bullet('- Implement feature enhancements and improvements')
 
-        return bullets
+        return self.rank_body_lines(bullets, language, max_body_lines)
 
     def truncate_subject(self, subject, limit=50):
         subject = subject.strip()

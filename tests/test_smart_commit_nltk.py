@@ -176,6 +176,32 @@ y deja pendientes las mejoras futuras para Git, ML, UI, testing y multilenguaje.
         self.assertEqual(truncated, 'agrega soporte bilingüe y corrige detección...')
         self.assertNotIn('tip...', truncated)
 
+    def test_preview_removal_and_truncation_summary_takes_priority_over_tests(self):
+        text = """Listo. Eliminé la vista previa del programa y del Roadmap.
+
+También continué con una mejora útil del Roadmap: ahora el `subject` se trunca
+respetando límites de palabra, en vez de cortar brutalmente con `subject[:47]`.
+
+Cambios principales:
+- Quitada la vista previa de smart_commit_nltk.py.
+- Añadido `truncate_subject()` en smart_commit_nltk.py.
+- Actualizados tests en tests/test_smart_commit_nltk.py.
+- Limpiado Roadmap.md para quitar la vista previa y marcar el truncado como hecho.
+- Ajustado README.md.
+
+Verificación:
+QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
+Resultado: 17 tests OK.
+"""
+        command = self.render_command(text)
+
+        self.assertIn('git commit -m "refactor(nlp): mejora truncado de subject y elimina vista previa"', command)
+        self.assertIn('-m "- Reemplaza el corte fijo de caracteres con truncate_subject()"', command)
+        self.assertIn('-m "- Elimina componentes legacy de vista previa de la interfaz"', command)
+        self.assertIn('-m "- Actualiza tests para validar truncado en límites de palabra"', command)
+        self.assertIn('-m "- Validación: unittest OK, 17 tests pass"', command)
+        self.assertNotIn('test(repo): agrega truncate_subject', command)
+
     def test_type_scope_summary_takes_priority_over_testing_and_roadmap(self):
         text = """Continué con la mejora del Roadmap: ya puedes editar manualmente `type` y `scope` desde la UI antes de copiar.
 
@@ -195,8 +221,46 @@ Resultado: **13 tests OK**.
         self.assertIn('git commit -m "feat(ui): agrega selectores manuales de type y scope"', command)
         self.assertIn('-m "- Regenera el comando en tiempo real al cambiar type/scope"', command)
         self.assertIn('-m "- Conserva subject y body al aplicar ajustes manuales"', command)
-        self.assertIn('-m "- Validación: 13 tests pass en entorno offscreen"', command)
+        self.assertIn('-m "- Validación: 13 tests pass"', command)
         self.assertNotIn('test(repo): agrega suite', command)
+
+    def test_indirect_validation_phrases_are_included_in_body(self):
+        text = """Mejoré el ranking de bullets para ordenar primero los cambios principales
+y dejar las verificaciones como soporte del commit.
+
+La suite completa pasa: 18 tests OK.
+También verifiqué con py_compile.
+"""
+        command = self.render_command(text)
+
+        self.assertIn('-m "- Validación: py_compile OK, 18 tests pass"', command)
+        self.assertNotIn('git commit -m "test(', command)
+
+    def test_file_mentions_generate_code_test_docs_and_report_bullets(self):
+        text = """Mejoré la detección de menciones de archivos dentro del texto pegado.
+
+Cambios:
+- Actualicé smart_commit_nltk.py con clasificación de archivos mencionados.
+- Actualicé tests/test_smart_commit_nltk.py con una regresión nueva.
+- Actualicé README.md y Roadmap.md para documentar el comportamiento.
+- Recalculé commit_examples_data/comparison_report.json.
+
+Resultado: 19 tests OK.
+"""
+        command = self.render_command(text)
+
+        self.assertIn('git commit -m "feat(nlp): mejora detección de menciones de archivos"', command)
+        self.assertIn('-m "- Actualiza lógica de código mencionada en el resumen"', command)
+        self.assertIn('-m "- Cubre cambios con tests de regresión"', command)
+        self.assertIn('-m "- Actualiza documentación mencionada en el resumen"', command)
+        self.assertIn('-m "- Actualiza datos o reportes de evaluación"', command)
+        self.assertIn('-m "- Validación: 19 tests pass"', command)
+        self.assertNotIn('-m "- Actualiza documentación del proyecto"', command)
+        self.assertNotIn('-m "- Actualiza Roadmap.md para marcar elementos completados"', command)
+        self.assertLess(
+            command.index('-m "- Actualiza lógica de código mencionada en el resumen"'),
+            command.index('-m "- Validación: 19 tests pass"')
+        )
 
     def test_copy_button_confirms_without_modal_text_change(self):
         self.render_command('He creado Roadmap.md con tareas completadas.')
@@ -243,7 +307,7 @@ Resultado: **8 tests OK**.
         self.assertIn('git commit -m "feat(ui): agrega botón Limpiar entrada en la interfaz"', command)
         self.assertIn('-m "- Implementa lógica para limpiar entrada y commit generado"', command)
         self.assertIn('-m "- Desactiva el botón de copiar al limpiar la entrada"', command)
-        self.assertIn('-m "- Validación: 8 tests pass en entorno offscreen"', command)
+        self.assertIn('-m "- Validación: 8 tests pass"', command)
         self.assertNotIn('test(repo): agrega suite', command)
 
     def test_language_status_summary_takes_priority_over_roadmap(self):
@@ -265,7 +329,7 @@ Resultado: **10 tests OK**.
         self.assertIn('git commit -m "feat(ui): agrega indicador de idioma detectado"', command)
         self.assertIn('-m "- Presenta estados Pendiente, Español e Inglés"', command)
         self.assertIn('-m "- Enfoca el roadmap en calidad semántica sin integración Git"', command)
-        self.assertIn('-m "- Validación: 10 tests pass en entorno offscreen"', command)
+        self.assertIn('-m "- Validación: 10 tests pass"', command)
         self.assertNotIn('actualiza roadmap del proyecto', command)
 
     def test_testing_evaluation_summary_takes_priority_over_bilingual_terms(self):
